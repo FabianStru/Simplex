@@ -1,4 +1,5 @@
-import Drodown from "./Navbar/Dropdown";
+import React from "react";
+import Dropdown from "./Dropdown";
 
 function Navbar(){
     return(
@@ -10,4 +11,4 @@ function Navbar(){
     )
 }
 
-export default
+export default Navbar
