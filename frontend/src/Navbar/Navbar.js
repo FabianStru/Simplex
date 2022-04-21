@@ -1,6 +1,6 @@
 import Drodown from "./Navbar/Dropdown";
 
-function Navbar(){
+const Navbar = ({}) => {
     return(
         <ul>
             <Dropdown></Dropdown>
