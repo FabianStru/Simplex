@@ -9,7 +9,7 @@ function Navbar(){
         <ul>
             <Dropdown/>
             <li> Test</li>
-            <li> ich hab 1 Dunst was ich mach</li>
+            <li> ich hab 2 Dunst was ich mach</li>
         </ul>
     )
 }
