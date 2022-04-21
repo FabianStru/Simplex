@@ -1,12 +1,15 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
+
 function Navbar(){
     return(
         <ul>
-            <Dropdown></Dropdown>
-            <li> Test</li>
-            <li> ich hab 0 Dunst was ich mach</li>
+            <Dropdown>
+
+            </Dropdown>
+            <h1>Test</h1>
+            <h2> ich hab 0 Dunst was ich mach</h2>
         </ul>
     )
 }
