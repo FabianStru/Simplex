@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from "./Header/Header";
+import Navbar from "./Navbar/Navbar";
+import Mainpage from "./Mainpage/Mainpage"
 
 function App() {
-  return (
-    <div className="App">
-      <div className="Navbar">
-          <Navbar>
-              <DropbownMenu>
+    return (
+        <div className="App">
+            <div className="Navbar">
+                <Navbar>
+                    <Dropbown>
 
-              </DropbownMenu>
-          </Navbar>
-      </div>
-        <Mainpage>
+                    </Dropbown>
+                </Navbar>
+            </div>
+            <div className="Mainpage">
+                <Mainpage>
 
-        </Mainpage>
+                </Mainpage>
+            </div>
 
-    </div>
-  );
+
+        </div>
+    );
 }
 
 export default App;
