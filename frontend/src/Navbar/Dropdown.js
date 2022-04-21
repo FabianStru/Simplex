@@ -55,3 +55,17 @@ function DropdownMenu() {
     console.log('click')
 
  }
+ {/*
+
+Das ist ein Beispiel aus Stackoverflow für einen onClick handler:
+default function StackOverflowExample() {
+    const navigate = useNavigate();
+    const handleOnClick = useCallback(() => navigate('/sample', {replace: true}), [navigate]);
+
+    return (
+        <button type="button" onClick={handleOnClick}>
+            Go home
+        </button>
+    );
+}
+*/}
