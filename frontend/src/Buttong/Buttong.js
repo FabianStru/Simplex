@@ -1,17 +1,20 @@
 import React from "react";
-const Button = ({ color, text, onClick }) => {
+import './Buttong.css';
+
+const Button = ({ color, text, onClick, float }) => {
     return (
         <button
             onClick={onClick}
             style = {{ backgroundColor: color }}
             className = 'button'
+            style = {{float: float}}
             >
             {text}
         </button>
     )
 }
 Button.defaultProps = {
-    color: 'green',
+    color: 'black',
     text: 'BTN',
 }
 
