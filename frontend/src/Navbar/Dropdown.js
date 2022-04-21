@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../Buttong/Buttong";
 import './Dropdown.css';
+import { useNavigate } from "react-router-dom";
+import Mainpage from "../Mainpage/Mainpage";
 
 const Dropdown = ({  ausgeklappt  }) => {
     ausgeklappt=false
@@ -17,7 +19,7 @@ const Dropdown = ({  ausgeklappt  }) => {
                     text={'Page 2'}
                     color={'yellow'}
                     float={'right'}
-                    onClick={weiterLeitung}
+                    onClick={event => window.location.href='/play'}
                 >
 
                 </DropdownHeader>
@@ -26,21 +28,21 @@ const Dropdown = ({  ausgeklappt  }) => {
                     text={'Page 1'}
                     color={'purple'}
                     float={'left'}
-                    onClick={weiterLeitung}
+                    onClick={event => window.location.href='/'}
                 >
+
                 </DropdownHeader>
             </div>
 
     )
 }
 
-export default Dropdown
+
 
 const DropdownHeader = ({text , color, onClick, float })=>
 {
     return (
         <Button text={text} color={color} onClick={onClick} float={float}>
-
         </Button>
     )
 }
@@ -51,21 +53,5 @@ function DropdownMenu() {
         </Button>
     )
  }
- const weiterLeitung = (DropdownHeader) => {
-    console.log('click')
 
- }
- {/*
-
-Das ist ein Beispiel aus Stackoverflow für einen onClick handler:
-default function StackOverflowExample() {
-    const navigate = useNavigate();
-    const handleOnClick = useCallback(() => navigate('/sample', {replace: true}), [navigate]);
-
-    return (
-        <button type="button" onClick={handleOnClick}>
-            Go home
-        </button>
-    );
-}
-*/}
+export default Dropdown
