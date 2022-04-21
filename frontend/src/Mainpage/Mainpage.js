@@ -1,11 +1,13 @@
 import React from "react";
 
-{/* Der Homescreen der erscheint beim Aufrufen der webseite */}
+/* Der Homescreen der erscheint beim Aufrufen der webseite */
 
-const Mainpage = ({}) => {
+function Mainpage () {
     return (
-        <h1>dreckiger affe</h1>
-    )
+        <main className = "Mainpage">
+            <h1>dreckiger affe</h1>
+        </main>
+    );
 }
 
 export default Mainpage

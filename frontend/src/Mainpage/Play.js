@@ -1,12 +1,15 @@
 import React from "react";
 
 
-{/* Hier soll der user das Simplex Problem lösen können */}
+/* Hier soll der user das Simplex Problem lösen können */
 
-const Play = ({}) => {
 
-    return(
-        <h1>hässlicher affe</h1>
+function Play () {
+
+    return (
+        <main>
+            <h1>Hässlicher affe</h1>
+        </main>
     )
 }
 export default Play
