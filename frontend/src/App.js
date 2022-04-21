@@ -1,25 +1,31 @@
+import logo from './logo.svg';
 import React from "react";
 import './App.css';
 import Navbar from "./Navbar/Navbar";
 import Mainpage from "./Mainpage/Mainpage"
+import Play from "./Mainpage/Play"
+import ReactDOM from "react-dom/client";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
 function App() {
     return (
-        <div className="App">
-            <div className="Navbar">
-                <Navbar>
-                </Navbar>
+        <div>
+            <Navbar/>
+            <div>
+                <Router>
+                    <Routes>
+                        {/* Hier werden die verschiedenen Wege zu den Mainscreens definiert */}
+                        <Route path="/" element={(<Mainpage/>)}/>
+                        <Route path="/play" element={(<Play/>)}/>
+                        <Route path="/*" element={(<h1>This is the wrong page</h1>)}/>
+                    </Routes>
+                </Router>
             </div>
-            <div className="Mainpage">
-                <Mainpage>
-
-                </Mainpage>
-            </div>
-
-
         </div>
-    );
+
+    )
+        ;
 }
 
 export default App;
