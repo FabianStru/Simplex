@@ -1,5 +1,6 @@
 import React from "react";
 import logo from './logo.svg';
+import React from "react";
 import './App.css';
 import Navbar from "./Navbar/Navbar";
 import Mainpage from "./Mainpage/Mainpage"
@@ -9,9 +10,6 @@ function App() {
         <div className="App">
             <div className="Navbar">
                 <Navbar>
-                    <Dropbown>
-
-                    </Dropbown>
                 </Navbar>
             </div>
             <div className="Mainpage">
