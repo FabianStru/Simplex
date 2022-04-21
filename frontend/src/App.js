@@ -1,30 +1,27 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from './Buttong/Buttong';
+import Navbar from "./Navbar/Navbar";
+import Mainpage from "./Mainpage/Mainpage"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1> hallo
-      </h1>
-          <Button></Button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div className="Navbar">
+                <Navbar>
+                    <Dropbown>
+
+                    </Dropbown>
+                </Navbar>
+            </div>
+            <div className="Mainpage">
+                <Mainpage>
+
+                </Mainpage>
+            </div>
+
+
+        </div>
+    );
 }
 
 export default App;
