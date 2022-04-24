@@ -23,4 +23,5 @@ function Tabelle() {
         </div>
     )
 }
+
 export default Tabelle

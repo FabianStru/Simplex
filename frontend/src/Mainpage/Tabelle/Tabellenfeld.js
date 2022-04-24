@@ -3,7 +3,8 @@ import './Tabellenfeld.css';
 
 function Tabellenfeld(){
     return(
-        <input type="text"/>
+        <input className='Tabellenfeld' type="text"/>
     )
 }
+
 export default Tabellenfeld
