@@ -1,4 +1,6 @@
 import React from "react";
+import Tabelle from "./Tabelle/Tabelle";
+
 
 
 /* Hier soll der user das Simplex Problem lösen können */
