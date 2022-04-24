@@ -18,7 +18,6 @@ const Dropdown = ({ausgeklappt}) => {
                 <DropdownHeader
                     className='headerRight'
                     text={'Page 2'}
-                    color={'yellow'}
                     float={'right'}
                     onClick={event => window.location.href = '/play'}
                 >
@@ -27,8 +26,7 @@ const Dropdown = ({ausgeklappt}) => {
                 <DropdownHeader
                     className='headerLeft'
                     text={'Page 1'}
-                    color={'purple'}
-                    float={'left'}
+                    float={'right'}
                     onClick={event => window.location.href = '/'}
                 >
 
@@ -39,9 +37,9 @@ const Dropdown = ({ausgeklappt}) => {
 }
 
 
-const DropdownHeader = ({text, color, onClick, float}) => {
+const DropdownHeader = ({text, onClick, float}) => {
     return (
-        <Button text={text} color={color} onClick={onClick} float={float}>
+        <Button text={text}  onClick={onClick} float={float}>
         </Button>
     )
 }
@@ -49,7 +47,7 @@ const DropdownHeader = ({text, color, onClick, float}) => {
 function DropdownMenu() {
     return (
         <div>
-            <h1>'du wicher'</h1>
+            <h1>'Guten Morgen'</h1>
             <Button color={'red'} text={'butong 1'}>
             </Button>
         </div>

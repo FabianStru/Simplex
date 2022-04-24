@@ -1,8 +1,8 @@
 .headerRight {
-    float-offset: 1000px;
     float: bottom;
+    float-offset: 1000px;
     background-color: black;
 }
 .headerLeft {
-    float: right;
+    float: left;
 }
