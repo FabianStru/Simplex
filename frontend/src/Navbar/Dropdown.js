@@ -48,9 +48,11 @@ const DropdownHeader = ({text, color, onClick, float}) => {
 
 function DropdownMenu() {
     return (
-        <h1>'du wicher'</h1>,
+        <div>
+            <h1>'du wicher'</h1>
             <Button color={'red'} text={'butong 1'}>
             </Button>
+        </div>
     )
 }
 
