@@ -1,7 +1,7 @@
 import React from "react";
 import './Buttong.css';
 
-const Button = ({ color, text, onClick, float }) => {
+const Button = ({ text, onClick, float }) => {
     return (
         <button
             onClick={onClick}
