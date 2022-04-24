@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../Buttong/Buttong";
 import './Dropdown.css';
-import {useNavigate} from "react-router-dom";
 import Mainpage from "../Mainpage/Mainpage";
 
 const Dropdown = ({ausgeklappt}) => {
