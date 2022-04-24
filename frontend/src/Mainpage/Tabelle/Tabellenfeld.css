@@ -1,9 +1,8 @@
-.Tabellenfeld {
+.Tabellenfeld{
     width: 5%;
-    height: 40px;
-    margin: 0.5% 1%;
-    border: magenta;
-    box-shadow: -1px -1px 2px black;
+    height: 30px;
+    margin: 1% 1%;
+    border: none;
+    box-shadow: -1px -1px 4px black;
     font-size: 30px;
-
 }
