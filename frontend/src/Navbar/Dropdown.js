@@ -10,7 +10,6 @@ const Dropdown = ({ausgeklappt}) => {
                 <DropdownHeader
                     className='headerRight'
                     text={'Play'}
-                    color={'yellow'}
                     onClick={event => window.location.href = '/play'}
                 >
 
@@ -18,20 +17,19 @@ const Dropdown = ({ausgeklappt}) => {
                 <DropdownHeader
                     className='headerLeft'
                     text={'Home'}
-                    color={'purple'}
                     onClick={event => window.location.href = '/'}
                 >
 
                 </DropdownHeader>
-        </div>
+            </div>
 
     )
 }
 
 
-const DropdownHeader = ({text, color, onClick, float}) => {
+const DropdownHeader = ({text , onClick, float}) => {
     return (
-        <Button text={text} color={color} onClick={onClick} float={float}>
+        <Button text={text}  onClick={onClick} float={float}>
         </Button>
     )
 }
