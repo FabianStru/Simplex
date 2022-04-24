@@ -14,12 +14,11 @@ const Dropdown = ({ausgeklappt}) => {
         >
 
         </div>
-            /* er meckert hier mit dem komma, da return normalerweise nur ein element zurückgeben sollte. Wir geben hier 2 Zurück */
+            { /* er meckert hier mit dem komma, da return normalerweise nur ein element zurückgeben sollte. Wir geben hier 2 Zurück */}
             <div>
                 <DropdownHeader
                     className='headerRight'
                     text={'Page 2'}
-                    float={'right'}
                     onClick={event => window.location.href = '/play'}
                 >
 
@@ -27,10 +26,8 @@ const Dropdown = ({ausgeklappt}) => {
                 <DropdownHeader
                     className='headerLeft'
                     text={'Page 1'}
-                    float={'right'}
                     onClick={event => window.location.href = '/'}
                 >
-
                 </DropdownHeader>
             </div>
         </div>
@@ -41,7 +38,7 @@ const Dropdown = ({ausgeklappt}) => {
 
 const DropdownHeader = ({text, onClick, float}) => {
     return (
-        <Button text={text}  onClick={onClick} float={float}>
+        <Button text={text}  onClick={onClick} >
         </Button>
     )
 }
