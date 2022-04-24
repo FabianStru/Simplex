@@ -5,4 +5,5 @@
     grid-column-gap: 25px;
     grid-template-columns: repeat(auto-fit,minmax(2ch,max-content));
     width: 100%;
+    box-shadow: 0px 1px 5px black;
 }

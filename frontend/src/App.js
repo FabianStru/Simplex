@@ -11,7 +11,7 @@ function App() {
     return (
         <div>
             <Navbar/>
-            <div>
+            <div className='container'>
                 <Router>
                     <Routes>
                         {/* Hier werden die verschiedenen Wege zu den Mainscreens definiert */}
