@@ -6,10 +6,9 @@ import Dropdown from "./Dropdown";
 
 function Navbar(){
     return(
-        <ul>
+        <ul className= 'Navbar-test'>
             <Dropdown/>
-            <li> Test</li>
-            <li> ich hab 2 Dunst was ich mach</li>
+
         </ul>
     )
 }

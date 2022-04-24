@@ -18,18 +18,16 @@ const Dropdown = ({ausgeklappt}) => {
             <div>
                 <DropdownHeader
                     className='headerRight'
-                    text={'Page 2'}
+                    text={'Play'}
                     color={'yellow'}
-                    float={'right'}
                     onClick={event => window.location.href = '/play'}
                 >
 
                 </DropdownHeader>
                 <DropdownHeader
                     className='headerLeft'
-                    text={'Page 1'}
+                    text={'Home'}
                     color={'purple'}
-                    float={'left'}
                     onClick={event => window.location.href = '/'}
                 >
 
