@@ -8,7 +8,8 @@ function Play () {
 
     return (
         <main>
-            <h1>Hässlicher affe</h1>
+            <h1>Simplex Spiel</h1>
+            <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
         </main>
     )
 }

@@ -8,11 +8,12 @@ const Dropdown = ({ausgeklappt}) => {
     ausgeklappt = false
 
     return (
+        <div>
         <div
             className={`DropdownHeader ${ausgeklappt && 'DropdownMenu'}`}
         >
 
-        </div>,
+        </div>
             /* er meckert hier mit dem komma, da return normalerweise nur ein element zurückgeben sollte. Wir geben hier 2 Zurück */
             <div>
                 <DropdownHeader
@@ -32,6 +33,7 @@ const Dropdown = ({ausgeklappt}) => {
 
                 </DropdownHeader>
             </div>
+        </div>
 
     )
 }
