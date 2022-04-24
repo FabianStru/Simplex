@@ -5,17 +5,17 @@ import './Tabelle.css';
 function Tabelle() {
     return (
         <div className='Tabellenrahmen'>
-            <div className={'Reihe1'}>
+            <div className={'Reihe'}>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
             </div>
-            <div className={'Reihe2'}>
+            <div className={'Reihe'}>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
             </div>
-            <div className={'Reihe3'}>
+            <div className={'Reihe'}>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
                 <Tabellenfeld/>
