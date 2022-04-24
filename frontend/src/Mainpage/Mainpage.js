@@ -1,4 +1,5 @@
 import React from "react";
+import './Mainpage.css';
 
 /* Der Homescreen der erscheint beim Aufrufen der webseite */
 

@@ -1,12 +1,11 @@
 import React from "react";
 import './Buttong.css';
 
-const Button = ({ text, onClick, float }) => {
+const Button = ({ text, onClick,}) => {
     return (
         <button
             onClick={onClick}
             className = 'button'
-            style = {{float: float}}
             >
             {text}
         </button>

@@ -1,8 +1,6 @@
-.headerRight {
-    float-offset: 1000px;
-    float: bottom;
-    background-color: black;
+.homeButton {
+    float : right;
 }
-.headerLeft {
-    float: right;
+.Dropdown {
+
 }

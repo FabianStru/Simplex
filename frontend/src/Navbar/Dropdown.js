@@ -3,33 +3,34 @@ import Button from "../Buttong/Buttong";
 import './Dropdown.css';
 import Mainpage from "../Mainpage/Mainpage";
 
-const Dropdown = ({ausgeklappt}) => {
+const Dropdown = ({}) => {
     return (
 
-            <div>
-                <DropdownHeader
-                    className='headerRight'
-                    text={'Play'}
-                    onClick={event => window.location.href = '/play'}
-                >
+            <div className='Dropdown'>
 
-                </DropdownHeader>
+
                 <DropdownHeader
-                    className='headerLeft'
+                    className='homeButton'
                     text={'Home'}
                     onClick={event => window.location.href = '/'}
                 >
-
                 </DropdownHeader>
+                <DropdownHeader
+                    className='playButton'
+                    text={'Play'}
+                    onClick={event => window.location.href = '/play'}
+                >
+                </DropdownHeader>
+
             </div>
 
     )
 }
 
 
-const DropdownHeader = ({text , onClick, float}) => {
+const DropdownHeader = ({text , onClick, }) => {
     return (
-        <Button text={text}  onClick={onClick} float={float}>
+        <Button text={text}  onClick={onClick} >
         </Button>
     )
 }

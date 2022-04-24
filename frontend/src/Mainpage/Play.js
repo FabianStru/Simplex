@@ -1,4 +1,5 @@
 import React from "react";
+import './Play.css';
 
 
 /* Hier soll der user das Simplex Problem lösen können */
@@ -7,7 +8,7 @@ import React from "react";
 function Play () {
 
     return (
-        <main>
+        <main className='Play'>
             <h1>Simplex Spiel</h1>
             <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
         </main>
