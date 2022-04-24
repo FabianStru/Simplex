@@ -14,7 +14,7 @@ const Dropdown = ({ausgeklappt}) => {
         >
 
         </div>
-            /* er meckert hier mit dem komma, da return normalerweise nur ein element zurückgeben sollte. Wir geben hier 2 Zurück */
+            {/* er meckert hier mit dem komma, da return normalerweise nur ein element zurückgeben sollte. Wir geben hier 2 Zurück */}
             <div>
                 <DropdownHeader
                     className='headerRight'

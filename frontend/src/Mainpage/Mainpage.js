@@ -5,7 +5,9 @@ import React from "react";
 function Mainpage () {
     return (
         <main className = "Mainpage">
-            <h1>dreckiger affe</h1>
+            <h1>Willkommen im Simplex Trainer</h1>
+            <h2>Aktuell befinden wir uns noch im Umbau. Du wirst später die möglichkeit haben ein Tutorial dir anzuschauen, selbst am Simplex Problem frei zu Arbeiten
+                aber auch gegen andere Kommolitonen in unserem Gewerteten Modus anzutreten</h2>
         </main>
     );
 }
