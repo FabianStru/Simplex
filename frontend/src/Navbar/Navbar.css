@@ -1,8 +1,6 @@
-.Navbar-test {
+.Navigationsbar{
     background-color: #ee750d;
     padding: 30px;
-    /*color: white;
-     */
     display: grid;
     grid-column-gap: 25px;
     grid-template-columns: repeat(auto-fit,minmax(2ch,max-content));

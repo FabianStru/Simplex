@@ -7,10 +7,10 @@ import './Navbar.css';
 
 function Navbar(){
     return(
-        <ul className= 'Navbar-test'>
+        <nav className= 'Navigationsbar'>
             <Dropdown/>
 
-        </ul>
+        </nav>
     )
 }
 
