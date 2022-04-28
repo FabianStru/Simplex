@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Buttong/Buttong";
+import Button from "../Button/Button";
 import './Dropdown.css';
 import {menuItems} from "./MenuItems/menuItems";
 
