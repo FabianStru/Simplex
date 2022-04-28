@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "../Buttong/Buttong";
 import './Dropdown.css';
-import Mainpage from "../Mainpage/Mainpage";
+import {menuItems} from "./MenuItems/menuItems";
 
-const Dropdown = ({}) => {
+/*const Dropdown = ({}) => {
     return (
 
             <div className='Dropdown'>
@@ -24,6 +24,21 @@ const Dropdown = ({}) => {
 
             </div>
 
+    )
+}
+
+ */
+const Dropdown = ({}) => {
+    return (
+        <ul className='menus'>
+            {menuItems.map((menu, index)=>{
+                return (
+                    <li className='menu-items' key={index}>
+                        <a href='/#'>{menu.title}</a>
+                    </li>
+                )
+            })}
+        </ul>
     )
 }
 
