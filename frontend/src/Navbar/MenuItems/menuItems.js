@@ -5,7 +5,7 @@ export const menuItems = [
         title: "Home"
     },
     {
-        title: "Services"
+        title: "Play"
     },
     {
         title: "About"

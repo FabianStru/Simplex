@@ -34,7 +34,7 @@ const Dropdown = ({}) => {
             {menuItems.map((menu, index)=>{
                 return (
                     <li className='menu-items' key={index}>
-                        <a href='/#'>{menu.title}</a>
+                        <a href='/Play'>{menu.title}</a>
                     </li>
                 )
             })}

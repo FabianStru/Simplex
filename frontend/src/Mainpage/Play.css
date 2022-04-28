@@ -3,3 +3,20 @@
     padding-left: 40px;
     padding-right: 40px;
 }
+.Eingabefeld {
+    margin: 20px 0;
+}
+.Eingabefeld label {
+
+}
+.Eingabefeld input {
+    width: 20%;
+    height: 30px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 19px;
+}
+.StartKnopf {
+
+}
+
