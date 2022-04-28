@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import { useState } from 'react';
 import Tabelle from "./Tabelle/Tabelle";
 import './Play.css';
 import Button from "../Button/Button.js";
@@ -7,9 +6,6 @@ import Button from "../Button/Button.js";
 
 
 /* Hier soll der user das Simplex Problem lösen können */
-const createTable(){
-    const [spalten, setSpalten]=useState('')
-    const [zeilen, setZeilen]=useState('')
 
     onAdd({ spalten, zeilen })
     setZeilen('')
@@ -17,17 +13,29 @@ const createTable(){
 }
 
 function Play () {
-    const [Zeilen] = useState('');
-    const [Spalten] = useState('');
+    const [Zeilen,setZeilen] = useState('');
+    const [Spalten,setSpalten] = useState('');
 
     return (
         <main className='Play'>
             <h1>Spalten:</h1>
-            <input name="Spalten"  type="text" value={Spalten}/>
+            <input
+                name="Spalten"
+                required
+                type="text"
+                value={Spalten}
+                onChange={(e) => setSpalten(e.target.value)}/>
             <h1>Zeilen:</h1>
-            <input name="Zeilen" type="text"  value={Zeilen}/>
-            <Button text='deine mum stinkt nach alkohol' onClick={createTable}></Button>
+            <input
+                name="Zeilen"
+                type="text"
+                required
+                value={Zeilen}
+                onChange={(e) => setZeilen(e.target.value)}/>
+            <Button text="Start" ></Button>
             <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
+            <h2>{Zeilen}</h2>
+
 
         </main>
     )
