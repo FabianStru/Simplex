@@ -9,17 +9,30 @@ import Button from "../Button/Button.js";
 
 
 function Play () {
-    const [Zeilen] = useState('');
-    const [Spalten] = useState('');
+    const [Zeilen,setZeilen] = useState('');
+    const [Spalten,setSpalten] = useState('');
 
     return (
         <main className='Play'>
             <h1>Spalten:</h1>
-            <input name="Spalten"  type="text" value={Spalten}/>
+            <input
+                name="Spalten"
+                required
+                type="text"
+                value={Spalten}
+                onChange={(e) => setSpalten(e.target.value)}/>
             <h1>Zeilen:</h1>
-            <input name="Zeilen" type="text"  value={Zeilen}/>
-
+            <input
+                name="Zeilen"
+                type="text"
+                required
+                value={Zeilen}
+                onChange={(e) => setZeilen(e.target.value)}/>
+            <Button text="Start" ></Button>
             <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
+            <h2>{Zeilen}</h2>
+
+
         </main>
     )
 }
