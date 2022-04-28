@@ -2,23 +2,23 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Play.css';
 import Button from "../Button/Button.js";
-import Tabellenfeld from "./Tabelle/Tabellenfeld";
-
 
 
 /* Hier soll der user das Simplex Problem lösen können */
 
+function Play(onClick) {
+    const [Zeilen, setZeilen] = useState('');
+    const [Spalten, setSpalten] = useState('');
+    const [components, setComponents] = useState(["Sample Component"])
 
-
-
-function Play (onClick) {
-    const [Zeilen,setZeilen] = useState('');
-    const [Spalten,setSpalten] = useState('');
-
-    const onSubmit=(e)=>{
-       e.preventDefault()
-
+    const onSubmit = (e) => {
+        e.preventDefault()
     }
+
+    function addTabelle() {
+        setComponents([...components, "Sample Component"])
+    }
+
 
     return (
         <form className='Play' onSubmit={onSubmit}>
@@ -42,16 +42,17 @@ function Play (onClick) {
                 <Button
                     className='StartKnopf'
                     text="Start"
-                    onClick={onClick}/>
+                    onClick={addTabelle}/>
+                {components.map((item, i) =>
+                    (<Tabelle Zeileninput={Zeilen} Spalteninput={Spalten} text={item}/>))}
             </div>
-            <div>
 
+            <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>
-
-            <Tabelle Zeileninput={Zeilen} Spalteninput={Spalten}/>
         </form>
 
     )
 }
+
 export default Play
