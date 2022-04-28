@@ -2,25 +2,15 @@ import React from "react";
 import Tabellenfeld from "./Tabellenfeld";
 import './Tabelle.css';
 
-function Tabelle() {
+const Tabelle = (Zeileninput, Spalteninput) => {
+    const Zeilen = [Zeileninput]
+    const Spalten = [Spalteninput]
     return (
-        <div className='Tabellenrahmen'>
-            <div className={'Reihe'}>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-            </div>
-            <div className={'Reihe'}>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-            </div>
-            <div className={'Reihe'}>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-                <Tabellenfeld/>
-            </div>
-        </div>
+        <Tabelle>
+            <h1>Das ist eine Tabelle</h1>
+            <h1 title={Zeilen}> Zeilen</h1>
+            <h1 title={Spalten}> Spalten</h1>
+        </Tabelle>
     )
 }
 
