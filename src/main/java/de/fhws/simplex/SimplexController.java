@@ -11,9 +11,10 @@ public class SimplexController {
 
 
     @RequestMapping("/home")
-    public String home(Matrix matrix)
-    {
+    public String home(Matrix matrix) {
+        matrix.beRottisBeispiel();
         matrix.printMatrix();
-        return "App.js";
+        System.out.println("Hi");
+        return "Springboot_Test.html";
     }
 }
