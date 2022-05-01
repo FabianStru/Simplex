@@ -7,9 +7,11 @@ import Button from "../Button/Button.js";
 /* Hier soll der user das Simplex Problem lösen können */
 
 function Play(onClick) {
+    let boolean = true;
+
     const [Zeilen, setZeilen] = useState('');
     const [Spalten, setSpalten] = useState('');
-    const [components, setComponents] = useState(["Sample Component"])
+    const [components, setComponents] = useState([""])
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -18,7 +20,6 @@ function Play(onClick) {
     function addTabelle() {
         setComponents([...components, "Sample Component"])
     }
-
 
     return (
         <form className='Play' onSubmit={onSubmit}>
@@ -43,8 +44,8 @@ function Play(onClick) {
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                {components.map((item, i) =>
-                    (<Tabelle Zeileninput={Zeilen} Spalteninput={Spalten} text={item}/>))}
+                {boolean ? components.map((item, i) =>
+                    (<Tabelle Zeileninput={Zeilen} Spalteninput={Spalten} text={item}/>)): ''}
             </div>
 
             <div>

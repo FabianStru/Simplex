@@ -1,52 +1,84 @@
-import React from "react";
-import Button from "../Button/Button";
+import React, {useState} from "react";
 import './Dropdown.css';
-import {menuItems} from "./MenuItems/menuItems";
+import {CSSTransition} from "react-transition-group";
 
-/*const Dropdown = ({}) => {
+function Dropdown () {
+
+    const [activeMenu, setActiveMenu] = useState('main');
+    const [menuHeight, setMenuHeight] = useState(null);
+
+    function calculateHeight(el){
+        const height = el.offsetHeight;
+        setMenuHeight(height);
+    }
+
+    function DropdownItem(props){
+
+        return(
+            <a href={props.href} className='menu-item' onClick={()=> props.goToMenu && setActiveMenu(props.goToMenu)}>
+                {props.children}
+            </a>
+        )
+    }
     return (
-
-            <div className='Dropdown'>
-
-
-                <DropdownHeader
-                    className='homeButton'
-                    text={'Home'}
-                    onClick={event => window.location.href = '/'}
+        <div className='Dropdown' style={{height : menuHeight}}>
+            <CSSTransition
+                in={activeMenu==='main'}
+                timeout={500}
+                unmountOnExit
+                className="menu-primary"
+                onEnter={calculateHeight}
+            >
+                <div className='menu'>
+                     <DropdownItem
+                         leftIcon='Beta'
+                         href='/'
+                     >
+                        Main
+                     </DropdownItem>
+                    <DropdownItem
+                    leftIcon='A'
+                    goToMenu='Play'
                 >
-                </DropdownHeader>
-                <DropdownHeader
-                    className='playButton'
-                    text={'Play'}
-                    onClick={event => window.location.href = '/play'}
-                >
-                </DropdownHeader>
+                    Play
+                </DropdownItem>
+                </div>
 
-            </div>
-
-    )
-}
-
- */
-const Dropdown = ({}) => {
-    return (
-        <ul className='menus'>
-            {menuItems.map((menu, index)=>{
-                return (
-                    <li className='menu-items' key={index}>
-                        <a href='/Play'>{menu.title}</a>
-                    </li>
-                )
-            })}
-        </ul>
-    )
-}
+            </CSSTransition>
 
 
-const DropdownHeader = ({text , onClick, }) => {
-    return (
-        <Button text={text}  onClick={onClick} >
-        </Button>
+            <CSSTransition
+                in={activeMenu==='Play'}
+                timeout={500}
+                unmountOnExit
+                className="menu-secondary"
+                onEnter={calculateHeight}
+            >
+
+                <div className='menu'>
+
+                    <DropdownItem
+                        leftIcon='R'
+                        href='/playRanked'
+                    >
+                        Ranked
+                    </DropdownItem>
+                    <DropdownItem
+                        leftIcon='C'
+                        href='/playCasual'
+                    >
+                        Casual
+                    </DropdownItem>
+                    <DropdownItem
+                    leftIcon='<-'
+                    goToMenu='main'>
+                    Go back
+                </DropdownItem>
+                </div>
+
+            </CSSTransition>
+        </div>
+
     )
 }
 

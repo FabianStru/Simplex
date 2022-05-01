@@ -2,15 +2,19 @@ import React from "react";
 import Dropdown from "./Dropdown";
 import './Navbar.css';
 import './Dropdown.css';
+import NavItem from "./NavItem";
 
 {/* Die Navigationsbar, welche das Dropdown menü enthältt */}
 
 
-function Navbar(){
+function Navbar(props){
     return(
-        <nav className= 'Navigationsbar'>
-            <Dropdown/>
-
+        <nav className= 'navbar'>
+            <ul className='navbar-nav'>
+                <NavItem icon='MENU'>
+                   <Dropdown/>
+                </NavItem>
+            </ul>
         </nav>
     )
 }

@@ -5,6 +5,7 @@ import Mainpage from "./Mainpage/Mainpage"
 import Play from "./Mainpage/Play"
 import ReactDOM from "react-dom/client";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import NavItem from './Navbar/NavItem';
 
 
 function App() {
