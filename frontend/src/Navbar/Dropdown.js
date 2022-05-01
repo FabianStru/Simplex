@@ -24,7 +24,7 @@ function Dropdown () {
         <div className='Dropdown' style={{height : menuHeight}}>
             <CSSTransition
                 in={activeMenu==='main'}
-                timeout={500}
+
                 unmountOnExit
                 className="menu-primary"
                 onEnter={calculateHeight}
@@ -49,7 +49,7 @@ function Dropdown () {
 
             <CSSTransition
                 in={activeMenu==='Play'}
-                timeout={500}
+
                 unmountOnExit
                 className="menu-secondary"
                 onEnter={calculateHeight}
@@ -65,7 +65,7 @@ function Dropdown () {
                     </DropdownItem>
                     <DropdownItem
                         leftIcon='C'
-                        href='/playCasual'
+                        href='/play'
                     >
                         Casual
                     </DropdownItem>

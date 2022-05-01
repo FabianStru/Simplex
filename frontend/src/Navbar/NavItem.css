@@ -2,7 +2,7 @@
     width: calc(var(--nav-size)*0.8);
     display:flex;
     align-items:center;
-    justify-content:center;
+    justify-content: flex-start;
 }
 .icon-button{
     width: 100px;
@@ -14,9 +14,11 @@
     align-items: center;
     justify-content: center;
     transition: filter 300ms;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .icon-button:hover{
-    filter: brightness(0.9);
-    box-shadow: 0px 1px 5px black;
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }

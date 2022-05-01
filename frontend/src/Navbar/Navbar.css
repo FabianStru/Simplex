@@ -9,9 +9,7 @@
 
      */
     box-shadow: 0px 1px 5px black;
-    height: var(--nav-size);
-    border-bottom: var(--border);
-
+    height: 70px;
 }
 
 .navbar-nav{
