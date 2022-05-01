@@ -31,12 +31,10 @@ public class Matrix {
 
         System.out.println("Automatische Auswertung Simplex nach Steepest Unit:");
         m.beRottisBeispiel();
-        m.printMatrix();
         m.calculateSimplex();
 
         System.out.println("Automatische Auswertung Simplex nach Greatest Change:");
         m.beRottisBeispiel();
-        m.printMatrix();
         m.calculateSimplex(true);
     }
 
@@ -127,11 +125,14 @@ public class Matrix {
         } else {
             pivotCalculator = new SteepestUnitAscentCalculator();
         }
+        int counter = 0;
         while (continueCalculate()) {
+            counter++;
             printPivotelement(pivotCalculator);
             nextStep(pivotCalculator.getPivotelement(this.matrix)); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
         }
         printMatrix();
+        System.out.println("Nach " + counter + " Iterationsschritten hat der Simplexalgorithmus die optimale Loesung gefunden.");
 
         return this;
     }

@@ -1,3 +1,4 @@
+
 table {
     border-collapse: collapse;
     max-width: 800px;
@@ -11,14 +12,14 @@ table th, table td{
 
 
 /*
-.Tabellenrahmen{
+.table{
     border : 1px solid #ee750d;
 
 
     min-height: 200px;
     align-content: center;
 }
-.Reihe{
+.table th, table td{
     border : 1px solid yellowgreen;
 
     align-content: center;
@@ -28,3 +29,4 @@ table th, table td{
 
 }
 */
+

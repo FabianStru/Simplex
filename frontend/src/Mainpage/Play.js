@@ -7,19 +7,22 @@ import Button from "../Button/Button.js";
 /* Hier soll der user das Simplex Problem lösen können */
 
 function Play(onClick) {
-    let boolean = true;
-
     const [Zeilen, setZeilen] = useState('');
+    const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
-    const [components, setComponents] = useState([""])
+    const [outSpalten, setOutSpalten] = useState(0);
+    const [aktiv, setAktiv] = useState(false);
 
     const onSubmit = (e) => {
         e.preventDefault()
     }
 
     function addTabelle() {
-        setComponents([...components, "Sample Component"])
+        setAktiv(true)
+        setOutSpalten(Spalten)
+        setOutZeilen(Zeilen)
     }
+
 
     return (
         <form className='Play' onSubmit={onSubmit}>
@@ -44,10 +47,8 @@ function Play(onClick) {
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                {boolean ? components.map((item, i) =>
-                    (<Tabelle Zeileninput={Zeilen} Spalteninput={Spalten} text={item}/>)): ''}
             </div>
-
+            {aktiv && <Tabelle Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>
