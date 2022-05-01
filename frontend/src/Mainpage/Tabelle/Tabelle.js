@@ -11,7 +11,7 @@ const Tabelle = ({Zeileninput, Spalteninput}) => {
     function generateZeile() {
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            Zeile.push(<td key={i}><input title="test"/></td>)
+            Zeile.push(<td key={i}><Tabellenfeld title="test"/></td>)
         }
         return (
             Zeile

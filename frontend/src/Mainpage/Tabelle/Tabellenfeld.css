@@ -7,10 +7,8 @@ Tabellenfeld{
     font-size: 30px;
 }
 .Tabellenfeld {
-    width: 10%;
-    height: 40px;
+    max-height: 40px;
     margin: 5px;
     padding: 3px 7px;
-    font-size: 30px;
-    box-shadow: 0 -3px 10px rgb(238, 117, 13);
+    font-size: 20px;
 }

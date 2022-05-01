@@ -4,10 +4,13 @@ table {
     max-width: 800px;
     width: 20%;
     margin: 1rem auto;
+
 }
-table th, table td{
+table th .table td{
     border: 1px solid #ddd;
     padding: 8px;
+    display: flex;
+    justify-content: center;
 }
 
 
