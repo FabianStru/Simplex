@@ -1,7 +1,62 @@
-.homeButton {
-    float : right;
+
+.Dropdown {
+    position: absolute;
+    top: 80px;
+    width: 200px;
+
+    background-color: white;
+    border:var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+    transition: height var(--speed) ease;
+    box-shadow: 0px 1px 5px grey;
+}
+.menu{
+    width: 100%;
+}
+.menu-item{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding:0.5rem;
+    justify-content: center;
+    font-size: 18px;
 
 }
-.Dropdown {
-
+.menu-item:hover{
+    background-color: lightgrey;
+}
+.icon-right{
+    margin-left: auto;
+}
+.menu-primary-enter {
+    position: absolute;
+    transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+    transform:translateX(0%);
+    transition: all var(--speed) ease;
+}
+.menu-primary-exit {
+    position: absolute;
+}
+.menu-primary-exit-active {
+    transform:translateX(-110%);
+    transition: all var(--speed) ease;
+}
+.menu-secondary-enter {
+    transform: translateX(110%);
+}
+.menu-secondary-enter-active {
+    transform:translateX(0%);
+    transition: all var(--speed) ease;
+}
+.menu-secondary-exit {
+}
+.menu-secondary-exit-active {
+    transform:translateX(110%);
+    transition: all var(--speed) ease;
 }

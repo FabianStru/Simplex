@@ -1,4 +1,4 @@
-Button {
+.button {
     display: inline-block;
     background: #000;
     color: #fff;
@@ -11,9 +11,10 @@ Button {
     font-size: 15px;
     font-family: inherit;
     text-transform: uppercase;
+    transition: filter 500ms;
 }
-
-.Button {
+/*
+button {
     display: inline-block;
     background: white;
     padding: 10px 16px;
@@ -24,7 +25,13 @@ Button {
     color: #c83b50;
     box-shadow: 0 8px 16px -4px rgb(200 59 80 / 50%);
     -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+   transition: all 0.2s ease-in-out;
     text-transform: uppercase;
     margin: 5px;
+    transition: filter 10ms;
+}
+ */
+
+.button:hover{
+    filter: brightness(1.5);
 }

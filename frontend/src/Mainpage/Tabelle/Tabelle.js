@@ -5,15 +5,37 @@ import './Tabelle.css';
 const Tabelle = ({Zeileninput, Spalteninput}) => {
 
 
-    const Zeilen = [Zeileninput]
-    const Spalten = [Spalteninput]
+    const ZeilenAnzahl = Zeileninput
+    const SpaltenAnzahl = Spalteninput
+
+    function generateZeile() {
+        const Zeile = []
+        for (let i = 0; i < SpaltenAnzahl; i++) {
+            Zeile.push(<td key={i}><Tabellenfeld title="test"/></td>)
+        }
+        return (
+            Zeile
+        )
+    }
+
+
+    function generateTable() {
+        const Tabelle = []
+        for (let i = 0; i < ZeilenAnzahl; i++) {
+            const Zeile = generateZeile()
+            Tabelle.push(<tr key={i}>{Zeile}</tr>)
+        }
+        return Tabelle;
+    }
 
     return (
-        <div className = "Component">
-            <h1>Das ist eine Tabelle</h1>
-            <h1>  {Spalten}  {Zeilen} </h1>
-            <h1> </h1>
-        </div>
+        <table>
+            <thead>
+            </thead>
+            <tbody>
+            {generateTable()}
+            </tbody>
+        </table>
     )
 }
 
