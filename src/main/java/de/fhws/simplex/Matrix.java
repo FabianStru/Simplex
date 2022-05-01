@@ -49,6 +49,13 @@ public class Matrix {
         this.setObenAndLinks();
     }
 
+    public Matrix(BigDecimal[][] matrix) {
+        this.matrix = matrix;
+        int zeilen = matrix.length;
+        int spalten = matrix[0].length;
+        this.setObenAndLinks();
+    }
+
     /**
      * documentation
      */
@@ -86,11 +93,6 @@ public class Matrix {
         this.setObenAndLinks();
     }
 
-
-    // https://stackoverflow.com/questions/3395825/how-to-print-formatted-bigdecimal-values
-    // https://stackoverflow.com/questions/5061912/printing-out-a-2d-array-in-matrix-format
-    // https://www.baeldung.com/java-printstream-printf#:~:text=System.out.printf(%22%27-,%255.2f,-%27%25n%22%2C%205.1473)%3B
-
     public void setMatrix(BigDecimal[][] matrix) {
         this.matrix = matrix;
     }
@@ -124,6 +126,9 @@ public class Matrix {
                 '}';
     }
 
+    // https://stackoverflow.com/questions/3395825/how-to-print-formatted-bigdecimal-values
+    // https://stackoverflow.com/questions/5061912/printing-out-a-2d-array-in-matrix-format
+    // https://www.baeldung.com/java-printstream-printf#:~:text=System.out.printf(%22%27-,%255.2f,-%27%25n%22%2C%205.1473)%3B
     /**
      * Formatierte Ausgabe der Matrix mit Spalten- und Zeilenbezeichnungen sowie den entsprechenden Werten der Matrix.
      */
