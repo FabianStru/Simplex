@@ -4,18 +4,16 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * GreatestChangeCalculator is a Calculator using the Greatest Change procedure, determining the pivotelement.
- *
+ * GreatestChangeCalculator is a {@link Calculator} using the Greatest Change procedure, determining the pivotelement
+ * <p>
  * @author Fabian Struensee
- * @version 1.1
- * @since 2022-04-07
  */
 public class GreatestChangeCalculator extends SteepestUnitAscentCalculator implements Calculator {
 
     /**
-     * This method uses getIndexOfBiggestNumberInRow of allProducts to get the pivotcolumn,
+     * This method uses getIndexOfLargestNumberInRow of allProducts to get the pivotcolumn,
      * and calculateQuotientAndReturnIndex of that column to get the pivotelement.
-     *
+     * <p>
      * @return int[0] is pivotrow and int[1] is pivotcolumn
      * @author Fabian Struensee
      */
@@ -27,7 +25,10 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
     }
 
     /**
-     *This method returns the largest number in the given row.
+     *  This method returns the index of the largest number in the given row.
+     *  <p>
+     * @param row
+     * @param matrix
      * @return the largest number in the given row
      * @author Fabian Struensee
      */
@@ -44,6 +45,10 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
     }
 
     /**
+     * Calculates the smallest quotient of the cell divided by the value of "Rechte Seite" in its row for each column,
+     * and multiples it with the value of "G" in its column. The produkt of that multiplikation is put into the return array.
+     * <p>
+     * @param matrix
      * @return a 2D array with one row containing the product of value G times the smallest quotient of "Rechte Seite" divided by value of cells.
      * @author Fabian Struensee
      */
