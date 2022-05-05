@@ -4,20 +4,38 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * documentation
+ * SteepestUnitAscentCalculator is a {@link Calculator} using the steepest unit ascent procedure, determining the pivotelement.
+ *
+ * @author Anton Kaiser, Fabian Struensee
  */
 public class SteepestUnitAscentCalculator implements Calculator {
 
     /**
-     * documentation
+     * This method returns the pivotelement for the given matrix.
+     * <p>
+     *
+     * @param matrix the matrix whose pivotelement is to be determined
+     * @return an int array with two elements:
+     * <li>[0] -> pivotrow
+     * <li>[1] -> pivotcolumn
      */
     @Override
     public int[] getPivotelement(BigDecimal[][] matrix) {
         int pivotcolumn = getIndexOfSmallestNumberInRow(0, matrix); //
-        int pivotrow = calculateQuotientAndReturnIndex(pivotcolumn, matrix);
+        int pivotrow = calculateQuotientAndReturnIndexOfSmallestQuotient(pivotcolumn, matrix);
         return new int[]{pivotrow, pivotcolumn};
     }
 
+
+    /**
+     * This method returns the smallest number in the given row.
+     * <p>
+     *
+     * @param row    the row in which the smallest number should be determined
+     * @param matrix the matrix in which the smallest number should be determined
+     * @return the index of the smallest number in the given row
+     * @author Anton Kaiser
+     */
 
     @Override
     public int getIndexOfSmallestNumberInRow(int row, BigDecimal[][] matrix) {
@@ -33,12 +51,21 @@ public class SteepestUnitAscentCalculator implements Calculator {
         return index;
     }
 
+    /**
+     * This method calculates all quotients of the elements of the given column divided by the elements of "Rechte Seite" and returns the index of the smallest one.
+     * <p>
+     *
+     * @param column the column of which the smallest quotient should be determined for
+     * @param matrix the matrix for which the smallest quotient should be determined for
+     * @return the index of the smallest quotient in the column
+     */
     @Override
-    public int calculateQuotientAndReturnIndex(int column, BigDecimal[][] matrix) {
+    public int calculateQuotientAndReturnIndexOfSmallestQuotient(int column, BigDecimal[][] matrix) {
         BigDecimal smallest = BigDecimal.valueOf(Integer.MAX_VALUE);
         int index = -1;
         for (int row = 1; row < matrix.length; row++) { //über Pivotspalte iterieren und Quotienten von Pivotspalte geteilt durch "Rechte Seite" ausrechnen und Minimum zurückgeben
-            if (matrix[row][column].compareTo(BigDecimal.ZERO)<=0) continue; // Durch 0 teilen prüfen und überspringen falls der Fall
+            if (matrix[row][column].compareTo(BigDecimal.ZERO) <= 0)
+                continue; // Durch 0 teilen prüfen und überspringen falls der Fall
             BigDecimal quotient = matrix[row][matrix[0].length - 1].divide(matrix[row][column], 15, RoundingMode.HALF_UP);
             if (quotient.compareTo(smallest) < 0) {
                 smallest = quotient;

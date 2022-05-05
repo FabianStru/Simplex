@@ -23,6 +23,6 @@ public interface Calculator {
     /**
      * documentation
      */
-    int calculateQuotientAndReturnIndex(int column, BigDecimal[][] matrix);
+    int calculateQuotientAndReturnIndexOfSmallestQuotient(int column, BigDecimal[][] matrix);
 
 }
