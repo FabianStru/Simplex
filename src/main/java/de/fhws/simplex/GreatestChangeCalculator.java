@@ -5,23 +5,39 @@ import java.math.RoundingMode;
 
 /**
  * documentation
+ * GreatestChangeCalculator is a Calculator using the Greatest Change procedure,
+ * determining the pivotelement.
+ *
+ * @author Fabian Struensee
+ * @version 1.1
+ * @since 2022-04-07
  */
 public class GreatestChangeCalculator extends SteepestUnitAscentCalculator implements Calculator {
 
     /**
      * documentation
+     * This method uses getIndexOfBiggestNumberInRow of allProducts to get the pivotcolumn,
+     * and calculateQuotientAndReturnIndex of that column to get the pivotelement.
+     *
+     * @return int[0] is pivotrow and int[1] is pivotcolumn
+     * @author Fabian Struensee
+     * @since 2022-04-14
      */
     @Override
     public int[] getPivotelement(BigDecimal[][] matrix) {
-        int pivotcolumn = getIndexOfBiggestNumberInRow(0,allProducts(matrix)); //
+        int pivotcolumn = getIndexOfLargestNumberInRow(0,allProducts(matrix));
         int pivotrow = calculateQuotientAndReturnIndex(pivotcolumn, matrix);
         return new int[]{pivotrow, pivotcolumn};
     }
 
     /**
      * documentation
+     *This method returns the largest number in the given row.
+     *
+     * @author Fabian Struensee
+     * @since 2022-04-14
      */
-    public int getIndexOfBiggestNumberInRow(int row, BigDecimal[][] matrix) {
+    public int getIndexOfLargestNumberInRow(int row, BigDecimal[][] matrix) { // was, wenn mehrere gleich groß sind
         int index = -1; //Exception, falls -1 zurückgegeben wird
         BigDecimal biggest = BigDecimal.ZERO;
         for (int column = 0; column < matrix[0].length; column++) { //Iterieren über jedes Element der Spalten in der Zeile row
@@ -33,10 +49,15 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
         return index;
     }
 
+    // sorry die Docu ist Big BAD
     /**
      * documentation
+     *
+     * @return a 2D array with one row containing the product of value G times the smallest quotient of "Rechte Seite" divided by value of cells.
+     * @author Fabian Struensee
+     * @since 2022-04-14
      */
-    public BigDecimal[][] allProducts(BigDecimal[][] matrix) // Gibt eine einzeilige Matrix mit den Produkten von dem Wert aus der Zeile G und und dem kleinsten quotienten zurück
+    public BigDecimal[][] allProducts(BigDecimal[][] matrix) // Gibt eine einzeilige Matrix mit den Produkten von dem Wert aus der Zeile G und dem kleinsten quotienten zurück
     {
         BigDecimal[][] result = new BigDecimal[1][matrix[0].length];
         for(int column = 0; column<matrix[0].length; column++) //iteriert über jede Zeile aus einer Spalte
