@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * documentation
- * GreatestChangeCalculator is a Calculator using the Greatest Change procedure,
- * determining the pivotelement.
+ * GreatestChangeCalculator is a Calculator using the Greatest Change procedure, determining the pivotelement.
  *
  * @author Fabian Struensee
  * @version 1.1
@@ -15,13 +13,11 @@ import java.math.RoundingMode;
 public class GreatestChangeCalculator extends SteepestUnitAscentCalculator implements Calculator {
 
     /**
-     * documentation
      * This method uses getIndexOfBiggestNumberInRow of allProducts to get the pivotcolumn,
      * and calculateQuotientAndReturnIndex of that column to get the pivotelement.
      *
      * @return int[0] is pivotrow and int[1] is pivotcolumn
      * @author Fabian Struensee
-     * @since 2022-04-14
      */
     @Override
     public int[] getPivotelement(BigDecimal[][] matrix) {
@@ -31,11 +27,9 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
     }
 
     /**
-     * documentation
      *This method returns the largest number in the given row.
-     *
+     * @return the largest number in the given row
      * @author Fabian Struensee
-     * @since 2022-04-14
      */
     public int getIndexOfLargestNumberInRow(int row, BigDecimal[][] matrix) { // was, wenn mehrere gleich groß sind
         int index = -1; //Exception, falls -1 zurückgegeben wird
@@ -49,13 +43,9 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
         return index;
     }
 
-    // sorry die Docu ist Big BAD
     /**
-     * documentation
-     *
      * @return a 2D array with one row containing the product of value G times the smallest quotient of "Rechte Seite" divided by value of cells.
      * @author Fabian Struensee
-     * @since 2022-04-14
      */
     public BigDecimal[][] allProducts(BigDecimal[][] matrix) // Gibt eine einzeilige Matrix mit den Produkten von dem Wert aus der Zeile G und dem kleinsten quotienten zurück
     {
