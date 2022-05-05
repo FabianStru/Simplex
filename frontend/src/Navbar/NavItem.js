@@ -8,7 +8,7 @@ function NavItem(props){
 
     return (
         <li className='nav-item'>
-            <a href="#" className='icon-button' onClick={()=>setAusgeklappt(!ausgeklappt)}>
+            <a href="#" className='navbar-icon' onClick={()=>setAusgeklappt(!ausgeklappt)}>
                 {props.icon}
             </a>
 

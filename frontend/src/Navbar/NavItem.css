@@ -4,12 +4,10 @@
     align-items:center;
     justify-content: flex-start;
 }
-.icon-button{
-    width: 100px;
-    height: 30px;
+.navbar-icon{
+    max-width: 130%;
+    max-height: 130%;
     border-radius: 5%;
-    background-color: #ee750d;
-    padding: 3px 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +16,7 @@
     font-weight: bold;
 }
 
-.icon-button:hover{
+.navbar-icon:hover{
     text-decoration: underline;
     text-underline-offset: 5px;
 }

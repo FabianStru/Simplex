@@ -2,6 +2,7 @@
     padding: 10px;
     padding-left: 40px;
     padding-right: 40px;
+    background-color: whitesmoke;
 }
 .Eingabefeld {
     margin: 20px 0;
@@ -15,6 +16,7 @@
     margin: 5px;
     padding: 3px 7px;
     font-size: 19px;
+
 }
 .StartKnopf {
 

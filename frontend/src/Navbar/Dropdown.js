@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import './Dropdown.css';
 import {CSSTransition} from "react-transition-group";
+import {ReactComponent as Icon} from './Icon.svg';
+import {ReactComponent as Pfeil} from './Pfeil.svg';
+
 
 function Dropdown () {
-
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
 
@@ -16,7 +18,9 @@ function Dropdown () {
 
         return(
             <a href={props.href} className='menu-item' onClick={()=> props.goToMenu && setActiveMenu(props.goToMenu)}>
+                <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
+                <span className="icon-button">{props.rightIcon}</span>
             </a>
         )
     }
@@ -24,21 +28,21 @@ function Dropdown () {
         <div className='Dropdown' style={{height : menuHeight}}>
             <CSSTransition
                 in={activeMenu==='main'}
-
                 unmountOnExit
                 className="menu-primary"
                 onEnter={calculateHeight}
             >
                 <div className='menu'>
                      <DropdownItem
-                         leftIcon='Beta'
+                         leftIcon={<Icon/>}
                          href='/'
                      >
                         Main
                      </DropdownItem>
                     <DropdownItem
-                    leftIcon='A'
+
                     goToMenu='Play'
+                    rightIcon={<Pfeil/>}
                 >
                     Play
                 </DropdownItem>
