@@ -2,6 +2,7 @@ package de.fhws.simplex;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 /**
  * documentation
@@ -48,6 +49,13 @@ public class Matrix {
         this.setObenAndLinks();
     }
 
+    public Matrix(BigDecimal[][] matrix) {
+        this.matrix = matrix;
+        int zeilen = matrix.length;
+        int spalten = matrix[0].length;
+        this.setObenAndLinks();
+    }
+
     /**
      * documentation
      */
@@ -68,7 +76,7 @@ public class Matrix {
     /**
      * documentation
      */
-    private void beRottisBeispiel() {
+    void beRottisBeispiel() {
         matrix = new BigDecimal[4][3];
         matrix[0][0] = new BigDecimal("-300");
         matrix[0][1] = new BigDecimal("-500");
@@ -85,11 +93,42 @@ public class Matrix {
         this.setObenAndLinks();
     }
 
+    public void setMatrix(BigDecimal[][] matrix) {
+        this.matrix = matrix;
+    }
+
+    public void setOben(String[] oben) {
+        this.oben = oben;
+    }
+
+    public void setLinks(String[] links) {
+        this.links = links;
+    }
+
+    public BigDecimal[][] getMatrix() {
+        return matrix;
+    }
+
+    public String[] getOben() {
+        return oben;
+    }
+
+    public String[] getLinks() {
+        return links;
+    }
+
+    @Override
+    public String toString() {
+        return "Matrix{" +
+                "matrix=" + Arrays.toString(matrix) +
+                ", oben=" + Arrays.toString(oben) +
+                ", links=" + Arrays.toString(links) +
+                '}';
+    }
 
     // https://stackoverflow.com/questions/3395825/how-to-print-formatted-bigdecimal-values
     // https://stackoverflow.com/questions/5061912/printing-out-a-2d-array-in-matrix-format
     // https://www.baeldung.com/java-printstream-printf#:~:text=System.out.printf(%22%27-,%255.2f,-%27%25n%22%2C%205.1473)%3B
-
     /**
      * Formatierte Ausgabe der Matrix mit Spalten- und Zeilenbezeichnungen sowie den entsprechenden Werten der Matrix.
      */
