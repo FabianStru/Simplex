@@ -22,7 +22,7 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
     @Override
     public int[] getPivotelement(BigDecimal[][] matrix) {
         int pivotcolumn = getIndexOfLargestNumberInRow(0,allProducts(matrix));
-        int pivotrow = calculateQuotientAndReturnIndex(pivotcolumn, matrix);
+        int pivotrow = calculateQuotientAndReturnIndexOfSmallestQuotient(pivotcolumn, matrix);
         return new int[]{pivotrow, pivotcolumn};
     }
 
@@ -52,7 +52,7 @@ public class GreatestChangeCalculator extends SteepestUnitAscentCalculator imple
         BigDecimal[][] result = new BigDecimal[1][matrix[0].length];
         for(int column = 0; column<matrix[0].length; column++) //iteriert über jede Zeile aus einer Spalte
         {
-            int index = calculateQuotientAndReturnIndex(column,matrix); // sucht dort den kleinsten Quotienten aus "Rechte Seite" durch den Wert aus der Zelle[index][column] und gibt den index an
+            int index = calculateQuotientAndReturnIndexOfSmallestQuotient(column,matrix); // sucht dort den kleinsten Quotienten aus "Rechte Seite" durch den Wert aus der Zelle[index][column] und gibt den index an
             result[0][column] = matrix[0][column].negate().multiply(matrix[index][matrix[0].length-1].divide(matrix[index][column], 15, RoundingMode.HALF_UP)); //multipliziert den wert aus der Gewinnzeile mit dem kleinsten Quotienten und setzt ihn in das Array
         }
         for(BigDecimal b : result[0])
