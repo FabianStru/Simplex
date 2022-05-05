@@ -190,14 +190,13 @@ public class Matrix {
      */
     private boolean continueCalculate() {
         int counter = 0;
-        for (int column = 0; column < this.matrix[0].length - 1; column++) { //Iterieren über jedes Element (= die Spalten) in der "G"-Zeile, ausgenommen das Element von "Rechte Seite"
+        for (int column = 0; column < this.matrix[0].length - 1; column++) { //Iterieren über jedes Element (= die Spalten) in der "G"-Zeile, ausgenommen das Element von "Rechte Seite".
             if (this.matrix[0][column].compareTo(BigDecimal.ZERO) >= 0) counter++;
         }
         if (counter == this.matrix[0].length - 1)
             return false; // Falls jedes Element in der Zeile "G" außer das Element von "Rechte Seite" nichtnegativ ist, wird false zurückgegeben
         return true; //Solange mindestens ein Element (außer das von "Rechte Seite") in der "G"-Zeile ein negatives Vorzeichen hat, wird true zurückgegeben
     }
-
 
     /**
      * documentation
@@ -211,11 +210,6 @@ public class Matrix {
         this.links[pivot[0]] = this.oben[pivot[1]]; //Nicht-Basis-Variablen
         this.oben[pivot[1]] = temp;
 
-/* Idee für das Vermeiden von Rundungsfehlern: Falls Non-terminating decimal expansion auftreten sollte,
-nur als Bruch darstellen.
-Aber Problem: BigDecimal unterstützt keine Bruchdarstellung so weit ich weiß, daher müsste man das dann ggf. als "String" speichern.
-Dann kann man es aber nicht in matrix speichern, weil Elemente in dem Array vom Datentyp BigDecimal sein müssen.
-*/
 //        try {
 //            this.matrix[pivot[0]][pivot[1]] = tempB.divide(pivotElement); // Pivotelement
 //        } catch (ArithmeticException e) {
@@ -240,7 +234,7 @@ Dann kann man es aber nicht in matrix speichern, weil Elemente in dem Array vom 
                 for (int row = 0; row < this.matrix.length; row++) {
                     if (row != pivot[0]) {
                         subtrahend = this.matrix[row][pivot[1]].multiply(this.matrix[pivot[0]][column]).divide(pivotElement, 15, RoundingMode.HALF_UP);
-//                        System.out.println("Zeile: " + row + " | Spalte: " + column + " | Feld (alt): " + this.matrix[row][column]);
+//                        System.out.println("Zeile: " + row + " | Spalte: " + column + " | Feld (alt): " + this.matrix[row][column]); //Debugging Print
 //                        System.out.println("Subtrahend: " + subtrahend + " setzt sich zusammen aus: " +
 //                                "\n - Faktor 1: " + this.matrix[row][pivot[1]] + " \n - Faktor 2: " + this.matrix[pivot[0]][column] + "\n - Dividend (Pivotelement): " + pivotElement);
                         this.matrix[row][column] = this.matrix[row][column].subtract(subtrahend);
