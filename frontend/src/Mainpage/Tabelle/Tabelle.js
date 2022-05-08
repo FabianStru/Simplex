@@ -1,18 +1,20 @@
 import React from "react";
 import Tabellenfeld from "./Tabellenfeld";
 import './Tabelle.css';
+import JsonToTabelle from "./JsonToTabelle";
 
 const Tabelle = ({Zeileninput, Spalteninput, editable}) => {
 
 
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
+    const Tabelle = JsonToTabelle();
 
 
-    function generateZeile() {
+    function generateZeile(j) {
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            Zeile.push(<td key={i}><Tabellenfeld editable={editable} title="test"/></td>)
+            Zeile.push(<td key={i}><Tabellenfeld input={Tabelle[i][j]} editable={editable} title="test"/></td>)
         }
         return (
             Zeile
@@ -22,7 +24,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable}) => {
     function generateTable() {
         const Tabelle = []
         for (let i = 0; i < ZeilenAnzahl; i++) {
-            const Zeile = generateZeile()
+            const Zeile = generateZeile(i)
             Tabelle.push(<tr key={i}>{Zeile}</tr>)
         }
         return Tabelle;
