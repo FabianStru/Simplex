@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Play.css';
 import Button from "../Button/Button.js";
-
+import jsonToArray from "./Tabelle/jsonToArray.js";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
@@ -12,6 +12,7 @@ function Play(onClick) {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -51,6 +52,12 @@ function Play(onClick) {
             {aktiv && <Tabelle Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
+            </div>
+            <div>
+                <h1>
+                    {jsonToArray().length}
+                    {jsonToArray()[0].length}
+                </h1>
             </div>
         </form>
 
