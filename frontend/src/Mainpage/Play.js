@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Play.css';
 import Button from "../Button/Button.js";
-import jsonToArray from "./Tabelle/jsonToArray.js";
+import jsonToTabelle from "./Tabelle/JsonToTabelle";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
@@ -55,8 +55,8 @@ function Play(onClick) {
             </div>
             <div>
                 <h1>
-                    {jsonToArray().length}
-                    {jsonToArray()[0].length}
+                    {jsonToTabelle().length}
+                    {jsonToTabelle()[0].length}
                 </h1>
             </div>
         </form>

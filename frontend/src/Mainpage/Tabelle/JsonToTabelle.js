@@ -4,7 +4,7 @@ import * as data from './Servertabelle.json';
 
 function toArray(){
     const ServerTabelle = data.matrix;
-    const [Tabelle,setTabelle] = useState([''][''])
+    let Tabelle = new Array();
 
 
     createNewTabelle(Zeilen, Spalten);
@@ -13,10 +13,17 @@ function toArray(){
 
 
     return (Tabelle)
-
-    function createNewTabelle(Zeilen, Spalten) {
-
+    /*
+        Erstellt ein mehrdimensionales Array in der Größe der Tabelle
+         */
+    function createNewTabelle() {
+        let ServerArray = new Array(ServerTabelle.length);
+        for(let i = 0; i<ServerArray.length;i++) {
+            ServerArray[i]=new Array(ServerTabelle[i].length)
+        }
+        Tabelle=ServerArray
     }
+
 
     function fillTabelleWithJsonObj() {
         //füllen der oberen Zeile:
@@ -36,6 +43,8 @@ function toArray(){
         }
     }
 }
+
+toArray.defaultProps={Zeilen: 4, Spalten: 3, Tabelle: [[3],[4]],}
 
 export default toArray;
 
