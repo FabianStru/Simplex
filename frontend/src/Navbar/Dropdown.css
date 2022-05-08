@@ -11,6 +11,7 @@
     transition: height var(--speed) ease;
     box-shadow: 0px 1px 5px grey;
 }
+
 .menu{
     width: 100%;
 }
@@ -43,9 +44,10 @@
 .icon-right{
     margin-left: auto;
 }
+
 .menu-primary-enter {
     position: absolute;
-    transform: translateX(-110%);
+    transform: translateX(-150%);
 }
 .menu-primary-enter-active {
     transform:translateX(0%);
@@ -55,19 +57,20 @@
     position: absolute;
 }
 .menu-primary-exit-active {
-    transform:translateX(-110%);
+    transform:translateX(-150%);
     transition: all var(--speed) ease;
 }
 .menu-secondary-enter {
-    transform: translateX(110%);
+    transform: translateX(150%);
 }
 .menu-secondary-enter-active {
     transform:translateX(0%);
     transition: all var(--speed) ease;
 }
 .menu-secondary-exit {
+    position: absolute;
 }
 .menu-secondary-exit-active {
-    transform:translateX(110%);
+    transform:translateX(150%);
     transition: all var(--speed) ease;
 }
