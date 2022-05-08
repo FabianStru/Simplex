@@ -29,12 +29,12 @@ function toArray(){
 
     function fillTabelleWithJsonObj() {
         //füllen der oberen Zeile:
-        for (let i = 1; i < ServerTabelle[0].length; i++) {
-        Tabelle[0][i] = oben[i-1];
+        for (let i = 0; i < oben[0].length; i++) {
+        Tabelle[0][i+1] = oben[i];
         }
         //füllen der linken Spalte:
-        for (let i = 1; i < ServerTabelle.length; i++) {
-        Tabelle[i][0] = links[i-1];
+        for (let i = 0; i < links.length; i++) {
+        Tabelle[i+1][0] = links[i];
         }
 
         //füllen des restes:
@@ -42,7 +42,7 @@ function toArray(){
             for (var j = 0; j < ServerTabelle[i].length; j++) {
                 Tabelle[i+1][j+1] = ServerTabelle[i][j];
             }
-
+        Tabelle[0][0] = ""
         }
     }
 }
