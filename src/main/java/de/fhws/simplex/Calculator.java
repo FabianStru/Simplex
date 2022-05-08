@@ -3,8 +3,11 @@ package de.fhws.simplex;
 import java.math.BigDecimal;
 
 /**
- * documentation
+ * The Calculator interface is used to build other specialised Calculators for determining the pivotelement.
+ *
+ * @author Anton Kaiser
  */
+
 public interface Calculator {
 
     /**
@@ -20,6 +23,6 @@ public interface Calculator {
     /**
      * documentation
      */
-    int calculateQuotientAndReturnIndex(int column, BigDecimal[][] matrix);
+    int calculateQuotientAndReturnIndexOfSmallestQuotient(int column, BigDecimal[][] matrix);
 
 }
