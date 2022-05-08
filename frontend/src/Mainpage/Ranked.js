@@ -1,5 +1,5 @@
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
-import React from "@types/react";
+import React from 'react';
 
 function Ranked(){
     return(
@@ -13,3 +13,4 @@ function Ranked(){
         </div>
     )
 }
+export default Ranked
