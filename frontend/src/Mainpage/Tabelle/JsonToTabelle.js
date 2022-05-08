@@ -42,7 +42,7 @@ function toArray(){
             for (var j = 0; j < ServerTabelle[i].length; j++) {
                 Tabelle[i+1][j+1] = ServerTabelle[i][j];
             }
-
+        Tabelle[0][0] = ""
         }
     }
 }
