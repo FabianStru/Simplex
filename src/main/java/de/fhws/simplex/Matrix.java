@@ -2,6 +2,7 @@ package de.fhws.simplex;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,7 +14,8 @@ import java.util.Arrays;
 public class Matrix {
 
     BigDecimal[][] matrix;
-    String[] columnHeader, rowHeader; //oben = Spaltenbezeichner, links = Zeilenbezeichner
+    String[] columnHeader, rowHeader; //columnHeader = Spaltenbezeichner, rowHeader = Zeilenbezeichner
+    int numberOfColumns, numberOfRows;
 
     /**
      * Main function, currently for testing purposes to see and compare the different functions of Matrix.
@@ -50,13 +52,15 @@ public class Matrix {
     /**
      * Public constructor for matrix, only giving rows and colums and thus offering an empty matrix.
      *
-     * @param zeilen  amount of rows that your matrix should have
-     * @param spalten amount of columns that your matrix should have
+     * @param numberOfRows    amount of rows that your matrix should have
+     * @param numberOfColumns amount of columns that your matrix should have
      */
-    public Matrix(int zeilen, int spalten) {
-        this.matrix = new BigDecimal[zeilen][spalten];
-        this.columnHeader = new String[spalten];
-        this.rowHeader = new String[zeilen];
+    public Matrix(int numberOfRows, int numberOfColumns) {
+        this.matrix = new BigDecimal[numberOfRows][numberOfColumns];
+        this.columnHeader = new String[numberOfColumns];
+        this.rowHeader = new String[numberOfRows];
+        this.numberOfRows = numberOfRows;
+        this.numberOfColumns = numberOfColumns;
         this.setTableHeaders();
     }
 
@@ -67,15 +71,23 @@ public class Matrix {
      */
     public Matrix(BigDecimal[][] matrix) {
         this.matrix = matrix;
+        this.numberOfColumns = this.matrix[0].length;
+        this.numberOfRows = this.matrix.length;
         this.setTableHeaders();
     }
 
     /**
-     * Constructor with string input that is apparently needed for Spring Boot to work and transform JSON into Matrix object
-     *
-     * @param parameter not used string variable
+     * Constructor with no input that is needed for Spring Boot to work and transform a JSON into Matrix object
      */
-    public Matrix(String parameter) {
+    public Matrix() {
+    }
+
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
+        this.matrix = matrix;
+        this.columnHeader = columnHeader;
+        this.rowHeader = rowHeader;
+        this.numberOfColumns = this.matrix[0].length;
+        this.numberOfRows = this.matrix.length;
     }
 
     /**
@@ -83,7 +95,7 @@ public class Matrix {
      *
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void setTableHeaders() {
+    void setTableHeaders() {
         this.columnHeader = new String[this.matrix[0].length];
         this.rowHeader = new String[this.matrix.length];
         for (int i = 0; i < this.matrix[0].length - 1; i++) {
@@ -117,6 +129,31 @@ public class Matrix {
         this.setTableHeaders();
     }
 
+    Matrix deepCopy() {
+        BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
+        String[] columnHeaderCopy = columnHeader.clone();
+        String[] rowHeaderCopy = rowHeader.clone();
+        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy);
+    }
+
+    /**
+     * This method is the setter for the numberOfColumns.
+     *
+     * @param numberOfColumns the number of columns to be set
+     */
+    public void setNumberOfColumns(int numberOfColumns) {
+        this.numberOfColumns = numberOfColumns;
+    }
+
+    /**
+     * This method is the setter for the numberOfRows.
+     *
+     * @param numberOfRows the number of rows to be set
+     */
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
+
     /**
      * This method is the setter for the matrix.
      *
@@ -142,6 +179,24 @@ public class Matrix {
      */
     public void setRowHeader(String[] rowHeader) {
         this.rowHeader = rowHeader;
+    }
+
+    /**
+     * This method is the getter for the number of columns.
+     *
+     * @return the number of columns of the matrix
+     */
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
+
+    /**
+     * This method is the getter for the number of rows.
+     *
+     * @return the number of rows of the matrix
+     */
+    public int getNumberOfRows() {
+        return numberOfRows;
     }
 
     /**
@@ -204,7 +259,7 @@ public class Matrix {
     /**
      * This method calculates the Simplex tableau with the standard steepest unit ascent procedure.
      */
-    public Matrix calculateSimplex() { // Standard mit Steepest Unit Ascent
+    public Matrix[] calculateSimplex() { // Standard mit Steepest Unit Ascent
         return calculateSimplex(false);
     }
 
@@ -214,7 +269,7 @@ public class Matrix {
      * @param greatestChange whether to use the greatest change procedure, otherwise steepest unit ascent
      * @return the matrix which was calculated
      */
-    public Matrix calculateSimplex(boolean greatestChange) { //bei true: Greatest Change Verfahren, sonst Steepest Unit Ascent
+    public Matrix[] calculateSimplex(boolean greatestChange) { //bei true: Greatest Change Verfahren, sonst Steepest Unit Ascent
         Calculator pivotCalculator;
         if (greatestChange) {
             pivotCalculator = new GreatestChangeCalculator();
@@ -222,15 +277,18 @@ public class Matrix {
             pivotCalculator = new SteepestUnitAscentCalculator();
         }
         int counter = 0;
+        ArrayList<Matrix> iterations = new ArrayList<>();
+        iterations.add(this.deepCopy());
         while (continueCalculate()) {
             counter++;
             printPivotelement(pivotCalculator);
             nextStep(pivotCalculator.getPivotelement(this.matrix)); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
+            iterations.add(this.deepCopy());
         }
         printMatrix();
         System.out.println("Nach " + counter + " Iterationsschritten hat der Simplexalgorithmus die optimale Loesung gefunden.");
 
-        return this;
+        return iterations.toArray(Matrix[]::new);
     }
 
     /**
