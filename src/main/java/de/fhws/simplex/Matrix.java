@@ -71,11 +71,9 @@ public class Matrix {
     }
 
     /**
-     * Constructor with string input that is apparently needed for Spring Boot to work and transform JSON into Matrix object
-     *
-     * @param parameter not used string variable
+     * Constructor with no input that is needed for Spring Boot to work and transform a JSON into Matrix object
      */
-    public Matrix(String parameter) {
+    public Matrix() {
     }
 
     /**
