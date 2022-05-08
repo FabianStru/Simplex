@@ -2,22 +2,22 @@ import React from "react";
 import Tabellenfeld from "./Tabellenfeld";
 import './Tabelle.css';
 
-const Tabelle = ({Zeileninput, Spalteninput}) => {
+const Tabelle = ({Zeileninput, Spalteninput, editable}) => {
 
 
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
 
+
     function generateZeile() {
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            Zeile.push(<td key={i}><Tabellenfeld title="test"/></td>)
+            Zeile.push(<td key={i}><Tabellenfeld editable={editable} title="test"/></td>)
         }
         return (
             Zeile
         )
     }
-
 
     function generateTable() {
         const Tabelle = []

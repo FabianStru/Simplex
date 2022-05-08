@@ -49,16 +49,11 @@ function Play(onClick) {
                     text="Start"
                     onClick={addTabelle}/>
             </div>
-            {aktiv && <Tabelle Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
+            {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>
-            <div>
-                <h1>
-                    {jsonToTabelle().length}
-                    {jsonToTabelle()[0].length}
-                </h1>
-            </div>
+
         </form>
 
     )
