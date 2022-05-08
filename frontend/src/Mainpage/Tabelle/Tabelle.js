@@ -11,7 +11,8 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     function generateZeile(j) {
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            Zeile.push(<td key={i}><Tabellenfeld input={TableData[i][j]} editable={editable} title="test"/></td>)
+            const fu = TableData[i][j]
+            Zeile.push(<td key={i}><Tabellenfeld input={fu} editable={editable} title="test"/></td>)
         }
         return (
             Zeile
