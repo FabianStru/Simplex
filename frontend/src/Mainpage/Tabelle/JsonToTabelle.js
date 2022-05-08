@@ -29,7 +29,7 @@ function toArray(){
 
     function fillTabelleWithJsonObj() {
         //füllen der oberen Zeile:
-        for (let i = 0; i < oben[0].length; i++) {
+        for (let i = 0; i < oben.length; i++) {
         Tabelle[0][i+1] = oben[i];
         }
         //füllen der linken Spalte:
