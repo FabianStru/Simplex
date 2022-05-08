@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import './Dropdown.css';
 import {CSSTransition} from "react-transition-group";
 import {ReactComponent as Icon} from './Icon.svg';
@@ -7,8 +7,15 @@ import {ReactComponent as Pfeil} from './Pfeil.svg';
 
 function Dropdown () {
     const [activeMenu, setActiveMenu] = useState('main');
-    const [menuHeight, setMenuHeight] = useState(null);
+    const [menuHeight, setMenuHeight] = useState(112);
+    const dropdownRef= useRef(null);
+/*
+    useEffect(()=> {
+        let a =dropdownRef.current?.firstChild.offsetHeight
+        setMenuHeight(a)
+    }, [])
 
+ */
     function calculateHeight(el){
         const height = el.offsetHeight;
         setMenuHeight(height);
@@ -25,11 +32,12 @@ function Dropdown () {
         )
     }
     return (
-        <div className='Dropdown' style={{height : menuHeight}}>
+        <div className='Dropdown' style={{height : menuHeight}} ref={dropdownRef}>
             <CSSTransition
                 in={activeMenu==='main'}
                 unmountOnExit
-                className="menu-primary"
+                timeout={400}
+                classNames="menu-primary"
                 onEnter={calculateHeight}
             >
                 <div className='menu'>
@@ -53,9 +61,9 @@ function Dropdown () {
 
             <CSSTransition
                 in={activeMenu==='Play'}
-
+                timeout={400}
                 unmountOnExit
-                className="menu-secondary"
+                classNames="menu-secondary"
                 onEnter={calculateHeight}
             >
 
