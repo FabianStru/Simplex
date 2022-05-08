@@ -1,6 +1,5 @@
-import jsonToTabelle from "./Tabelle/JsonToTabelle";
-import React from "@types/react";
-import Button from "../Button/Button";
+import React from "react";
+import Tabelle from "./Tabelle/Tabelle";
 
 function Ranked(){
     return(
@@ -14,3 +13,4 @@ function Ranked(){
 
     )
 }
+export default Ranked
