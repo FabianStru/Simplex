@@ -1,16 +1,16 @@
-import jsonToTabelle from "./Tabelle/JsonToTabelle";
-import React from 'react';
+import React from "react";
+import Tabelle from "./Tabelle/Tabelle";
 
 function Ranked(){
     return(
         <div>
-            <h1>
-                {jsonToTabelle()[0]}
-                {jsonToTabelle()[1]}
-                {jsonToTabelle()[2]}
-                {jsonToTabelle()[3]}
-            </h1>
+            <div>
+                <Tabelle editable="false" Spalteninput="0" Zeileninput="0"/>
+            </div>
+
+
         </div>
+
     )
 }
 export default Ranked
