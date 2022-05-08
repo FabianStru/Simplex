@@ -268,6 +268,7 @@ public class Matrix {
      *
      * @param greatestChange whether to use the greatest change procedure, otherwise steepest unit ascent
      * @return the matrix which was calculated
+     * @author Anton Kaiser
      */
     public Matrix[] calculateSimplex(boolean greatestChange) { //bei true: Greatest Change Verfahren, sonst Steepest Unit Ascent
         Calculator pivotCalculator;
@@ -306,6 +307,7 @@ public class Matrix {
      * This methods determines whether the Simplex algorithm already terminated or if it should keep on going to optimize the tableau results.
      *
      * @return true if it should continue, otherwise false
+     * @author Anton Kaiser, Fabian Struensee
      */
     private boolean continueCalculate() {
         int counter = 0;
@@ -322,6 +324,7 @@ public class Matrix {
      *
      * @param pivot the pivot element which should be used for the simplex method calculation
      * @return the changed matrix with the new values of the next simplex iteration
+     * @author Anton Kaiser, Fabian Struensee
      */
     Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
         BigDecimal pivotElement = this.matrix[pivot[0]][pivot[1]];
@@ -353,6 +356,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculateRemainingElements(int[] pivot, BigDecimal pivotElement) {
         BigDecimal subtrahend;
@@ -376,6 +380,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotRow(int[] pivot, BigDecimal pivotElement) {
         for (int column = 0; column < this.matrix[0].length; column++) { //Pivotzeile
@@ -392,6 +397,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotColumn(int[] pivot, BigDecimal pivotElement) {
         for (int row = 0; row < this.matrix.length; row++) { //Pivotspalte
@@ -408,6 +414,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotElement(int[] pivot, BigDecimal pivotElement) {
         this.matrix[pivot[0]][pivot[1]] = BigDecimal.ONE.divide(pivotElement, 15, RoundingMode.HALF_UP); // Pivotelement,
