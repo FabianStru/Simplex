@@ -4,10 +4,12 @@ import * as data from './Servertabelle.json';
 
 function toArray(){
     const ServerTabelle = data.matrix;
+    const oben = data.oben;
+    const links = data.links;
     let Tabelle = new Array();
 
 
-    createNewTabelle(Zeilen, Spalten);
+    createNewTabelle();
     fillTabelleWithJsonObj();
 
 
@@ -27,16 +29,17 @@ function toArray(){
 
     function fillTabelleWithJsonObj() {
         //füllen der oberen Zeile:
-        for (let i = 1; i < ServerTabelle.matrix[0].length; i++) {
-        Tabelle[0][i] = ServerTabelle.oben[i-1];
+        for (let i = 1; i < ServerTabelle[0].length; i++) {
+        Tabelle[0][i] = oben[i-1];
         }
         //füllen der linken Spalte:
-        for (let i = 1; i < ServerTabelle.matrix.length; i++) {
-        Tabelle[i][0] = ServerTabelle.links[i-1];
+        for (let i = 1; i < ServerTabelle.length; i++) {
+        Tabelle[i][0] = links[i-1];
         }
+
         //füllen des restes:
-        for (var i = 0; i < ServerTabelle.matrix.length; i++) {
-            for (var j = 0; j < ServerTabelle.matrix[i].length; j++) {
+        for (var i = 0; i < ServerTabelle.length; i++) {
+            for (var j = 0; j < ServerTabelle[i].length; j++) {
                 Tabelle[i+1][j+1] = ServerTabelle[i][j];
             }
 
