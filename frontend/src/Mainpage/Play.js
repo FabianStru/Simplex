@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Play.css';
 import Button from "../Button/Button.js";
-import jsonToArray from "./Tabelle/jsonToArray.js";
+import jsonToTabelle from "./Tabelle/JsonToTabelle";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
@@ -49,16 +49,11 @@ function Play(onClick) {
                     text="Start"
                     onClick={addTabelle}/>
             </div>
-            {aktiv && <Tabelle Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
+            {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>
-            <div>
-                <h1>
-                    {jsonToArray().length}
-                    {jsonToArray()[0].length}
-                </h1>
-            </div>
+
         </form>
 
     )

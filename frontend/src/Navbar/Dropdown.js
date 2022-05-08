@@ -71,7 +71,7 @@ function Dropdown () {
 
                     <DropdownItem
                         leftIcon='R'
-                        href='/playRanked'
+                        href='/Ranked'
                     >
                         Ranked
                     </DropdownItem>
