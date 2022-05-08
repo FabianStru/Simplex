@@ -16,12 +16,12 @@ function toArray(){
 
     return (Tabelle)
     /*
-        Erstellt ein mehrdimensionales Array in der Größe der Tabelle
+        Erstellt ein mehrdimensionales Array in der Größe der Tabelle +1
          */
     function createNewTabelle() {
-        let ServerArray = new Array(ServerTabelle.length);
+        let ServerArray = new Array(ServerTabelle.length+1);
         for(let i = 0; i<ServerArray.length;i++) {
-            ServerArray[i]=new Array(ServerTabelle[i].length)
+            ServerArray[i]=new Array(ServerTabelle[0].length+1)
         }
         Tabelle=ServerArray
     }
