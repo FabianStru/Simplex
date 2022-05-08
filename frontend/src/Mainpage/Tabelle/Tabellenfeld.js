@@ -11,6 +11,7 @@ function Tabellenfeld(editable, input){
     } else {
         return (
             <div className='Tabellenfeld'>{input}</div>
+
         )
     }
 
