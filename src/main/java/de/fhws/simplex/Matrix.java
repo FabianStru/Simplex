@@ -50,7 +50,7 @@ public class Matrix {
     }
 
     /**
-     * Public constructor for matrix, only giving rows and colums and thus offering an empty matrix.
+     * Public constructor for matrix, only giving rows and columns and thus offering an empty matrix.
      *
      * @param numberOfRows    amount of rows that your matrix should have
      * @param numberOfColumns amount of columns that your matrix should have
