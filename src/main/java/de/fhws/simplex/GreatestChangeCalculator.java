@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * GreatestChangeCalculator is a {@link Calculator} using the Greatest Change procedure, determining the pivotelement
+ * GreatestChangeCalculator is a {@link Calculator} using the Greatest Change procedure, determining the pivotelement.
  * <p>
  * @author Fabian Struensee
  */

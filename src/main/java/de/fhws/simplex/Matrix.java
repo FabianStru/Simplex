@@ -24,9 +24,10 @@ public class Matrix {
      */
     public static void main(String[] args) {
         Matrix m = new Matrix(2, 4);
+        SimplexRankedTables srt = new SimplexRankedTables();
 
         System.out.println("Manuelle Auswertung Simplex:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         System.out.println(m.continueCalculate());
 
         m.nextStep(new int[]{3, 1}); //Manuell ausgewähltes Pivotelement für das Beispiel:
@@ -41,11 +42,11 @@ public class Matrix {
         m.printMatrix();
 
         System.out.println("Automatische Auswertung Simplex nach Steepest Unit:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         m.calculateSimplex();
 
         System.out.println("Automatische Auswertung Simplex nach Greatest Change:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         m.calculateSimplex(true);
     }
 
@@ -107,26 +108,6 @@ public class Matrix {
             char index = (char) ('A' + (i - 1));
             rowHeader[i] = "S" + index;
         }
-    }
-
-    /**
-     * This method changes the matrix to be one example of a Simplex tableau with correct values.
-     */
-    void beRottisBeispiel() {
-        matrix = new BigDecimal[4][3];
-        matrix[0][0] = new BigDecimal("-300");
-        matrix[0][1] = new BigDecimal("-500");
-        matrix[0][2] = new BigDecimal("-36000");
-        matrix[1][0] = new BigDecimal("1");
-        matrix[1][1] = new BigDecimal("2");
-        matrix[1][2] = new BigDecimal("170");
-        matrix[2][0] = new BigDecimal("1");
-        matrix[2][1] = new BigDecimal("1");
-        matrix[2][2] = new BigDecimal("150");
-        matrix[3][0] = new BigDecimal("0");
-        matrix[3][1] = new BigDecimal("3");
-        matrix[3][2] = new BigDecimal("180");
-        this.setTableHeaders();
     }
 
     Matrix deepCopy() {
