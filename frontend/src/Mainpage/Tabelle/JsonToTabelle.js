@@ -39,9 +39,9 @@ function toArray(){
         }
 
         //füllen des restes:
-        for (var i = 0; i < ServerTabelle.length; i++) {
-            for (var j = 0; j < ServerTabelle[i].length; j++) {
-                Tabelle[i+1][j+1] = ServerTabelle[i][j];
+        for (var Zeile = 0; Zeile < ServerTabelle.length; Zeile++) {
+            for (var Spalte = 0; Spalte < ServerTabelle[Zeile].length; Spalte++) {
+                Tabelle[Zeile+1][Spalte+1] = ServerTabelle[Zeile][Spalte];
             }
         Tabelle[0][0] = ""
         }
