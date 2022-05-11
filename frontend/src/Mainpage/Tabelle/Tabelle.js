@@ -10,8 +10,8 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
 
     function generateZeile(Zeilennummer) {
         const Zeile = []
-        for (let i = 0; i < SpaltenAnzahl; i++) {
-            Zeile.push(<td key={i}><Tabellenfeld input={TableData[i][Zeilennummer]} editable={editable} title="test"/></td>)
+        for (let i = 0; i < ZeilenAnzahl; i++) {
+            Zeile.push(<td key={i}><Tabellenfeld input={TableData[Zeilennummer][i]} editable={editable} title="test"/></td>)
         }
         return (
             Zeile
@@ -20,7 +20,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
 
     function generateTable() {
         const Tabelle = []
-        for (let Zeilennummer = 0; Zeilennummer < ZeilenAnzahl; Zeilennummer++) {
+        for (let Zeilennummer = 0; Zeilennummer < SpaltenAnzahl; Zeilennummer++) {
             const Zeile = generateZeile(Zeilennummer)
             Tabelle.push(<tr key={Zeilennummer}>{Zeile}</tr>)
         }
