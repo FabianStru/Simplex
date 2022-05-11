@@ -1,7 +1,7 @@
 import React from "react";
 import './Tabellenfeld.css';
 
-function Tabellenfeld(editable, input){
+function Tabellenfeld  ({editable, input}){
     if (editable) {
         return (
             <input className='Tabellenfeld'
@@ -11,9 +11,8 @@ function Tabellenfeld(editable, input){
     } else {
         return (
             <div className='Tabellenfeld'>{input}</div>
-
         )
     }
-
 }
+
 export default Tabellenfeld

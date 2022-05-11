@@ -22,7 +22,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         const Tabelle = []
         for (let Zeilennummer = 0; Zeilennummer < ZeilenAnzahl; Zeilennummer++) {
             const Zeile = generateZeile(Zeilennummer)
-            Tabelle.push(<tr key={i}>{Zeile}</tr>)
+            Tabelle.push(<tr key={Zeilennummer}>{Zeile}</tr>)
         }
         return Tabelle;
     }
