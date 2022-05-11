@@ -81,11 +81,7 @@ function Dropdown () {
                     >
                         Casual
                     </DropdownItem>
-                    <DropdownItem
-                    leftIcon='<-'
-                    goToMenu='main'>
-                    Go back
-                </DropdownItem>
+
                 </div>
 
             </CSSTransition>

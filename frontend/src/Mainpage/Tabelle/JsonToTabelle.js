@@ -13,6 +13,7 @@ function toArray(){
     fillTabelleWithJsonObj();
 
 
+    console.log(Tabelle)
 
     return (Tabelle)
     /*

@@ -2,6 +2,7 @@ package de.fhws.simplex;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,7 +14,8 @@ import java.util.Arrays;
 public class Matrix {
 
     BigDecimal[][] matrix;
-    String[] columnHeader, rowHeader; //oben = Spaltenbezeichner, links = Zeilenbezeichner
+    String[] columnHeader, rowHeader; //columnHeader = Spaltenbezeichner, rowHeader = Zeilenbezeichner
+    int numberOfColumns, numberOfRows;
 
     /**
      * Main function, currently for testing purposes to see and compare the different functions of Matrix.
@@ -22,9 +24,10 @@ public class Matrix {
      */
     public static void main(String[] args) {
         Matrix m = new Matrix(2, 4);
+        SimplexRankedTables srt = new SimplexRankedTables();
 
         System.out.println("Manuelle Auswertung Simplex:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         System.out.println(m.continueCalculate());
 
         m.nextStep(new int[]{3, 1}); //Manuell ausgewähltes Pivotelement für das Beispiel:
@@ -39,24 +42,26 @@ public class Matrix {
         m.printMatrix();
 
         System.out.println("Automatische Auswertung Simplex nach Steepest Unit:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         m.calculateSimplex();
 
         System.out.println("Automatische Auswertung Simplex nach Greatest Change:");
-        m.beRottisBeispiel();
+        srt.beRottisBeispiel3(m);
         m.calculateSimplex(true);
     }
 
     /**
-     * Public constructor for matrix, only giving rows and colums and thus offering an empty matrix.
+     * Public constructor for matrix, only giving rows and columns and thus offering an empty matrix.
      *
-     * @param zeilen  amount of rows that your matrix should have
-     * @param spalten amount of columns that your matrix should have
+     * @param numberOfRows    amount of rows that your matrix should have
+     * @param numberOfColumns amount of columns that your matrix should have
      */
-    public Matrix(int zeilen, int spalten) {
-        this.matrix = new BigDecimal[zeilen][spalten];
-        this.columnHeader = new String[spalten];
-        this.rowHeader = new String[zeilen];
+    public Matrix(int numberOfRows, int numberOfColumns) {
+        this.matrix = new BigDecimal[numberOfRows][numberOfColumns];
+        this.columnHeader = new String[numberOfColumns];
+        this.rowHeader = new String[numberOfRows];
+        this.numberOfRows = numberOfRows;
+        this.numberOfColumns = numberOfColumns;
         this.setTableHeaders();
     }
 
@@ -67,15 +72,23 @@ public class Matrix {
      */
     public Matrix(BigDecimal[][] matrix) {
         this.matrix = matrix;
+        this.numberOfColumns = this.matrix[0].length;
+        this.numberOfRows = this.matrix.length;
         this.setTableHeaders();
     }
 
     /**
-     * Constructor with string input that is apparently needed for Spring Boot to work and transform JSON into Matrix object
-     *
-     * @param parameter not used string variable
+     * Constructor with no input that is needed for Spring Boot to work and transform a JSON into Matrix object
      */
-    public Matrix(String parameter) {
+    public Matrix() {
+    }
+
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
+        this.matrix = matrix;
+        this.columnHeader = columnHeader;
+        this.rowHeader = rowHeader;
+        this.numberOfColumns = this.matrix[0].length;
+        this.numberOfRows = this.matrix.length;
     }
 
     /**
@@ -83,7 +96,7 @@ public class Matrix {
      *
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void setTableHeaders() {
+    void setTableHeaders() {
         this.columnHeader = new String[this.matrix[0].length];
         this.rowHeader = new String[this.matrix.length];
         for (int i = 0; i < this.matrix[0].length - 1; i++) {
@@ -97,24 +110,29 @@ public class Matrix {
         }
     }
 
+    Matrix deepCopy() {
+        BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
+        String[] columnHeaderCopy = columnHeader.clone();
+        String[] rowHeaderCopy = rowHeader.clone();
+        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy);
+    }
+
     /**
-     * This method changes the matrix to be one example of a Simplex tableau with correct values.
+     * This method is the setter for the numberOfColumns.
+     *
+     * @param numberOfColumns the number of columns to be set
      */
-    void beRottisBeispiel() {
-        matrix = new BigDecimal[4][3];
-        matrix[0][0] = new BigDecimal("-300");
-        matrix[0][1] = new BigDecimal("-500");
-        matrix[0][2] = new BigDecimal("-36000");
-        matrix[1][0] = new BigDecimal("1");
-        matrix[1][1] = new BigDecimal("2");
-        matrix[1][2] = new BigDecimal("170");
-        matrix[2][0] = new BigDecimal("1");
-        matrix[2][1] = new BigDecimal("1");
-        matrix[2][2] = new BigDecimal("150");
-        matrix[3][0] = new BigDecimal("0");
-        matrix[3][1] = new BigDecimal("3");
-        matrix[3][2] = new BigDecimal("180");
-        this.setTableHeaders();
+    public void setNumberOfColumns(int numberOfColumns) {
+        this.numberOfColumns = numberOfColumns;
+    }
+
+    /**
+     * This method is the setter for the numberOfRows.
+     *
+     * @param numberOfRows the number of rows to be set
+     */
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
     }
 
     /**
@@ -142,6 +160,24 @@ public class Matrix {
      */
     public void setRowHeader(String[] rowHeader) {
         this.rowHeader = rowHeader;
+    }
+
+    /**
+     * This method is the getter for the number of columns.
+     *
+     * @return the number of columns of the matrix
+     */
+    public int getNumberOfColumns() {
+        return numberOfColumns;
+    }
+
+    /**
+     * This method is the getter for the number of rows.
+     *
+     * @return the number of rows of the matrix
+     */
+    public int getNumberOfRows() {
+        return numberOfRows;
     }
 
     /**
@@ -204,7 +240,7 @@ public class Matrix {
     /**
      * This method calculates the Simplex tableau with the standard steepest unit ascent procedure.
      */
-    public Matrix calculateSimplex() { // Standard mit Steepest Unit Ascent
+    public Matrix[] calculateSimplex() { // Standard mit Steepest Unit Ascent
         return calculateSimplex(false);
     }
 
@@ -213,8 +249,9 @@ public class Matrix {
      *
      * @param greatestChange whether to use the greatest change procedure, otherwise steepest unit ascent
      * @return the matrix which was calculated
+     * @author Anton Kaiser
      */
-    public Matrix calculateSimplex(boolean greatestChange) { //bei true: Greatest Change Verfahren, sonst Steepest Unit Ascent
+    public Matrix[] calculateSimplex(boolean greatestChange) { //bei true: Greatest Change Verfahren, sonst Steepest Unit Ascent
         Calculator pivotCalculator;
         if (greatestChange) {
             pivotCalculator = new GreatestChangeCalculator();
@@ -222,15 +259,18 @@ public class Matrix {
             pivotCalculator = new SteepestUnitAscentCalculator();
         }
         int counter = 0;
+        ArrayList<Matrix> iterations = new ArrayList<>();
+        iterations.add(this.deepCopy());
         while (continueCalculate()) {
             counter++;
             printPivotelement(pivotCalculator);
             nextStep(pivotCalculator.getPivotelement(this.matrix)); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
+            iterations.add(this.deepCopy());
         }
         printMatrix();
         System.out.println("Nach " + counter + " Iterationsschritten hat der Simplexalgorithmus die optimale Loesung gefunden.");
 
-        return this;
+        return iterations.toArray(Matrix[]::new);
     }
 
     /**
@@ -248,6 +288,7 @@ public class Matrix {
      * This methods determines whether the Simplex algorithm already terminated or if it should keep on going to optimize the tableau results.
      *
      * @return true if it should continue, otherwise false
+     * @author Anton Kaiser, Fabian Struensee
      */
     private boolean continueCalculate() {
         int counter = 0;
@@ -264,6 +305,7 @@ public class Matrix {
      *
      * @param pivot the pivot element which should be used for the simplex method calculation
      * @return the changed matrix with the new values of the next simplex iteration
+     * @author Anton Kaiser, Fabian Struensee
      */
     Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
         BigDecimal pivotElement = this.matrix[pivot[0]][pivot[1]];
@@ -295,6 +337,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculateRemainingElements(int[] pivot, BigDecimal pivotElement) {
         BigDecimal subtrahend;
@@ -318,6 +361,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotRow(int[] pivot, BigDecimal pivotElement) {
         for (int column = 0; column < this.matrix[0].length; column++) { //Pivotzeile
@@ -334,6 +378,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotColumn(int[] pivot, BigDecimal pivotElement) {
         for (int row = 0; row < this.matrix.length; row++) { //Pivotspalte
@@ -350,6 +395,7 @@ public class Matrix {
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
      * @param pivotElement the BigDecimal variable of the pivot element
+     * @author Anton Kaiser, Fabian Struensee
      */
     private void calculatePivotElement(int[] pivot, BigDecimal pivotElement) {
         this.matrix[pivot[0]][pivot[1]] = BigDecimal.ONE.divide(pivotElement, 15, RoundingMode.HALF_UP); // Pivotelement,
