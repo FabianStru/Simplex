@@ -9,7 +9,7 @@ function Ranked(){
     return(
         <div>
             <div>
-                <Tabelle editable={false} Spalteninput={Tabelleranked.length} Zeileninput={Tabelleranked[0].length} TableData={Tabelleranked}/>
+                <Tabelle editable={false} Zeileninput={Tabelleranked.length} Spalteninput={Tabelleranked[0].length} TableData={Tabelleranked}/>
             </div>
         </div>
     )
