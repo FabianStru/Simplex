@@ -1,9 +1,9 @@
 import React from "react";
-import './Mainpage.css';
+import './Home.css';
 
 /* Der Homescreen der erscheint beim Aufrufen der webseite */
 
-function Mainpage() {
+function Home() {
     return (
         <main className="Mainpage">
             <h1>Willkommen im Simplex Trainer</h1>
@@ -15,4 +15,4 @@ function Mainpage() {
     );
 }
 
-export default Mainpage
+export default Home
