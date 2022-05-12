@@ -25,7 +25,7 @@ function Casual(onClick) {
     }
 
     return (
-        <form className='Play' onSubmit={onSubmit}>
+        <form className='Casual' onSubmit={onSubmit}>
             <div className='Eingabefeld'>
                 <label>Spalten:</label>
                 <input
