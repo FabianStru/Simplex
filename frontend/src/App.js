@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Navbar from "./Navbar/Navbar";
-import Mainpage from "./Mainpage/Mainpage";
+import Home from "./Mainpage/Home";
 import Casual from "./Mainpage/Casual";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Ranked from './Mainpage/Ranked';
@@ -16,7 +16,7 @@ function App() {
                 <Router>
                     <Routes>
                         {/* Hier werden die verschiedenen Wege zu den Mainscreens definiert */}
-                        <Route path="/" element={(<Mainpage/>)}/>
+                        <Route path="/" element={(<Home/>)}/>
                         <Route path="/play" element={(<Casual/>)}/>
                         <Route path='/ranked' element={(<Ranked/>)}/>
 
