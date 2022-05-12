@@ -4,19 +4,18 @@ import './Tabelle.css';
 
 const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
 
-
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
 
     function generateZeile(Zeilennummer) {
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            if (editable){
+            if (editable) {
                 Zeile.push(<td key={i}><Tabellenfeld editable={editable} title="test"/></td>)
             } else {
-                Zeile.push(<td key={i}><Tabellenfeld input={TableData[Zeilennummer][i]} editable={editable} title="test"/></td>)
+                Zeile.push(<td key={i}><Tabellenfeld input={TableData[Zeilennummer][i]} editable={editable}
+                                                     title="test"/></td>)
             }
-
         }
         return (
             Zeile

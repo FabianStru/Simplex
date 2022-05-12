@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
-import './Play.css';
+import './Casual.css';
 import Button from "../Button/Button.js";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
-function Play(onClick) {
+function Casual(onClick) {
     const [Zeilen, setZeilen] = useState('');
     const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
@@ -23,7 +23,6 @@ function Play(onClick) {
         setOutSpalten(Spalten)
         setOutZeilen(Zeilen)
     }
-
 
     return (
         <form className='Play' onSubmit={onSubmit}>
@@ -58,4 +57,4 @@ function Play(onClick) {
     )
 }
 
-export default Play
+export default Casual
