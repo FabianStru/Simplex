@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import './Tabellenfeld.css';
 
-function Tabellenfeld  ({editable, input}){
+function Tabellenfeld  ({editable, content, onChange, placeholder}){
+
     if (editable) {
         return (
             <input className='Tabellenfeld'
                    type="text"
+                   onChange={onChange}
+                   placeholder={placeholder}
             />
         )
     } else {
         return (
-            <div className='Tabellenfeld'>{input}</div>
+            <div className='Tabellenfeld'>{content}</div>
         )
     }
 }
