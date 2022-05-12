@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from "react";
 import './Dropdown.css';
 import {CSSTransition} from "react-transition-group";
-import {ReactComponent as Icon} from './Icon.svg';
-import {ReactComponent as Pfeil} from './Pfeil.svg';
+import {ReactComponent as Icon} from './Icons/Icon.svg';
+import {ReactComponent as Pfeil} from './Icons/Pfeil.svg';
 
 
 function Dropdown () {
@@ -36,7 +36,7 @@ function Dropdown () {
             <CSSTransition
                 in={activeMenu==='main'}
                 unmountOnExit
-                timeout={400}
+                timeout={500}
                 classNames="menu-primary"
                 onEnter={calculateHeight}
             >
@@ -61,7 +61,7 @@ function Dropdown () {
 
             <CSSTransition
                 in={activeMenu==='Play'}
-                timeout={400}
+                timeout={500}
                 unmountOnExit
                 classNames="menu-secondary"
                 onEnter={calculateHeight}

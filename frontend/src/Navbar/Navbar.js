@@ -4,8 +4,8 @@ import './Navbar.css';
 import './Dropdown.css';
 import NavItem from "./NavItem";
 import Button from "../Button/Button";
-import {ReactComponent as Icon} from './Icon.svg';
-import {ReactComponent as Icon2} from "./Icon2.svg";
+import {ReactComponent as Icon} from './Icons/Icon.svg';
+import {ReactComponent as Icon2} from "./Icons/Icon2.svg";
 
 {/* Die Navigationsbar, welche das Dropdown menü enthältt */}
 
