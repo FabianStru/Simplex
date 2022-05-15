@@ -2,35 +2,34 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Casual.css';
 import Button from "../Button/Button.js";
-import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Tabellenfeld from "./Tabelle/Tabellenfeld";
+
 
 /* Hier soll der user das Simplex Problem lösen können */
 
-function Casual(onClick) {
+function Casual() {
     const [Zeilen, setZeilen] = useState('');
     const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
-
-
+    let oben = [[],[]];
+    let oben1 = [];
+    let links = new Array(Zeilen);
+    for(let a = 0;a<Spalten;a++){
+        oben[0].push('X')
+    }
     const onSubmit = (e) => {
         e.preventDefault()
     }
 
-    function sendTabelle() {
 
-    }
     function addTabelle() {
         setAktiv(true)
         setOutSpalten(Spalten)
         setOutZeilen(Zeilen)
-    }
-    function onChange(e){
-        setSpalten(e.target.value)
-        Tabellenfeld.editable=false
-        Tabellenfeld.content=Zeilen
+
+
     }
 
     return (
@@ -58,12 +57,10 @@ function Casual(onClick) {
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
+
             </div>
-            {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
+            {aktiv && <div><Tabelle editable={false} Zeileninput={1} Spalteninput={oben[0].length} TableData={oben} />
+                <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div>}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>
@@ -72,9 +69,4 @@ function Casual(onClick) {
     )
 
 }
-
 export default Casual
-/*
-                   onChange={(e) => setZeilen(e.target.value)}/>
-
-                    */

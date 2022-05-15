@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 /**
  * This class is used to create matrices with specific content.
  * <p>
- *
  * @author Fabian Struensee
  */
 public class SimplexRankedTables {
@@ -13,7 +12,6 @@ public class SimplexRankedTables {
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
-     *
      * @author Fabian Struensee
      */
     public static Matrix beRottisBeispiel() {
@@ -37,7 +35,6 @@ public class SimplexRankedTables {
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
-     *
      * @author Fabian Struensee
      */
     public static Matrix beRottisBeispiel2() {
@@ -65,7 +62,6 @@ public class SimplexRankedTables {
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
-     *
      * @author Fabian Struensee
      */
     public static Matrix beRottisBeispiel3() {
@@ -93,6 +89,11 @@ public class SimplexRankedTables {
 
         return m;
     }
+    /**
+     * This method changes the matrix to be one example of a Simplex tableau with correct values.
+     * <p>
+     * @author Fabian Struensee
+     */
     public static Matrix beRottisBeispiel4() {
         Matrix m = new Matrix(4, 3);
         m.matrix[0][0] = new BigDecimal("-1");
@@ -110,6 +111,11 @@ public class SimplexRankedTables {
 
         return m;
     }
+    /**
+     * This method changes the matrix to be one example of a Simplex tableau with correct values.
+     * <p>
+     * @author Fabian Struensee
+     */
     public static Matrix beRottisBeispiel5() {
         Matrix m = new Matrix(4,5);
         m.matrix[0][0] = new BigDecimal("-0.75");
@@ -133,9 +139,13 @@ public class SimplexRankedTables {
         m.matrix[3][3] = new BigDecimal("0");
         m.matrix[3][4] = new BigDecimal("1");
 
-
         return m;
     }
+    /**
+     * This method changes the matrix to be one example of a Simplex tableau with correct values.
+     * <p>
+     * @author Fabian Struensee
+     */
     public static Matrix beRottisBeispiel6() {
         Matrix m = new Matrix(4, 3);
         m.matrix[0][0] = new BigDecimal("-50");

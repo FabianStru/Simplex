@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Tabellenfeld from "./Tabellenfeld";
 import './Tabelle.css';
+import createUserTable from "./createUserTable";
+import Button from "../../Button/Button";
 
 const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
 
@@ -8,7 +10,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     const SpaltenAnzahl = Spalteninput
     let userTable= new Array(ZeilenAnzahl);
     for(let a=0;a<ZeilenAnzahl;a++){
-        userTable[a]=new Array(3)
+        userTable[a]=new Array(Spalteninput)
     }
 
     const handleChange = (row, column, event) => {
@@ -17,7 +19,25 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         userTable=copy
 
         console.log(userTable);
-    };
+    }
+    function sendTabelle() {
+/*
+        let xhr = new XMLHttpRequest()
+        let url = "http://localhost:8080/api/postMatrix"
+        xhr.open("POST",url,true)
+        xhr.setRequestHeader()
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                let json = JSON.parse(xhr.responseText)
+                console.log(json.matrix)
+            }
+        }
+        xhr.send(JSON.stringify(userTable))
+
+ */
+        console.log(JSON.stringify(userTable))
+    }
+
 
 
     function generateZeile(Zeilennummer) {
@@ -26,10 +46,9 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         for (let i = 0; i < SpaltenAnzahl; i++) {
             const key = i+Zeilennummer
             if (editable) {
-                Zeile.push(<td key={key}><Tabellenfeld editable={editable} onChange={(e)=>handleChange(Zeilennummer,i,e)}/></td>)
+                Zeile.push(<td key={key}><Tabellenfeld editable={editable} onChange={(e)=>handleChange(Zeilennummer,i, e)}/></td>)
             } else {
-                Zeile.push(<td key={key}><Tabellenfeld content={TableData[Zeilennummer][i]} editable={editable}
-                                                     title="test"/></td>)
+                Zeile.push(<td key={key}><Tabellenfeld content={TableData[Zeilennummer][i]} editable={editable}/></td>)
             }
         }
 
@@ -47,15 +66,36 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         }
         return Tabelle;
     }
-    return (
-        <table>
-            <thead>
-            </thead>
-            <tbody>
-            {generateTable()}
-            </tbody>
-        </table>
-    )
+    if(editable){
+        return (
+            <div>
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                    {generateTable()}
+                    </tbody>
+                </table>
+                <Button
+                    className='absenden'
+                    text='Abfahrt'
+                    onClick={sendTabelle}/>
+            </div>
+        )
+    }
+    else{
+        return (
+            <div>
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                    {generateTable()}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
 }
 
 export default Tabelle
