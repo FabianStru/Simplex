@@ -14,7 +14,7 @@ public class Score {
 
     private String name;
 
-    private Integer score;
+    private Integer rating;
 
     /**
      * @return the id
@@ -45,17 +45,17 @@ public class Score {
     }
 
     /**
-     * @return the score
+     * @return the rating
      */
-    public Integer getScore() {
-        return score;
+    public Integer getRating() {
+        return rating;
     }
 
     /**
-     * @param score the score to set
+     * @param rating the rating to set
      */
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
 }
