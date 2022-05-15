@@ -8,7 +8,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     const SpaltenAnzahl = Spalteninput
     let userTable= new Array(ZeilenAnzahl);
     for(let a=0;a<ZeilenAnzahl;a++){
-        userTable[a]=new Array(3)
+        userTable[a]=new Array(Spalteninput)
     }
 
     const handleChange = (row, column, event) => {
@@ -17,7 +17,13 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         userTable=copy
 
         console.log(userTable);
-    };
+    }
+    function tojson(){
+        let jsonArray = JSON.stringify(userTable)
+        return(
+            {jsonArray}
+        )
+    }
 
 
     function generateZeile(Zeilennummer) {

@@ -5,9 +5,10 @@ import Button from "../Button/Button.js";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Tabellenfeld from "./Tabelle/Tabellenfeld";
 
+
 /* Hier soll der user das Simplex Problem lösen können */
 
-function Casual(onClick) {
+function Casual() {
     const [Zeilen, setZeilen] = useState('');
     const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
@@ -20,17 +21,13 @@ function Casual(onClick) {
     }
 
     function sendTabelle() {
-
+        console.log('henlo')
     }
+
     function addTabelle() {
         setAktiv(true)
         setOutSpalten(Spalten)
         setOutZeilen(Zeilen)
-    }
-    function onChange(e){
-        setSpalten(e.target.value)
-        Tabellenfeld.editable=false
-        Tabellenfeld.content=Zeilen
     }
 
     return (
@@ -72,9 +69,4 @@ function Casual(onClick) {
     )
 
 }
-
 export default Casual
-/*
-                   onChange={(e) => setZeilen(e.target.value)}/>
-
-                    */
