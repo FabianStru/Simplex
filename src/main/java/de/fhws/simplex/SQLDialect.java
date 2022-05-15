@@ -9,6 +9,8 @@ import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.Hibernate;
 import org.hibernate.type.StringType;
 
+//https://fullstackdeveloper.guru/2020/05/01/how-to-integrate-sqlite-database-with-spring-boot/
+
 public class SQLDialect extends Dialect {
     public SQLDialect() {
         registerColumnType(Types.BIT, "integer");
