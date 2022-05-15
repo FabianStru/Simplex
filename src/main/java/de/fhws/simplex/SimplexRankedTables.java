@@ -93,4 +93,64 @@ public class SimplexRankedTables {
 
         return m;
     }
+    public static Matrix beRottisBeispiel4() {
+        Matrix m = new Matrix(4, 3);
+        m.matrix[0][0] = new BigDecimal("-1");
+        m.matrix[0][1] = new BigDecimal("-1");
+        m.matrix[0][2] = new BigDecimal("0");
+        m.matrix[1][0] = new BigDecimal("1");
+        m.matrix[1][1] = new BigDecimal("6");
+        m.matrix[1][2] = new BigDecimal("12");
+        m.matrix[2][0] = new BigDecimal("1");
+        m.matrix[2][1] = new BigDecimal("2");
+        m.matrix[2][2] = new BigDecimal("6");
+        m.matrix[3][0] = new BigDecimal("2");
+        m.matrix[3][1] = new BigDecimal("1");
+        m.matrix[3][2] = new BigDecimal("9");
+
+        return m;
+    }
+    public static Matrix beRottisBeispiel5() {
+        Matrix m = new Matrix(4,5);
+        m.matrix[0][0] = new BigDecimal("-0,75");
+        m.matrix[0][1] = new BigDecimal("20");
+        m.matrix[0][2] = new BigDecimal("-0,5");
+        m.matrix[0][3] = new BigDecimal("6");
+        m.matrix[0][4] = new BigDecimal("0");
+        m.matrix[1][0] = new BigDecimal("0,25");
+        m.matrix[1][1] = new BigDecimal("-8");
+        m.matrix[1][2] = new BigDecimal("-1");
+        m.matrix[1][3] = new BigDecimal("9");
+        m.matrix[1][4] = new BigDecimal("0");
+        m.matrix[2][0] = new BigDecimal("0,5");
+        m.matrix[2][1] = new BigDecimal("-12");
+        m.matrix[2][2] = new BigDecimal("-0,5");
+        m.matrix[2][3] = new BigDecimal("3");
+        m.matrix[2][4] = new BigDecimal("0");
+        m.matrix[3][0] = new BigDecimal("0");
+        m.matrix[3][1] = new BigDecimal("0");
+        m.matrix[3][2] = new BigDecimal("1");
+        m.matrix[3][3] = new BigDecimal("0");
+        m.matrix[3][4] = new BigDecimal("1");
+
+
+        return m;
+    }
+    public static Matrix beRottisBeispiel6() {
+        Matrix m = new Matrix(4, 3);
+        m.matrix[0][0] = new BigDecimal("-50");
+        m.matrix[0][1] = new BigDecimal("-80");
+        m.matrix[0][2] = new BigDecimal("0");
+        m.matrix[1][0] = new BigDecimal("-3");
+        m.matrix[1][1] = new BigDecimal("1");
+        m.matrix[1][2] = new BigDecimal("20");
+        m.matrix[2][0] = new BigDecimal("1");
+        m.matrix[2][1] = new BigDecimal("-2");
+        m.matrix[2][2] = new BigDecimal("20");
+        m.matrix[3][0] = new BigDecimal("3");
+        m.matrix[3][1] = new BigDecimal("-1");
+        m.matrix[3][2] = new BigDecimal("120");
+
+        return m;
+    }
 }
