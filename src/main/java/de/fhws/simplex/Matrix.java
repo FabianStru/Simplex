@@ -24,10 +24,9 @@ public class Matrix {
      */
     public static void main(String[] args) {
         Matrix m = new Matrix(2, 4);
-        SimplexRankedTables srt = new SimplexRankedTables();
 
         System.out.println("Manuelle Auswertung Simplex:");
-        srt.beRottisBeispiel3(m);
+        m = SimplexRankedTables.beRottisBeispiel();
         System.out.println(m.continueCalculate());
 
         m.nextStep(new int[]{3, 1}); //Manuell ausgewähltes Pivotelement für das Beispiel:
@@ -42,11 +41,11 @@ public class Matrix {
         m.printMatrix();
 
         System.out.println("Automatische Auswertung Simplex nach Steepest Unit:");
-        srt.beRottisBeispiel3(m);
+        m = SimplexRankedTables.beRottisBeispiel3();
         m.calculateSimplex();
 
         System.out.println("Automatische Auswertung Simplex nach Greatest Change:");
-        srt.beRottisBeispiel3(m);
+        m = SimplexRankedTables.beRottisBeispiel3();
         m.calculateSimplex(true);
     }
 

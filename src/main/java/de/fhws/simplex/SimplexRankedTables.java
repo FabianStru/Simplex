@@ -5,19 +5,19 @@ import java.math.BigDecimal;
 /**
  * This class is used to create matrices with specific content.
  * <p>
+ *
  * @author Fabian Struensee
  */
 public class SimplexRankedTables {
-    public SimplexRankedTables() {
-    }
 
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
+     *
      * @author Fabian Struensee
      */
-    public void beRottisBeispiel(Matrix m) {
-        m.matrix = new BigDecimal[4][3];
+    public static Matrix beRottisBeispiel() {
+        Matrix m = new Matrix(4, 3);
         m.matrix[0][0] = new BigDecimal("-300");
         m.matrix[0][1] = new BigDecimal("-500");
         m.matrix[0][2] = new BigDecimal("-36000");
@@ -30,15 +30,19 @@ public class SimplexRankedTables {
         m.matrix[3][0] = new BigDecimal("0");
         m.matrix[3][1] = new BigDecimal("3");
         m.matrix[3][2] = new BigDecimal("180");
-        m.setTableHeaders();
+
+        return m;
     }
+
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
+     *
      * @author Fabian Struensee
      */
-    public void beRottisBeispiel2(Matrix m) {
-        m.matrix = new BigDecimal[5][3];
+    public static Matrix beRottisBeispiel2() {
+        Matrix m = new Matrix(5, 3);
+
         m.matrix[0][0] = new BigDecimal("-210");
         m.matrix[0][1] = new BigDecimal("-160");
         m.matrix[0][2] = new BigDecimal("-640");
@@ -54,15 +58,18 @@ public class SimplexRankedTables {
         m.matrix[4][0] = new BigDecimal("1");
         m.matrix[4][1] = new BigDecimal("0");
         m.matrix[4][2] = new BigDecimal("3");
-        m.setTableHeaders();
+
+        return m;
     }
+
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
+     *
      * @author Fabian Struensee
      */
-    public void beRottisBeispiel3(Matrix m) {
-        m.matrix = new BigDecimal[5][4];
+    public static Matrix beRottisBeispiel3() {
+        Matrix m = new Matrix(5,4);
         m.matrix[0][0] = new BigDecimal("-6");
         m.matrix[0][1] = new BigDecimal("-4");
         m.matrix[0][2] = new BigDecimal("-7");
@@ -83,6 +90,7 @@ public class SimplexRankedTables {
         m.matrix[4][1] = new BigDecimal("3");
         m.matrix[4][2] = new BigDecimal("7");
         m.matrix[4][3] = new BigDecimal("105");
-        m.setTableHeaders();
+
+        return m;
     }
 }
