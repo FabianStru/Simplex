@@ -6,7 +6,7 @@ function toArray(){
     const ServerTabelle = data.matrix;
     const oben = data.oben;
     const links = data.links;
-    let Tabelle = new Array();
+    let Tabelle = [];
 
 
     createNewTabelle();
