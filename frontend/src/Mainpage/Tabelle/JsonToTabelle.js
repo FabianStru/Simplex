@@ -2,10 +2,10 @@ import React,{useState} from "react";
 import * as data from './Servertabelle.json';
 
 
-function toArray(){
-    const ServerTabelle = data.matrix;
-    const oben = data.oben;
-    const links = data.links;
+function toArray({numberofMatrix}){
+    const ServerTabelle = data[0].matrix;
+    const oben = data[0].columnHeader;
+    const links = data[0].rowHeader;
     let Tabelle = [];
 
 
@@ -14,7 +14,6 @@ function toArray(){
 
 
     console.log(Tabelle)
-
     return (Tabelle)
     /*
         Erstellt ein mehrdimensionales Array in der Größe der Tabelle +1
