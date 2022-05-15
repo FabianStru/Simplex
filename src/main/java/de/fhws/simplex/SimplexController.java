@@ -66,7 +66,7 @@ public class SimplexController {
      * @author Anton Kaiser
      */
     @GetMapping("/api/getRanked")
-    public Matrix postRankedMatrix() {
+    public Matrix getRankedMatrix() {
         return SimplexRankedTablesEnum.randomSimplexRankedTablesEnum().getMatrix();
     }
 
