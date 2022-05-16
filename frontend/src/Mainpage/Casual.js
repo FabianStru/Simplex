@@ -8,13 +8,14 @@ import Tabellenfeld from "./Tabelle/Tabellenfeld";
 /* Hier soll der user das Simplex Problem lösen können */
 
 
-function Casual(onClick) {
+function Casual() {
     const [Zeilen, setZeilen] = useState('');
     const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
     const [counter, setCounter] = useState(0);
+    const jsonTabelle = [1];
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -37,12 +38,15 @@ function Casual(onClick) {
         Tabellenfeld.content=Zeilen
     }
     function forward(){
-        //toDo: testen ob am ende der map ist
+
         setCounter(counter+1)
+        //toDo: testen ob am ende der map ist
     }
     function backwards(){
+            setCounter(counter-1)
+
         //toDo: testen ob auf 1 ist
-        setCounter(counter-1)
+
     }
 
     return (
@@ -91,13 +95,17 @@ function Casual(onClick) {
         </form>
 
     )
+
     function displayGiveTable() {
+        /*
+        const Tabelle = jsonToTabelle(0)
+        return( <Tabelle classname='givenTable' editable={false} Zeileninput={Tabelle.length}
+                           Spalteninput={Tabelle[0].length} TableData={Tabelle}/>)
         //toDO: display the Table equal to the counter
-        return false;
+        */
+
     }
-
 }
-
 
 
 export default Casual
