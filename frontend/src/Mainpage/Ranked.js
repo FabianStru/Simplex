@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Button from "../Button/Button";
 
 function Ranked() {
 
-    const Tabelleranked = jsonToTabelle();
+    const Tabelleranked = jsonToTabelle(0);
     const [aktiv, setAktiv] = useState(false);
+    const [componentstate, setcomponentstate] = useState(null)
+
 
     function startRankedMode() {
         setAktiv(true)
@@ -14,18 +16,38 @@ function Ranked() {
         //pull Json from backend
     }
 
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+            ,
+        }
+        // GET request using fetch inside useEffect React hook
+        fetch('/api/getRanked',requestOptions)
+            .then(response => response.json())
+            .then(data => setcomponentstate(data));
+
+// empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
+
+
+
+
+
+
+
     /*
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'React POST Request Example' })
     };
-    fetch('http://localhost:8080/home?zeilen=4&spalten=3&matrix=((-300,-500,-36000),(1,2,170),(1,1,150),(0,3,180))', requestOptions)
+    fetch('http://localhost:8080/api/getRanked', requestOptions)
         .then(response => response.json())
         .then(data => this.setState({ postId: data.id }));
     console.log(requestOptions.matrix)
-    */
+  */
 
 
     return (
@@ -36,11 +58,10 @@ function Ranked() {
                 onClick={startRankedMode}
             />
             <div className="Tabellen">
-                {aktiv && <Tabelle classname='givenTable' editable={false} Zeileninput={Tabelleranked.length}
-                                   Spalteninput={Tabelleranked[0].length} TableData={Tabelleranked}/>}
+                {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={componentstate.matrix.length}
+                                   Spalteninput={componentstate.matrix[0].length} TableData={componentstate.matrix}/>}
                 {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={Tabelleranked.length - 1}
                                    Spalteninput={Tabelleranked[0].length - 1}/>}
-
             </div>
         </div>
     )
