@@ -7,13 +7,18 @@ import Tabellenfeld from "./Tabelle/Tabellenfeld";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
-
 function Casual() {
     const [Zeilen, setZeilen] = useState('');
     const [outZeilen, setOutZeilen] = useState(0)
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
+    let oben = [[],[]];
+    let oben1 = [];
+    let links = new Array(Zeilen);
+    for(let a = 0;a<Spalten;a++){
+        oben[0].push('X')
+    }
     const [counter, setCounter] = useState(0);
     const jsonTabelle = [1];
 
@@ -24,7 +29,6 @@ function Casual() {
     function sendTabelle() {
         //toDO: tabelle in json ändern und senden
     }
-
 
     function addTabelle() {
         setAktiv(true)
@@ -87,6 +91,8 @@ function Casual() {
                     text='Fortwärts'
                     onClick={forward}/>}
             </div>
+            {aktiv && <div><Tabelle editable={false} Zeileninput={1} Spalteninput={oben[0].length} TableData={oben} />
+                <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div>}
             {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             {counter > 0 && displayGiveTable() }
             <div>
@@ -109,3 +115,7 @@ function Casual() {
 
 
 export default Casual
+/*
+                   onChange={(e) => setZeilen(e.target.value)}/>
+
+                    */
