@@ -23,7 +23,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     function sendTabelle() {
 
         let xhr = new XMLHttpRequest()
-        let url = "http://localhost:8080/api/postMatrix"
+        let url = "/api/postMatrix"
         xhr.open("POST",url,true)
         xhr.setRequestHeader('Content-Type','application/json')
         xhr.onreadystatechange = function () {
@@ -69,6 +69,9 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     if(editable){
         return (
             <div>
+
+            <div className='Tabellejs'>
+
                 <table>
                     <thead>
                     </thead>
@@ -76,11 +79,12 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
                     {generateTable()}
                     </tbody>
                 </table>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
-            </div>
+
+            </div><Button
+                className='absenden'
+                text='Abfahrt'
+                onClick={sendTabelle}/>
+    </div>
         )
     }
     else{
