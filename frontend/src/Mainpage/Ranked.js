@@ -40,8 +40,8 @@ function Ranked() {
             <div className="Tabellen">
                 {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={componentstate.matrix.length}
                                    Spalteninput={componentstate.matrix[0].length} TableData={componentstate.matrix}/>}
-                {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={Tabelleranked.length - 1}
-                                   Spalteninput={Tabelleranked[0].length - 1}/>}
+                {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={Tabelleranked.length}
+                                   Spalteninput={Tabelleranked[0].length}/>}
             </div>
         </div>
     )
