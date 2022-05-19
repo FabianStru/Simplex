@@ -306,7 +306,7 @@ public class Matrix {
      * @return the changed matrix with the new values of the next simplex iteration
      * @author Anton Kaiser, Fabian Struensee
      */
-    Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
+    public Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
         BigDecimal pivotElement = this.matrix[pivot[0]][pivot[1]];
 
         printMatrix(); //Für Debugging
