@@ -16,7 +16,7 @@ function Casual() {
     let oben = [[],[]];
     let oben1 = [];
     let links = new Array(Zeilen);
-    for(let a = 0;a<Spalten;a++){
+    for(let a = 0;a<outSpalten;a++){
         oben[0].push('X')
     }
     const [counter, setCounter] = useState(0);
@@ -73,15 +73,10 @@ function Casual() {
                     required
                     value={Zeilen}
                     onChange={(e)=>setZeilen(e.target.value)}/>
-
                 <Button
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
                 {counter > 0 && <Button
                     className='Rückwärts'
                     text='Rückwärts'
