@@ -26,10 +26,6 @@ function Casual() {
         e.preventDefault()
     }
 
-    function sendTabelle() {
-        //toDO: tabelle in json ändern und senden
-    }
-
     function addTabelle() {
         setAktiv(true)
         setOutSpalten(Spalten)
@@ -78,10 +74,6 @@ function Casual() {
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
                 {counter > 0 && <Button
                     className='Rückwärts'
                     text='Rückwärts'
@@ -93,7 +85,6 @@ function Casual() {
             </div>
             {aktiv && <div><Tabelle editable={false} Zeileninput={1} Spalteninput={oben[0].length} TableData={oben} />
                 <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div>}
-            {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
             {counter > 0 && displayGiveTable() }
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
