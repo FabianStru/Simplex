@@ -6,7 +6,7 @@ import de.fhws.simplex.SimplexRankedTables;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-public class GCCalculatorTest {
+public class GreatestChangeCalculatorTest {
     Matrix m = new Matrix();
     GreatestChangeCalculator c = new GreatestChangeCalculator();
 
