@@ -21,4 +21,24 @@
 .StartKnopf {
 
 }
+.CasualTabellenFelder {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
+
+}
+.TabelleLinks {
+    align-self: flex-start;
+}
+.TabelleOben{
+
+}
+.TabelleMain {
+    align-self: center;
+}
+.GANZGROßERDIV {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}

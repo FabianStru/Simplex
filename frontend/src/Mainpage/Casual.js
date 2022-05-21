@@ -13,28 +13,37 @@ function Casual() {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
-    let oben = [[],[]];
-    let oben1 = [];
-    let links = new Array(Zeilen);
-    for(let a = 0;a<Spalten;a++){
-        oben[0].push('X')
-    }
     const [counter, setCounter] = useState(0);
-    const jsonTabelle = [1];
+
+    // hier wird die X zeile generiert:
+    let oben = [[], []];
+    for (let a = 0; a < outSpalten; a++) {
+        oben[0].push('X' + (a + 1))
+    }
+
+    //hier wird die linke zeile generiert:
+    let links = new Array(outZeilen)
+    for (let b = 0; b < outZeilen; b++) {
+        console.log(links)
+        links[b]=new Array('A')
+
+    }
+    oben[0][outSpalten - 1] = 'rechte Seite'
 
     const onSubmit = (e) => {
         e.preventDefault()
     }
 
-    function sendTabelle() {
-        //toDO: tabelle in json ändern und senden
-    }
-
     function addTabelle() {
-        setAktiv(true)
-        setOutSpalten(Spalten)
-        setOutZeilen(Zeilen)
-        setCounter(1);
+        if (Spalten > 0 && Zeilen > 0) {
+            setAktiv(true)
+            setOutSpalten(Spalten)
+            setOutZeilen(Zeilen)
+            setCounter(1);
+        } else {
+            setAktiv(false)
+        }
+
     }
     function onChange(e){
         setSpalten(e.target.value)
@@ -73,28 +82,24 @@ function Casual() {
                     required
                     value={Zeilen}
                     onChange={(e)=>setZeilen(e.target.value)}/>
-
                 <Button
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
-                {counter > 0 && <Button
+                {counter > 0 && aktiv && <Button
                     className='Rückwärts'
                     text='Rückwärts'
                     onClick={backwards}/>}
-                {counter > 0 && <Button
+                {counter > 0 && aktiv && <Button
                     className='Forwärts'
                     text='Fortwärts'
                     onClick={forward}/>}
             </div>
-            {aktiv && <div><Tabelle editable={false} Zeileninput={1} Spalteninput={oben[0].length} TableData={oben} />
-                <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div>}
-            {aktiv && <Tabelle editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>}
-            {counter > 0 && displayGiveTable() }
+            {aktiv && <div className='GANZGROßERDIV'> <Tabelle className='TabelleLinks' editable={false} Zeileninput={outZeilen} Spalteninput={1} TableData={links}/>
+                <div className='CasualTabellenFelder'>
+                    <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten} TableData={oben}/>
+                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div></div>}
+            {counter > 0 && displayGiveTable()}
             <div>
                 <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
             </div>

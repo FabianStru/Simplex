@@ -21,21 +21,21 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
         console.log(userTable);
     }
     function sendTabelle() {
-/*
+
         let xhr = new XMLHttpRequest()
-        let url = "http://localhost:8080/api/postMatrix"
+        let url = "/api/postMatrix"
         xhr.open("POST",url,true)
-        xhr.setRequestHeader()
+        xhr.setRequestHeader('Content-Type','application/json')
         xhr.onreadystatechange = function () {
             if(xhr.readyState === 4 && xhr.status === 200) {
                 let json = JSON.parse(xhr.responseText)
                 console.log(json.matrix)
             }
         }
-        xhr.send(JSON.stringify(userTable))
+        const readyToJson = {"matrix": userTable};
+        xhr.send(JSON.stringify(readyToJson))
 
- */
-        console.log(JSON.stringify(userTable))
+        console.log(JSON.stringify(readyToJson))
     }
 
 
@@ -69,6 +69,9 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
     if(editable){
         return (
             <div>
+
+            <div className='Tabellejs'>
+
                 <table>
                     <thead>
                     </thead>
@@ -76,11 +79,12 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
                     {generateTable()}
                     </tbody>
                 </table>
-                <Button
-                    className='absenden'
-                    text='Abfahrt'
-                    onClick={sendTabelle}/>
-            </div>
+
+            </div><Button
+                className='absenden'
+                text='Abfahrt'
+                onClick={sendTabelle}/>
+    </div>
         )
     }
     else{
