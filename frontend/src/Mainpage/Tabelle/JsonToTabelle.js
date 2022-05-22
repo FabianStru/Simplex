@@ -1,9 +1,9 @@
-import React,{useState} from "react";
+import React from "react";
 /*import * as data from './Servertabelle.json';
  */
 
 
-function toArray({matrix,columnHeader,rowHeader}){
+function JsonToTabelle({matrix,columnHeader,rowHeader}){
     const ServerTabelle = matrix;
     const oben = columnHeader;
     const links = rowHeader;
@@ -12,7 +12,6 @@ function toArray({matrix,columnHeader,rowHeader}){
 
     createNewTabelle();
     fillTabelleWithJsonObj();
-
 
     console.log(Tabelle)
     return (Tabelle)
@@ -48,8 +47,8 @@ function toArray({matrix,columnHeader,rowHeader}){
     }
 }
 
-toArray.defaultProps={Zeilen: 4, Spalten: 3, Tabelle: [[3],[4]],}
+JsonToTabelle.defaultProps={Zeilen: 4, Spalten: 3, Tabelle: [[3],[4]],}
 
-export default toArray;
+export default JsonToTabelle;
 
 

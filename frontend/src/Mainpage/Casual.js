@@ -13,6 +13,7 @@ function Casual() {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
+    const [serverData, setServerData] = useState({})
 
     const [counter, setCounter] = useState(0);
     /*Counter ist so:
@@ -28,7 +29,7 @@ function Casual() {
     function setMatrix(a){
         matrix=a;
     }
-    let serverData;
+
 
 
     // hier wird die X zeile generiert:
@@ -37,15 +38,37 @@ function Casual() {
     for (let a = 0; a < outSpalten; a++) {
         oben[0].push('X' + (a + 1))
     }
-
+    oben[0][outSpalten - 1] = 'rechte Seite'
     //hier wird die linke zeile generiert:
     let links = new Array(outZeilen)
     for (let b = 0; b < outZeilen; b++) {
-
-        links[b] = new Array('A')
+        if(b===0) {
+            links[b]= new Array('G')
+        }
+        else if(b===1){
+            links[b]= new Array('SA')
+        }
+        else if(b===2){
+            links[b]= new Array('SB')
+        }
+        else if(b===3){
+            links[b]= new Array('SC')
+        }
+        else if(b===4){
+            links[b]= new Array('SD')
+        }
+        else if(b===5){
+            links[b]= new Array('SE')
+        }
+        else if(b===6){
+            links[b]= new Array('SF')
+        }
+        else {
+            links[b]= new Array('S'+b)
+        }
     }
 
-    oben[0][outSpalten - 1] = 'rechte Seite'
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -61,19 +84,18 @@ function Casual() {
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                serverData = JSON.parse(xhr.responseText)
+                setServerData(JSON.parse(xhr.responseText))
 
                 //setzt Counter auf 2 damit die Tabelle angezeigt wird
                 setCounter(2);
-                console.log('serverData:' + serverData[0].matrix)
+                //console.log('serverData:' + serverData[0].matrix)
             } else {
                 console.log("Fehler: " + xhr.status)
             }
         }
-        const readyToJson = {"matrix:" : matrix};
+        const readyToJson = {"matrix" : matrix};
         const help = JSON.stringify(readyToJson)
         xhr.send(help)
-        console.log('matrix:' + matrix)
         console.log('unsre Daten' + help)
 
         //console.log(JSON.stringify(readyToJson))
@@ -135,17 +157,17 @@ function Casual() {
                     <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
                              TableData={oben}/>
                     <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}
-                             onChange={setMatrix}/>
-                </div>
+                             onChange={setMatrix}/></div>
                 <Button
                     className='absenden'
                     text='Abfahrt'
                     onClick={sendTabelle}/>
-            </div>}
+            </div>
+            }
 
             <div>
                 {counter > 1 && displayGiveTable()}
-                <div>
+                <div className='NavButtons'>
                     {counter > 1 && aktiv && <Button
                         className='Rückwärts'
                         text='Rückwärts'
@@ -160,7 +182,8 @@ function Casual() {
     )
 
     function displayGiveTable() {
-        const fertigMatrix = jsonToTabelle(serverData[counter - 2])
+        console.log('foo' +serverData[0])
+        const fertigMatrix = jsonToTabelle(serverData[counter-2])
         console.log('fertigMatrix: ' + fertigMatrix)
         return (<Tabelle classname='givenTable' editable={false} Zeileninput={fertigMatrix.length}
                          Spalteninput={fertigMatrix[0].length} TableData={fertigMatrix}/>)
