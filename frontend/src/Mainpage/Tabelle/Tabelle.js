@@ -4,7 +4,7 @@ import './Tabelle.css';
 import createUserTable from "./createUserTable";
 import Button from "../../Button/Button";
 
-const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) => {
+const Tabelle = ({Zeileninput, Spalteninput, editable, TableData}) => {
 
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
@@ -21,9 +21,6 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
         console.log(userTable);
     }
     function sendTabelle() {
-        setCounter(2);
-        /*
-
 
         let xhr = new XMLHttpRequest()
         let url = "/api/postMatrix"
@@ -39,8 +36,6 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
         xhr.send(JSON.stringify(readyToJson))
 
         console.log(JSON.stringify(readyToJson))
-        */
-
     }
 
 
@@ -88,7 +83,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
             </div><Button
                 className='absenden'
                 text='Abfahrt'
-                onClick={() => setCounter(2)}/>
+                onClick={sendTabelle}/>
     </div>
         )
     }

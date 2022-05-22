@@ -13,16 +13,7 @@ function Casual() {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
-
     const [counter, setCounter] = useState(0);
-    /*Counter ist so:
-    0 = User hat nichts eingegeben
-    1= User hat Spalten und Zeilen eingegeben
-    2= User hat eine Tabelle an Server geschickt
-    3-X = verschiedene Steps anzeigen der gelösten Tabelle
-    */
-
-
 
     // hier wird die X zeile generiert:
     let oben = [[], []];
@@ -55,8 +46,13 @@ function Casual() {
 
     }
 
-    function forward() {
+    function onChange(e) {
+        setSpalten(e.target.value)
+        Tabellenfeld.editable = false
+        Tabellenfeld.content = Zeilen
+    }
 
+    function forward() {
         setCounter(counter + 1)
         //toDo: testen ob am ende der map ist
     }
@@ -98,7 +94,7 @@ function Casual() {
                 <div className='CasualTabellenFelder'>
                     <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
                              TableData={oben}/>
-                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten} setCounter={setCounter}/>
+                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/>
                 </div>
             </div>}
 
