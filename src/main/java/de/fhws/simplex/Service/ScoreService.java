@@ -1,5 +1,7 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Service;
 
+import de.fhws.simplex.Repository.Score;
+import de.fhws.simplex.Repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

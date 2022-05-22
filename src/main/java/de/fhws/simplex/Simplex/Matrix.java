@@ -1,4 +1,8 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Simplex;
+
+import de.fhws.simplex.Calculator.Calculator;
+import de.fhws.simplex.Calculator.GreatestChangeCalculator;
+import de.fhws.simplex.Calculator.SteepestUnitAscentCalculator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -95,7 +99,7 @@ public class Matrix {
      *
      * @author Anton Kaiser, Fabian Struensee
      */
-    void setTableHeaders() {
+    public void setTableHeaders() {
         this.columnHeader = new String[this.matrix[0].length];
         this.rowHeader = new String[this.matrix.length];
         for (int i = 0; i < this.matrix[0].length - 1; i++) {

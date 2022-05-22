@@ -1,4 +1,4 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Simplex;
 
 import java.util.Arrays;
 import java.util.Collections;
