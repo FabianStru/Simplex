@@ -7,8 +7,16 @@ Tabellenfeld{
     font-size: 30px;
 }
 .Tabellenfeld {
-    max-height: 40px;
+    height: 20px;
     margin: 5px;
+    padding: 3px 7px;
+    font-size: 20px;
+    border-radius: 5px;
+    width: 70px;
+}
+.TabellenfeldE {
+    height: 20px;
+    margin: 3px;
     padding: 3px 7px;
     font-size: 20px;
     border-radius: 5px;

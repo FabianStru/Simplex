@@ -27,10 +27,10 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => 
         for (let i = 0; i < SpaltenAnzahl; i++) {
             const key = i + Zeilennummer
             if (editable) {
-                Zeile.push(<td key={key}><Tabellenfeld editable={editable}
+                Zeile.push(<td key={key}><Tabellenfeld className='Tabellenfeld' editable={editable}
                                                        onChange={(e) => handleChange(Zeilennummer, i, e)}/></td>)
             } else {
-                Zeile.push(<td key={key}><Tabellenfeld content={TableData[Zeilennummer][i]} editable={editable}/></td>)
+                Zeile.push(<td key={key}><Tabellenfeld className='Tabellenfeld' content={TableData[Zeilennummer][i]} editable={editable}/></td>)
             }
         }
 

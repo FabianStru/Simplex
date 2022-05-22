@@ -29,24 +29,37 @@
 
 }
 .TabelleLinks {
-    align-self: flex-start;
+    align-self: flex-end;
 }
 .TabelleOben{
-
+    align-self: flex-start;
 }
 .TabelleMain {
     align-self: center;
+
 }
 .GANZGROßERDIV {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    flex-direction: column;
+    align-self: center;
+    margin-right: 10%;
 }
 .absenden {
-    align-self: flex-end;
 
 }
 .NavButtons {
     display: flex;
     justify-content: space-between;
+}
+.LinksUndMain {
+    display: flex;
+    align-items: flex-start;
+
+}
+.nochGrößererDiv{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
