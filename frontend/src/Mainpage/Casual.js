@@ -23,6 +23,7 @@ function Casual() {
     */
 
     // hier wird die X zeile generiert:
+
     let oben = [[], []];
     for (let a = 0; a < outSpalten; a++) {
         oben[0].push('X' + (a + 1))
@@ -128,7 +129,3 @@ function Casual() {
 
 
 export default Casual
-/*
-                   onChange={(e) => setZeilen(e.target.value)}/>
-
-                    */

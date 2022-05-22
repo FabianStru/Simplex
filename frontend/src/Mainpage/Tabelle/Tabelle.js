@@ -20,10 +20,10 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
 
         console.log(userTable);
     }
-    function sendTabelle() {
-        setCounter(2);
-        /*
 
+    function sendTabelle() {
+        //setzt Counter auf 2
+        setCounter(2);
 
         let xhr = new XMLHttpRequest()
         let url = "/api/postMatrix"
@@ -39,11 +39,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
         xhr.send(JSON.stringify(readyToJson))
 
         console.log(JSON.stringify(readyToJson))
-        */
-
     }
-
-
 
     function generateZeile(Zeilennummer) {
 
@@ -88,8 +84,9 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
             </div><Button
                 className='absenden'
                 text='Abfahrt'
-                onClick={() => setCounter(2)}/>
-    </div>
+                onClick={sendTabelle}/>
+            </div>
+
         )
     }
     else{
