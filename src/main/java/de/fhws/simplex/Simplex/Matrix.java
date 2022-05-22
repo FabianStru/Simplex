@@ -21,6 +21,7 @@ public class Matrix {
     BigDecimal[][] matrix;
     String[] columnHeader, rowHeader; //columnHeader = Spaltenbezeichner, rowHeader = Zeilenbezeichner
     int numberOfColumns, numberOfRows;
+    int[] pivotelement; //pivotelement[0]: row, pivotelement[1]: column
 
     /**
      * Main function, currently for testing purposes to see and compare the different functions of Matrix.
@@ -87,10 +88,11 @@ public class Matrix {
     public Matrix() {
     }
 
-    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
         this.matrix = matrix;
         this.columnHeader = columnHeader;
         this.rowHeader = rowHeader;
+        this.pivotelement = pivotelement;
         this.numberOfColumns = this.matrix[0].length;
         this.numberOfRows = this.matrix.length;
     }
@@ -118,7 +120,8 @@ public class Matrix {
         BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
-        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy);
+        int[] pivotelementCopy = pivotelement.clone();
+        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy, pivotelementCopy);
     }
 
     /**
@@ -164,6 +167,26 @@ public class Matrix {
      */
     public void setRowHeader(String[] rowHeader) {
         this.rowHeader = rowHeader;
+    }
+
+    /**
+     * This method is the setter for pivotelement.
+     *
+     * @param pivotelement the pivotelement to be set
+     */
+    public void setPivotelement(int[] pivotelement) {
+        this.pivotelement = pivotelement;
+    }
+
+    /**
+     * This method is the getter for the pivotelement.
+     *
+     * @return an int array with two elements:
+     * <li>[0] -> index of pivot element in pivot row
+     * <li>[1] -> index of pivot element in pivot column
+     */
+    public int[] getPivotelement() {
+        return pivotelement;
     }
 
     /**
@@ -219,9 +242,9 @@ public class Matrix {
     @Override
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
-        for(BigDecimal[] row: matrix){
+        for (BigDecimal[] row : matrix) {
             StringJoiner stringJoinerRow = new StringJoiner(",", "[", "]");
-            for(BigDecimal number: row){
+            for (BigDecimal number : row) {
                 stringJoinerRow.add(number.toPlainString());
 
             }
@@ -273,28 +296,31 @@ public class Matrix {
         }
         int counter = 0;
         ArrayList<Matrix> iterations = new ArrayList<>();
+        this.pivotelement = getPivotelement(pivotCalculator); //need to call it here otherwise pivotelement is null
         iterations.add(this.deepCopy());
         while (continueCalculate()) {
             counter++;
-            printPivotelement(pivotCalculator);
-            nextStep(pivotCalculator.getPivotelement(this.matrix)); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
+            if (counter > 1)
+                this.pivotelement = getPivotelement(pivotCalculator); //first pivotelement already calculated before doing the first deepcopy
+            nextStep(pivotelement); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
             iterations.add(this.deepCopy());
         }
         printMatrix();
-        System.out.println("Nach " + counter + " Iterationsschritten hat der Simplexalgorithmus die optimale Loesung gefunden.");
+        System.out.println("Nach " + counter + " Iterationsschritten hat der Simplex-Algorithmus die optimale Loesung gefunden.");
 
         return iterations.toArray(Matrix[]::new);
     }
 
     /**
-     * This method prints the pivotelement depending on the given pivotCalculator.
+     * This method gets the pivotelement depending on the given pivotCalculator and returns its value.
      *
      * @param pivotCalculator the pivotCalculator which should be used to determine the pivotelement
      */
-    private void printPivotelement(Calculator pivotCalculator) {
+    private int[] getPivotelement(Calculator pivotCalculator) {
         int[] pivotelement = pivotCalculator.getPivotelement(this.matrix);
-        System.out.println("Zeile: " + pivotelement[0]);
-        System.out.println("Spalte: " + pivotelement[1]);
+//        System.out.println("Das Pivotelement befindet sich in der Zeile: " + (pivotelement[0] + 1));
+//        System.out.println("Das Pivotelement befindet sich in der Spalte: " + (pivotelement[1] + 1));
+        return pivotelement;
     }
 
     /**
