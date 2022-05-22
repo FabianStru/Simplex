@@ -21,6 +21,7 @@ public class Matrix {
     BigDecimal[][] matrix;
     String[] columnHeader, rowHeader; //columnHeader = Spaltenbezeichner, rowHeader = Zeilenbezeichner
     int numberOfColumns, numberOfRows;
+    int[] pivotelement; //pivotelement[0]: row, pivotelement[1]: column
 
     /**
      * Main function, currently for testing purposes to see and compare the different functions of Matrix.
@@ -87,10 +88,11 @@ public class Matrix {
     public Matrix() {
     }
 
-    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
         this.matrix = matrix;
         this.columnHeader = columnHeader;
         this.rowHeader = rowHeader;
+        this.pivotelement = pivotelement;
         this.numberOfColumns = this.matrix[0].length;
         this.numberOfRows = this.matrix.length;
     }
@@ -118,7 +120,8 @@ public class Matrix {
         BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
-        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy);
+        int[] pivotelementCopy = pivotelement.clone();
+        return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy, pivotelementCopy);
     }
 
     /**
@@ -219,9 +222,9 @@ public class Matrix {
     @Override
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
-        for(BigDecimal[] row: matrix){
+        for (BigDecimal[] row : matrix) {
             StringJoiner stringJoinerRow = new StringJoiner(",", "[", "]");
-            for(BigDecimal number: row){
+            for (BigDecimal number : row) {
                 stringJoinerRow.add(number.toPlainString());
 
             }
@@ -276,8 +279,8 @@ public class Matrix {
         iterations.add(this.deepCopy());
         while (continueCalculate()) {
             counter++;
-            printPivotelement(pivotCalculator);
-            nextStep(pivotCalculator.getPivotelement(this.matrix)); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
+            this.pivotelement = getPivotelement(pivotCalculator);
+            nextStep(pivotelement); //Muss dann später noch auf BigDecimalWrapper geändert werden, sobald wir das mit dem Bruch geändert haben
             iterations.add(this.deepCopy());
         }
         printMatrix();
@@ -291,10 +294,11 @@ public class Matrix {
      *
      * @param pivotCalculator the pivotCalculator which should be used to determine the pivotelement
      */
-    private void printPivotelement(Calculator pivotCalculator) {
+    private int[] getPivotelement(Calculator pivotCalculator) {
         int[] pivotelement = pivotCalculator.getPivotelement(this.matrix);
-        System.out.println("Zeile: " + pivotelement[0]);
-        System.out.println("Spalte: " + pivotelement[1]);
+        System.out.println("Das Pivotelement befindet sich in der Zeile: " + (pivotelement[0] + 1));
+        System.out.println("Das Pivotelement befindet sich in der Spalte: " + (pivotelement[1] + 1));
+        return pivotelement;
     }
 
     /**
