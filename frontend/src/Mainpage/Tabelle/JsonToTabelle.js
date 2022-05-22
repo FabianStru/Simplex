@@ -47,7 +47,6 @@ function JsonToTabelle({matrix,columnHeader,rowHeader}){
     }
 }
 
-JsonToTabelle.defaultProps={Zeilen: 4, Spalten: 3, Tabelle: [[3],[4]],}
 
 export default JsonToTabelle;
 

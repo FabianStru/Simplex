@@ -5,13 +5,16 @@ import Button from "../Button/Button";
 
 function Ranked() {
 
-    const Tabelleranked = jsonToTabelle(0);
     const [aktiv, setAktiv] = useState(false);
     const [componentstate, setcomponentstate] = useState(null)
+    const [tabelleRanked, setTabelleRanked] = useState('')
 
 
     function startRankedMode() {
+        setTabelleRanked(jsonToTabelle(componentstate))
+        console.log(componentstate)
         setAktiv(true)
+
         //start Timer in backend
         //pull Json from backend
     }
@@ -38,10 +41,10 @@ function Ranked() {
                 onClick={startRankedMode}
             />
             <div className="Tabellen">
-                {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={componentstate.matrix.length}
-                                   Spalteninput={componentstate.matrix[0].length} TableData={componentstate.matrix}/>}
-                {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={Tabelleranked.length}
-                                   Spalteninput={Tabelleranked[0].length}/>}
+               {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
+                                                   Spalteninput={tabelleRanked[0].length} TableData={tabelleRanked}/>}
+                {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
+                                   Spalteninput={tabelleRanked[0].length}/>}
             </div>
         </div>
     )

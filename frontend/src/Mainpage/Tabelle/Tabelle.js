@@ -47,8 +47,6 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => 
         }
         return Tabelle;
     }
-
-    if (editable) {
         return (
 
                 <div className='Tabellejs'>
@@ -63,19 +61,6 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => 
                 </div>
 
         )
-    } else {
-        return (
-            <div>
-                <table>
-                    <thead>
-                    </thead>
-                    <tbody>
-                    {generateTable()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
 }
 
 export default Tabelle
