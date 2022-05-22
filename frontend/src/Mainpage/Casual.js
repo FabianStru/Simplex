@@ -96,12 +96,16 @@ function Casual() {
 
 
     function forward() {
-        setCounter(counter + 1)
+            setCounter(counter + 1)
+
         //toDo: testen ob am ende der map ist
     }
 
     function backwards() {
-        setCounter(counter - 1)
+        if(counter>2){
+            setCounter(counter - 1)
+        }
+
         //toDo: testen ob auf 1 ist
     }
 
