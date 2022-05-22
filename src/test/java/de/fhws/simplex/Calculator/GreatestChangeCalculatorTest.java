@@ -18,7 +18,8 @@ public class GreatestChangeCalculatorTest {
 
     /**
      * Tests the matrix SimplexRankedTables.beRottisBeispiel and whether it
-     * finds the correct pivot elements. Also tests if it throws an IndexOutOfBoundsException
+     * finds the correct pivot elements according to the Greatest change procedure.
+     * Also tests if it throws an IndexOutOfBoundsException
      * in case it's called again after the solution is found since no -1 is then returned as "index".
      */
     @Test
@@ -37,7 +38,8 @@ public class GreatestChangeCalculatorTest {
 
     /**
      * Tests the matrix SimplexRankedTables.beRottisBeispiel2 and whether it
-     * finds the correct pivot elements. Also tests if it throws an IndexOutOfBoundsException
+     * finds the correct pivot elements according to the Greatest change procedure.
+     * Also tests if it throws an IndexOutOfBoundsException
      * in case it's called again after the solution is found since no -1 is then returned as "index".
      */
     @Test
@@ -53,7 +55,8 @@ public class GreatestChangeCalculatorTest {
 
     /**
      * Tests the matrix SimplexRankedTables.beRottisBeispiel3 and whether it
-     * finds the correct pivot elements. Also tests if it throws an IndexOutOfBoundsException
+     * finds the correct pivot elements according to the Greatest change procedure.
+     * Also tests if it throws an IndexOutOfBoundsException
      * in case it's called again after the solution is found since no -1 is then returned as "index".
      */
     @Test
