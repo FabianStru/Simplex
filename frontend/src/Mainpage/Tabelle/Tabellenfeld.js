@@ -5,7 +5,7 @@ function Tabellenfeld  ({editable, content, onChange, placeholder}){
 
     if (editable) {
         return (
-            <input className='Tabellenfeld'
+            <input className='TabellenfeldE'
                    type="text"
                    onChange={onChange}
                    placeholder={placeholder}

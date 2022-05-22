@@ -28,7 +28,7 @@ function Casual() {
     function setMatrix(a){
         matrix=a;
     }
-    let serverData;
+    let serverData = '';
 
 
     // hier wird die X zeile generiert:
@@ -38,32 +38,17 @@ function Casual() {
         oben[0].push('X' + (a + 1))
     }
     oben[0][outSpalten - 1] = 'rechte Seite'
+
+    const linkeSeite={
+        0:'G', 1:'SA', 2:'SB', 3:'SC', 4:'SD', 5:'SE', 6:'SF', 7:''
+    }
     //hier wird die linke zeile generiert:
     let links = new Array(outZeilen)
     for (let b = 0; b < outZeilen; b++) {
-        if(b===0) {
             links[b]= new Array('G')
-        }
-        else if(b===1){
-            links[b]= new Array('SA')
-        }
-        else if(b===2){
-            links[b]= new Array('SB')
-        }
-        else if(b===3){
-            links[b]= new Array('SC')
-        }
-        else if(b===4){
-            links[b]= new Array('SD')
-        }
-        else if(b===5){
-            links[b]= new Array('SE')
-        }
-        else if(b===6){
-            links[b]= new Array('SF')
-        }
-        else {
-            links[b]= new Array('S'+b)
+        if(b>=1) {
+
+            links[b] = new Array('S'+ String.fromCharCode('A'.charCodeAt() + b-1))
         }
     }
 
@@ -150,14 +135,14 @@ function Casual() {
                     onClick={addTabelle}/>
 
             </div>
-            {aktiv && <div className='GANZGROßERDIV'>
+            {aktiv && <div className='nochGrößererDiv'><div className='GANZGROßERDIV'>
+
+                <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
+                         TableData={oben}/><div className='LinksUndMain'>
                 <Tabelle className='TabelleLinks' editable={false} Zeileninput={outZeilen} Spalteninput={1}
-                         TableData={links}/>
-                <div className='CasualTabellenFelder'>
-                    <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
-                             TableData={oben}/>
-                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}
-                             onChange={setMatrix}/></div>
+                                                    TableData={links}/>
+                <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}
+                         onChange={setMatrix}/></div></div>
                 <Button
                     className='absenden'
                     text='Abfahrt'
