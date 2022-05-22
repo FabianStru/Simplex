@@ -42,3 +42,11 @@
     justify-content: center;
     align-items: flex-end;
 }
+.absenden {
+    align-self: flex-end;
+
+}
+.NavButtons {
+    display: flex;
+    justify-content: space-between;
+}
