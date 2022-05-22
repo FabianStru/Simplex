@@ -13,6 +13,7 @@ function Casual() {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
+    const [serverData, setServerData] = useState({})
 
     const [counter, setCounter] = useState(0);
     /*Counter ist so:
@@ -28,7 +29,7 @@ function Casual() {
     function setMatrix(a){
         matrix=a;
     }
-    let serverData;
+
 
 
     // hier wird die X zeile generiert:
@@ -61,19 +62,18 @@ function Casual() {
         xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                serverData = JSON.parse(xhr.responseText)
+                setServerData(JSON.parse(xhr.responseText))
 
                 //setzt Counter auf 2 damit die Tabelle angezeigt wird
                 setCounter(2);
-                console.log('serverData:' + serverData[0].matrix)
+                //console.log('serverData:' + serverData[0].matrix)
             } else {
                 console.log("Fehler: " + xhr.status)
             }
         }
-        const readyToJson = {"matrix:" : matrix};
+        const readyToJson = {"matrix" : matrix};
         const help = JSON.stringify(readyToJson)
         xhr.send(help)
-        console.log('matrix:' + matrix)
         console.log('unsre Daten' + help)
 
         //console.log(JSON.stringify(readyToJson))
@@ -160,7 +160,8 @@ function Casual() {
     )
 
     function displayGiveTable() {
-        const fertigMatrix = jsonToTabelle(serverData[counter - 2])
+        console.log('foo' +serverData[0])
+        const fertigMatrix = jsonToTabelle(serverData[counter-2])
         console.log('fertigMatrix: ' + fertigMatrix)
         return (<Tabelle classname='givenTable' editable={false} Zeileninput={fertigMatrix.length}
                          Spalteninput={fertigMatrix[0].length} TableData={fertigMatrix}/>)
