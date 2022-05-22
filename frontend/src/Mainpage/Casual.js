@@ -13,7 +13,14 @@ function Casual() {
     const [Spalten, setSpalten] = useState('');
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
+
     const [counter, setCounter] = useState(0);
+    /*Counter ist so:
+    0 = User hat nichts eingegeben
+    1= User hat Spalten und Zeilen eingegeben
+    2= User hat eine Tabelle an Server geschickt
+    3-X = verschiedene Steps anzeigen der gelösten Tabelle
+    */
 
     // hier wird die X zeile generiert:
     let oben = [[], []];
@@ -25,9 +32,9 @@ function Casual() {
     let links = new Array(outZeilen)
     for (let b = 0; b < outZeilen; b++) {
         console.log(links)
-        links[b]=new Array('A')
-
+        links[b] = new Array('A')
     }
+
     oben[0][outSpalten - 1] = 'rechte Seite'
 
     const onSubmit = (e) => {
@@ -45,21 +52,16 @@ function Casual() {
         }
 
     }
-    function onChange(e){
-        setSpalten(e.target.value)
-        Tabellenfeld.editable=false
-        Tabellenfeld.content=Zeilen
-    }
-    function forward(){
 
-        setCounter(counter+1)
+
+    function forward() {
+        setCounter(counter + 1)
         //toDo: testen ob am ende der map ist
     }
-    function backwards(){
-            setCounter(counter-1)
 
+    function backwards() {
+        setCounter(counter - 1)
         //toDo: testen ob auf 1 ist
-
     }
 
     return (
@@ -81,30 +83,37 @@ function Casual() {
                     type="text"
                     required
                     value={Zeilen}
-                    onChange={(e)=>setZeilen(e.target.value)}/>
+                    onChange={(e) => setZeilen(e.target.value)}/>
                 <Button
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-                {counter > 0 && aktiv && <Button
-                    className='Rückwärts'
-                    text='Rückwärts'
-                    onClick={backwards}/>}
-                {counter > 0 && aktiv && <Button
-                    className='Forwärts'
-                    text='Fortwärts'
-                    onClick={forward}/>}
+
             </div>
-            {aktiv && <div className='GANZGROßERDIV'> <Tabelle className='TabelleLinks' editable={false} Zeileninput={outZeilen} Spalteninput={1} TableData={links}/>
+            {aktiv && <div className='GANZGROßERDIV'>
+                <Tabelle className='TabelleLinks' editable={false} Zeileninput={outZeilen} Spalteninput={1}
+                         TableData={links}/>
                 <div className='CasualTabellenFelder'>
-                    <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten} TableData={oben}/>
-                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}/></div></div>}
-            {counter > 0 && displayGiveTable()}
+                    <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
+                             TableData={oben}/>
+                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten} setCounter={setCounter}/>
+                </div>
+            </div>}
+
             <div>
-                <h2>Hier entsteht dann das Trainingsprogramm für den Simplex Trainer</h2>
+                {counter > 1 && displayGiveTable()}
+                <div>
+                    {counter > 1 && aktiv && <Button
+                        className='Rückwärts'
+                        text='Rückwärts'
+                        onClick={backwards}/>}
+                    {counter > 1 && aktiv && <Button
+                        className='Forwärts'
+                        text='Fortwärts'
+                        onClick={forward}/>}
+                </div>
             </div>
         </form>
-
     )
 
     function displayGiveTable() {
@@ -114,7 +123,6 @@ function Casual() {
                            Spalteninput={Tabelle[0].length} TableData={Tabelle}/>)
         //toDO: display the Table equal to the counter
         */
-
     }
 }
 
