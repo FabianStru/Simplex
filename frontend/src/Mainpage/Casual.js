@@ -19,8 +19,11 @@ function Casual() {
     0 = User hat nichts eingegeben
     1= User hat Spalten und Zeilen eingegeben
     2= User hat eine Tabelle an Server geschickt
-    3-X = verschiedene Steps anzeigen der gelösten Tabelle
+    2-X = verschiedene Steps anzeigen der gelösten Tabelle
     */
+    const [matrix, setMatrix] = useState([[], []])
+    let serverData;
+
 
     // hier wird die X zeile generiert:
 
@@ -42,6 +45,32 @@ function Casual() {
         e.preventDefault()
     }
 
+    function sendTabelle() {
+
+
+        //an Server die matrix schicken und die json mit verschiedenen matrix erhalten
+        let xhr = new XMLHttpRequest()
+        let url = "/api/postMatrix"
+        xhr.open("POST", url, true)
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                serverData = JSON.parse(xhr.responseText)
+
+                //setzt Counter auf 2 damit die Tabelle angezeigt wird
+                setCounter(2);
+                console.log('serverData:' + serverData[0].matrix)
+            } else {
+                console.log("Fehler: " + xhr.status)
+            }
+        }
+        const readyToJson = {"matrix:" : matrix};
+        xhr.send(JSON.stringify(readyToJson))
+        console.log('unsre Daten' + readyToJson)
+
+        //console.log(JSON.stringify(readyToJson))
+    }
+
     function addTabelle() {
         if (Spalten > 0 && Zeilen > 0) {
             setAktiv(true)
@@ -51,7 +80,6 @@ function Casual() {
         } else {
             setAktiv(false)
         }
-
     }
 
 
@@ -64,6 +92,7 @@ function Casual() {
         setCounter(counter - 1)
         //toDo: testen ob auf 1 ist
     }
+
 
     return (
         <form className='Casual' onSubmit={onSubmit}>
@@ -97,8 +126,13 @@ function Casual() {
                 <div className='CasualTabellenFelder'>
                     <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
                              TableData={oben}/>
-                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten} setCounter={setCounter}/>
+                    <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}
+                             onChange={setMatrix}/>
                 </div>
+                <Button
+                    className='absenden'
+                    text='Abfahrt'
+                    onClick={sendTabelle}/>
             </div>}
 
             <div>
@@ -118,12 +152,12 @@ function Casual() {
     )
 
     function displayGiveTable() {
-        /*
-        const Tabelle = jsonToTabelle(0)
-        return( <Tabelle classname='givenTable' editable={false} Zeileninput={Tabelle.length}
-                           Spalteninput={Tabelle[0].length} TableData={Tabelle}/>)
+        const fertigMatrix = jsonToTabelle(serverData[counter - 2])
+        console.log('fertigMatrix: ' + fertigMatrix)
+        return (<Tabelle classname='givenTable' editable={false} Zeileninput={fertigMatrix.length}
+                         Spalteninput={fertigMatrix[0].length} TableData={fertigMatrix}/>)
         //toDO: display the Table equal to the counter
-        */
+
     }
 }
 

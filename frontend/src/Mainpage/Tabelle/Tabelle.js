@@ -4,50 +4,31 @@ import './Tabelle.css';
 import createUserTable from "./createUserTable";
 import Button from "../../Button/Button";
 
-const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) => {
+const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => {
 
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
-    let userTable= new Array(ZeilenAnzahl);
-    for(let a=0;a<ZeilenAnzahl;a++){
-        userTable[a]=new Array(Spalteninput)
+    let userTable = new Array(ZeilenAnzahl);
+    for (let a = 0; a < ZeilenAnzahl; a++) {
+        userTable[a] = new Array(Spalteninput)
     }
 
     const handleChange = (row, column, event) => {
         let copy = [...userTable];
         copy[row][column] = +event.target.value;
-        userTable=copy
-
-        console.log(userTable);
-    }
-
-    function sendTabelle() {
-        //setzt Counter auf 2
-        setCounter(2);
-
-        let xhr = new XMLHttpRequest()
-        let url = "/api/postMatrix"
-        xhr.open("POST",url,true)
-        xhr.setRequestHeader('Content-Type','application/json')
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState === 4 && xhr.status === 200) {
-                let json = JSON.parse(xhr.responseText)
-                console.log(json.matrix)
-            }
-        }
-        const readyToJson = {"matrix": userTable};
-        xhr.send(JSON.stringify(readyToJson))
-
-        console.log(JSON.stringify(readyToJson))
+        userTable = copy
+        onChange(userTable);
+        //console.log(userTable);
     }
 
     function generateZeile(Zeilennummer) {
 
         const Zeile = []
         for (let i = 0; i < SpaltenAnzahl; i++) {
-            const key = i+Zeilennummer
+            const key = i + Zeilennummer
             if (editable) {
-                Zeile.push(<td key={key}><Tabellenfeld editable={editable} onChange={(e)=>handleChange(Zeilennummer,i, e)}/></td>)
+                Zeile.push(<td key={key}><Tabellenfeld editable={editable}
+                                                       onChange={(e) => handleChange(Zeilennummer, i, e)}/></td>)
             } else {
                 Zeile.push(<td key={key}><Tabellenfeld content={TableData[Zeilennummer][i]} editable={editable}/></td>)
             }
@@ -56,7 +37,6 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
         return (
             Zeile
         )
-
     }
 
     function generateTable() {
@@ -67,29 +47,23 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, setCounter}) =
         }
         return Tabelle;
     }
-    if(editable){
+
+    if (editable) {
         return (
-            <div>
 
-            <div className='Tabellejs'>
+                <div className='Tabellejs'>
 
-                <table>
-                    <thead>
-                    </thead>
-                    <tbody>
-                    {generateTable()}
-                    </tbody>
-                </table>
-
-            </div><Button
-                className='absenden'
-                text='Abfahrt'
-                onClick={sendTabelle}/>
-            </div>
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                        {generateTable()}
+                        </tbody>
+                    </table>
+                </div>
 
         )
-    }
-    else{
+    } else {
         return (
             <div>
                 <table>
