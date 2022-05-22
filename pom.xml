@@ -24,6 +24,13 @@
 		</dependency>
 
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.4.4</version>
@@ -66,5 +73,7 @@
             </plugin>
         </plugins>
 	</build>
+
+
 
 </project>
