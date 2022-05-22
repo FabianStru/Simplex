@@ -38,15 +38,37 @@ function Casual() {
     for (let a = 0; a < outSpalten; a++) {
         oben[0].push('X' + (a + 1))
     }
-
+    oben[0][outSpalten - 1] = 'rechte Seite'
     //hier wird die linke zeile generiert:
     let links = new Array(outZeilen)
     for (let b = 0; b < outZeilen; b++) {
-
-        links[b] = new Array('A')
+        if(b===0) {
+            links[b]= new Array('G')
+        }
+        else if(b===1){
+            links[b]= new Array('SA')
+        }
+        else if(b===2){
+            links[b]= new Array('SB')
+        }
+        else if(b===3){
+            links[b]= new Array('SC')
+        }
+        else if(b===4){
+            links[b]= new Array('SD')
+        }
+        else if(b===5){
+            links[b]= new Array('SE')
+        }
+        else if(b===6){
+            links[b]= new Array('SF')
+        }
+        else {
+            links[b]= new Array('S'+b)
+        }
     }
 
-    oben[0][outSpalten - 1] = 'rechte Seite'
+
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -135,17 +157,17 @@ function Casual() {
                     <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}
                              TableData={oben}/>
                     <Tabelle className='TabelleMain' editable={true} Zeileninput={outZeilen} Spalteninput={outSpalten}
-                             onChange={setMatrix}/>
-                </div>
+                             onChange={setMatrix}/></div>
                 <Button
                     className='absenden'
                     text='Abfahrt'
                     onClick={sendTabelle}/>
-            </div>}
+            </div>
+            }
 
             <div>
                 {counter > 1 && displayGiveTable()}
-                <div>
+                <div className='NavButtons'>
                     {counter > 1 && aktiv && <Button
                         className='Rückwärts'
                         text='Rückwärts'
