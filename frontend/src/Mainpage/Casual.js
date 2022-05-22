@@ -35,7 +35,7 @@ function Casual() {
     //hier wird die linke zeile generiert:
     let links = new Array(outZeilen)
     for (let b = 0; b < outZeilen; b++) {
-        console.log(links)
+
         links[b] = new Array('A')
     }
 

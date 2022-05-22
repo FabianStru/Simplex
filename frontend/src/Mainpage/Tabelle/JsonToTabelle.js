@@ -1,11 +1,12 @@
 import React,{useState} from "react";
-import * as data from './Servertabelle.json';
+/*import * as data from './Servertabelle.json';
+ */
 
 
-function toArray({numberofMatrix}){
-    const ServerTabelle = data[0].matrix;
-    const oben = data[0].columnHeader;
-    const links = data[0].rowHeader;
+function toArray({matrix,columnHeader,rowHeader}){
+    const ServerTabelle = matrix;
+    const oben = columnHeader;
+    const links = rowHeader;
     let Tabelle = [];
 
 
