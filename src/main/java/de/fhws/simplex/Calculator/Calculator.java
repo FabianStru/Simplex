@@ -1,4 +1,4 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Calculator;
 
 import java.math.BigDecimal;
 

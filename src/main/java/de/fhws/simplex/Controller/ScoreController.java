@@ -1,5 +1,7 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Controller;
 
+import de.fhws.simplex.Repository.Score;
+import de.fhws.simplex.Service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

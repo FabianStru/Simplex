@@ -1,10 +1,9 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import de.fhws.simplex.Simplex.Matrix;
+import de.fhws.simplex.Simplex.SimplexRankedTablesEnum;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 /**

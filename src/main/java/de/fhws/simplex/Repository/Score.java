@@ -1,4 +1,4 @@
-package de.fhws.simplex;
+package de.fhws.simplex.Repository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

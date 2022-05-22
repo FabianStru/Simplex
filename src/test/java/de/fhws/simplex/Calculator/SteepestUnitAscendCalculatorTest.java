@@ -1,8 +1,8 @@
-package MatrixTest;
+package de.fhws.simplex.Calculator;
 
-import de.fhws.simplex.Matrix;
-import de.fhws.simplex.SimplexRankedTables;
-import de.fhws.simplex.SteepestUnitAscentCalculator;
+import de.fhws.simplex.Simplex.Matrix;
+import de.fhws.simplex.Simplex.SimplexRankedTables;
+import de.fhws.simplex.Calculator.SteepestUnitAscentCalculator;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
