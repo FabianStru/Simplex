@@ -17,8 +17,8 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => 
         let copy = [...userTable];
         copy[row][column] = +event.target.value;
         userTable = copy
+        console.log(userTable);
         onChange(userTable);
-        //console.log(userTable);
     }
 
     function generateZeile(Zeilennummer) {

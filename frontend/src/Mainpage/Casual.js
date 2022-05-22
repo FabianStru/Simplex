@@ -21,7 +21,13 @@ function Casual() {
     2= User hat eine Tabelle an Server geschickt
     2-X = verschiedene Steps anzeigen der gelösten Tabelle
     */
-    const [matrix, setMatrix] = useState([[], []])
+    let matrix = new Array(outZeilen);
+    for (let a = 0; a < outZeilen; a++) {
+        matrix[a] = new Array(outSpalten)
+    }
+    function setMatrix(a){
+        matrix=a;
+    }
     let serverData;
 
 
@@ -65,8 +71,10 @@ function Casual() {
             }
         }
         const readyToJson = {"matrix:" : matrix};
-        xhr.send(JSON.stringify(readyToJson))
-        console.log('unsre Daten' + readyToJson)
+        const help = JSON.stringify(readyToJson)
+        xhr.send(help)
+        console.log('matrix:' + matrix)
+        console.log('unsre Daten' + help)
 
         //console.log(JSON.stringify(readyToJson))
     }
