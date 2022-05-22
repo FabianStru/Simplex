@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 /**
  * This class represents the matrix of the Simplex algorithm and saves the values and table and offers all the
@@ -217,7 +218,16 @@ public class Matrix {
      */
     @Override
     public String toString() {
-        return "Matrix{" + "matrix=" + Arrays.toString(matrix) + ", oben=" + Arrays.toString(columnHeader) + ", links=" + Arrays.toString(rowHeader) + '}';
+        StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
+        for(BigDecimal[] row: matrix){
+            StringJoiner stringJoinerRow = new StringJoiner(",", "[", "]");
+            for(BigDecimal number: row){
+                stringJoinerRow.add(number.toPlainString());
+
+            }
+            stringJoiner.add(stringJoinerRow.toString());
+        }
+        return "Matrix{" + "matrix=" + stringJoiner + ", oben=" + Arrays.toString(columnHeader) + ", links=" + Arrays.toString(rowHeader) + '}';
     }
 
     /**
@@ -313,7 +323,7 @@ public class Matrix {
     public Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
         BigDecimal pivotElement = this.matrix[pivot[0]][pivot[1]];
 
-        printMatrix(); //Für Debugging
+//        printMatrix(); //Für Debugging
 
         String temp = this.rowHeader[pivot[0]];
         this.rowHeader[pivot[0]] = this.columnHeader[pivot[1]]; //Nicht-Basis-Variablen
