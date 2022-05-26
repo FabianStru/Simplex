@@ -1,1 +1,1 @@
-//hier soll die darstellung der Rangliste entstehen
+//hier soll die Darstellung der Rangliste entstehen
