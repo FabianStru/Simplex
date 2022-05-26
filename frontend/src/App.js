@@ -6,7 +6,7 @@ import Casual from "./Mainpage/Casual";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Ranked from './Mainpage/Ranked';
 import Rankings from './Mainpage/Rankings';
-
+import Tutorial from './Mainpage/Tutorial';
 
 
 function App() {

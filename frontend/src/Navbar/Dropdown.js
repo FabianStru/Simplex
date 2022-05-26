@@ -55,7 +55,7 @@ function Dropdown () {
                     </DropdownItem>
                     <DropdownItem
                         leftIcon={<Icon/>}
-                        href='/'
+                        href='/rankings'
                     >
                         Rankings
                     </DropdownItem>
