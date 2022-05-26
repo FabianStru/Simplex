@@ -7,7 +7,7 @@ import {ReactComponent as Pfeil} from './Icons/Pfeil.svg';
 
 function Dropdown () {
     const [activeMenu, setActiveMenu] = useState('main');
-    const [menuHeight, setMenuHeight] = useState(112);
+    const [menuHeight, setMenuHeight] = useState(224);
     const dropdownRef= useRef(null);
 /*
     useEffect(()=> {
@@ -45,8 +45,20 @@ function Dropdown () {
                          leftIcon={<Icon/>}
                          href='/'
                      >
-                        Main
+                        Home
                      </DropdownItem>
+                    <DropdownItem
+                        leftIcon={<Icon/>}
+                        href='/tutorial'
+                    >
+                        Tutorial
+                    </DropdownItem>
+                    <DropdownItem
+                        leftIcon={<Icon/>}
+                        href='/'
+                    >
+                        Rankings
+                    </DropdownItem>
                     <DropdownItem
 
                     goToMenu='Play'
