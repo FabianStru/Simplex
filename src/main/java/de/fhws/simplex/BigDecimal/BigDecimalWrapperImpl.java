@@ -7,7 +7,7 @@ import java.math.MathContext;
 /**
  * documentation
  */
-public class BigDecimalWrapperImpl extends BigDecimal implements BigDecimalWrapper {
+public class BigDecimalWrapperImpl extends BigDecimal implements BigNumberWrapper {
     public BigDecimalWrapperImpl(char[] in, int offset, int len) {
         super(in, offset, len);
     }
