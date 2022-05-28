@@ -18,7 +18,7 @@ code {
     monospace;
 }
 .container {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 5% auto;
   box-shadow: 0px 1px 5px black;
   min-height: 300px;
