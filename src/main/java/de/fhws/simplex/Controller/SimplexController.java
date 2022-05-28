@@ -71,15 +71,17 @@ public class SimplexController {
      */
     @PostMapping("/api/postRanked")
     public RankedResponse postRanked(@RequestBody Matrix[] matrices) {
-        Matrix[] correctMatrices = matrices[0].calculateSimplex();
+        Matrix tmpCopyOfFirstMatrix = matrices[0].deepCopy();
+        Matrix[] correctMatrices = tmpCopyOfFirstMatrix.calculateSimplex();
         List<RankedResponseMiscalculation> miscalculations = new ArrayList<>();
+
         for (int matrixIndex = 0; matrixIndex < matrices.length; matrixIndex++) {
-            for (Integer[] coordinates: correctMatrices[matrixIndex].compareAndCheck(matrices[matrixIndex])
+            for (Integer[] coordinate: correctMatrices[matrixIndex].compareAndCheck(matrices[matrixIndex])
                  ) {
-                miscalculations.add(new RankedResponseMiscalculation(matrixIndex,coordinates));
+                miscalculations.add(new RankedResponseMiscalculation(matrixIndex,coordinate));
             }
         }
-            return new RankedResponse(miscalculations.toArray(new RankedResponseMiscalculation[0]));
+        return new RankedResponse(miscalculations.toArray(new RankedResponseMiscalculation[0]));
     }
 
 
