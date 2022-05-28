@@ -29,7 +29,7 @@ public class Matrix {
      * @param args not used arguments
      */
     public static void main(String[] args) {
-        Matrix m = new Matrix(2, 4);
+        Matrix m;
 
         System.out.println("Manuelle Auswertung Simplex:");
         m = SimplexRankedTables.beRottisBeispiel();
@@ -346,10 +346,7 @@ public class Matrix {
      * @param pivotCalculator the pivotCalculator which should be used to determine the pivotelement
      */
     private int[] getPivotelement(Calculator pivotCalculator) {
-        int[] pivotelement = pivotCalculator.getPivotelement(this.matrix);
-//        System.out.println("Das Pivotelement befindet sich in der Zeile: " + (pivotelement[0] + 1));
-//        System.out.println("Das Pivotelement befindet sich in der Spalte: " + (pivotelement[1] + 1));
-        return pivotelement;
+        return pivotCalculator.getPivotelement(this.matrix);
     }
 
     /**
