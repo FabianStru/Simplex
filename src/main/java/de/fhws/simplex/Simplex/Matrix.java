@@ -120,7 +120,7 @@ public class Matrix {
         }
     }
 
-    Matrix deepCopy() {
+    public Matrix deepCopy() {
         BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
