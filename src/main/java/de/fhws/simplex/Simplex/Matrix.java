@@ -63,8 +63,6 @@ public class Matrix {
      */
     public Matrix(int numberOfRows, int numberOfColumns) {
         this.matrix = new BigDecimal[numberOfRows][numberOfColumns];
-        this.columnHeader = new String[numberOfColumns];
-        this.rowHeader = new String[numberOfRows];
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.setTableHeaders();
@@ -88,13 +86,18 @@ public class Matrix {
     public Matrix() {
     }
 
-    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
+    Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
         this.matrix = matrix;
         this.columnHeader = columnHeader;
         this.rowHeader = rowHeader;
-        this.pivotelement = pivotelement;
         this.numberOfColumns = this.matrix[0].length;
         this.numberOfRows = this.matrix.length;
+    }
+
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
+        this(matrix, columnHeader, rowHeader);
+        this.pivotelement = pivotelement;
+
     }
 
     /**
@@ -251,6 +254,32 @@ public class Matrix {
             stringJoiner.add(stringJoinerRow.toString());
         }
         return "Matrix{" + "matrix=" + stringJoiner + ", oben=" + Arrays.toString(columnHeader) + ", links=" + Arrays.toString(rowHeader) + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix matrix1 = (Matrix) o;
+        //check if matrices are the same
+        for (int i = 0; i < matrix1.getMatrix().length; i++) {
+            for (int j = 0; j < matrix1.getMatrix()[i].length; j++) {
+                if ((matrix1.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP).compareTo(this.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP)) != 0))
+                    return false;
+            }
+        }
+
+        return Arrays.equals(getColumnHeader(), matrix1.getColumnHeader()) &&
+                Arrays.equals(getRowHeader(), matrix1.getRowHeader());
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.deepHashCode(getMatrix());
+        result = 31 * result + Arrays.hashCode(getColumnHeader());
+        result = 31 * result + Arrays.hashCode(getRowHeader());
+        return result;
     }
 
     /**

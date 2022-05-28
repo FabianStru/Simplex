@@ -3,8 +3,11 @@ package de.fhws.simplex.Simplex;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.hamcrest.Matchers;
+
 import javax.xml.bind.SchemaOutputResolver;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
