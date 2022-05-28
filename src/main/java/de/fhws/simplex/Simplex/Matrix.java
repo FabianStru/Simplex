@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -262,14 +263,8 @@ public class Matrix {
         if (o == null || getClass() != o.getClass()) return false;
         Matrix matrix1 = (Matrix) o;
         //check if matrices are the same
-        for (int i = 0; i < matrix1.getMatrix().length; i++) {
-            for (int j = 0; j < matrix1.getMatrix()[i].length; j++) {
-                if ((matrix1.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP).compareTo(this.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP)) != 0))
-                    return false;
-            }
-        }
-
-        return Arrays.equals(getColumnHeader(), matrix1.getColumnHeader()) &&
+        return this.compareAndCheck(matrix1).length == 0 &&
+                Arrays.equals(getColumnHeader(), matrix1.getColumnHeader()) &&
                 Arrays.equals(getRowHeader(), matrix1.getRowHeader());
     }
 
@@ -467,4 +462,14 @@ public class Matrix {
         // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
     }
 
+    public Integer[][] compareAndCheck(Matrix matrixToCheck) {
+        List<Integer[]> coordinates = new ArrayList<>();
+        for (int i = 0; i < matrixToCheck.getMatrix().length; i++) {
+            for (int j = 0; j < matrixToCheck.getMatrix()[i].length; j++) {
+                if ((matrixToCheck.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP).compareTo(this.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP)) != 0))
+                        coordinates.add(new Integer[]{i,j});
+            }
+        }
+        return coordinates.toArray(new Integer[0][0]);
+    }
 }
