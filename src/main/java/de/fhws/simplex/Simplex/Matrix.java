@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringJoiner;
 
 /**
@@ -29,7 +30,7 @@ public class Matrix {
      * @param args not used arguments
      */
     public static void main(String[] args) {
-        Matrix m = new Matrix(2, 4);
+        Matrix m;
 
         System.out.println("Manuelle Auswertung Simplex:");
         m = SimplexRankedTables.beRottisBeispiel();
@@ -63,8 +64,6 @@ public class Matrix {
      */
     public Matrix(int numberOfRows, int numberOfColumns) {
         this.matrix = new BigDecimal[numberOfRows][numberOfColumns];
-        this.columnHeader = new String[numberOfColumns];
-        this.rowHeader = new String[numberOfRows];
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.setTableHeaders();
@@ -88,13 +87,18 @@ public class Matrix {
     public Matrix() {
     }
 
-    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
+    Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
         this.matrix = matrix;
         this.columnHeader = columnHeader;
         this.rowHeader = rowHeader;
-        this.pivotelement = pivotelement;
         this.numberOfColumns = this.matrix[0].length;
         this.numberOfRows = this.matrix.length;
+    }
+
+    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
+        this(matrix, columnHeader, rowHeader);
+        this.pivotelement = pivotelement;
+
     }
 
     /**
@@ -116,7 +120,7 @@ public class Matrix {
         }
     }
 
-    Matrix deepCopy() {
+    public Matrix deepCopy() {
         BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
@@ -253,6 +257,26 @@ public class Matrix {
         return "Matrix{" + "matrix=" + stringJoiner + ", oben=" + Arrays.toString(columnHeader) + ", links=" + Arrays.toString(rowHeader) + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix matrix1 = (Matrix) o;
+        //check if matrices are the same
+        return this.compareAndCheck(matrix1).length == 0 &&
+                Arrays.equals(getColumnHeader(), matrix1.getColumnHeader()) &&
+                Arrays.equals(getRowHeader(), matrix1.getRowHeader());
+    }
+
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.deepHashCode(getMatrix());
+        result = 31 * result + Arrays.hashCode(getColumnHeader());
+        result = 31 * result + Arrays.hashCode(getRowHeader());
+        return result;
+    }
+
     /**
      * Formatted output of the matrix with column and row headers and the corresponding values of the matrix.
      *
@@ -317,10 +341,7 @@ public class Matrix {
      * @param pivotCalculator the pivotCalculator which should be used to determine the pivotelement
      */
     private int[] getPivotelement(Calculator pivotCalculator) {
-        int[] pivotelement = pivotCalculator.getPivotelement(this.matrix);
-//        System.out.println("Das Pivotelement befindet sich in der Zeile: " + (pivotelement[0] + 1));
-//        System.out.println("Das Pivotelement befindet sich in der Spalte: " + (pivotelement[1] + 1));
-        return pivotelement;
+        return pivotCalculator.getPivotelement(this.matrix);
     }
 
     /**
@@ -441,4 +462,14 @@ public class Matrix {
         // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
     }
 
+    public Integer[][] compareAndCheck(Matrix matrixToCheck) {
+        List<Integer[]> coordinates = new ArrayList<>();
+        for (int i = 0; i < matrixToCheck.getMatrix().length; i++) {
+            for (int j = 0; j < matrixToCheck.getMatrix()[i].length; j++) {
+                if ((matrixToCheck.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP).compareTo(this.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP)) != 0))
+                        coordinates.add(new Integer[]{i,j});
+            }
+        }
+        return coordinates.toArray(new Integer[0][0]);
+    }
 }
