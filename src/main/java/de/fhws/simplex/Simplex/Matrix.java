@@ -427,7 +427,7 @@ public class Matrix {
     private void calculatePivotRow(int[] pivot, BigFraction pivotElement) {
         for (int column = 0; column < this.matrix[0].length; column++) { //Pivotzeile
             if (column != pivot[1]) //Pivotelement selbst ausschließen, da die Operationen nur für alle anderen Elemente in der Zeile gilt.
-                this.matrix[pivot[0]][column] = this.matrix[pivot[0]][column].divide(pivotElement, 15, RoundingMode.HALF_UP);
+                this.matrix[pivot[0]][column] = this.matrix[pivot[0]][column].divide(pivotElement);
             // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
         }
     }
@@ -444,7 +444,7 @@ public class Matrix {
     private void calculatePivotColumn(int[] pivot, BigFraction pivotElement) {
         for (int row = 0; row < this.matrix.length; row++) { //Pivotspalte
             if (row != pivot[0])
-                this.matrix[row][pivot[1]] = this.matrix[row][pivot[1]].divide(pivotElement, 15, RoundingMode.HALF_UP).negate();
+                this.matrix[row][pivot[1]] = this.matrix[row][pivot[1]].divide(pivotElement).negate();
             // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
         }
     }
