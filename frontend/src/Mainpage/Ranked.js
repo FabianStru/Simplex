@@ -8,9 +8,9 @@ function Ranked() {
     const [aktiv, setAktiv] = useState(false);
     const [componentstate, setcomponentstate] = useState(null)
     const [tabelleRanked, setTabelleRanked] = useState('')
-    const [counter, setCounter] = useState(0)
     const [Tabellen, setTabellen] = useState([])
-
+    const [foo,setFoo] = useState([0])
+    const [counter, setCounter] = useState(0)
 
     function startRankedMode() {
         setTabelleRanked(jsonToTabelle(componentstate))
@@ -37,14 +37,28 @@ function Ranked() {
 
 
     function addTabelle() {
-        const Tabellchen = <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
-                                    Spalteninput={tabelleRanked[0].length}/>
+        setCounter(counter+1)
+
+
+        function changeTabellchen(userTable, ekey){
+            console.log('a: '+userTable)
+            console.log('SSJGEA : '+ekey)
+            let copy = foo
+            copy[ekey-1]=userTable
+            setFoo(copy)
+        }
+        const Tabellchen = <Tabelle key = {counter} ekey={counter} classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
+                                    Spalteninput={tabelleRanked[0].length} onChange = {changeTabellchen} />
         setTabellen([...Tabellen, Tabellchen])
     }
 
     function removeTabelle() {
         setTabellen((products) => Tabellen.filter((_, index) => index !== (Tabellen.length - 1)));
     }
+    function send(){
+        console.log(foo)
+    }
+
 
     return (
         <div>
@@ -52,6 +66,11 @@ function Ranked() {
                 className='StartKnopf'
                 text="Start Ranked"
                 onClick={startRankedMode}
+            />
+            <Button
+                className='SendKnopf'
+                text="Send"
+                onClick={send}
             />
 
             <div className="Tabellen">
