@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Button from "../Button/Button";
@@ -6,19 +6,43 @@ import Button from "../Button/Button";
 function Ranked() {
 
     const [aktiv, setAktiv] = useState(false);
-    const [componentstate, setcomponentstate] = useState(null)
     const [tabelleRanked, setTabelleRanked] = useState('')
 
 
+    async function fetchAsync () {
+        let response = await fetch("/api/getRanked");
+        return await response.json();
+    }
+
+
+    function getTabelle(){
+        let xhr = new XMLHttpRequest()
+        let url = "/api/getRanked"
+        xhr.open("GET", url, true)
+        xhr.setRequestHeader("Content-Type","application/json")
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                console.log('antwort : '+xhr.responseText)
+                const HALLLAHBANHNJ = JSON.parse(xhr.responseText)
+                console.log('MAULHALTEN : ' +HALLLAHBANHNJ)
+                setTabelleRanked(jsonToTabelle(HALLLAHBANHNJ))
+                setAktiv(true)
+            }else {
+                console.log("Fehler: " + xhr.status)
+            }
+        }
+        xhr.send(null)
+
+    }
     function startRankedMode() {
-        setTabelleRanked(jsonToTabelle(componentstate))
-        console.log(componentstate)
-        setAktiv(true)
+        getTabelle()
+
 
         //start Timer in backend
         //pull Json from backend
     }
 
+/*
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
@@ -32,14 +56,13 @@ function Ranked() {
     }, []);
 
     //toDo: check if number or string (first row and first column only string, rest only number)
-
-
+ */
     return (
         <div>
             <Button
                 className='StartKnopf'
                 text="Start Ranked"
-                onClick={startRankedMode}
+                onClick={getTabelle}
             />
             <div className="Tabellen">
                {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
