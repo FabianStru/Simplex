@@ -1,7 +1,5 @@
 package de.fhws.simplex.Calculator;
 
-import org.apache.commons.math3.fraction.BigFraction;
-
 import java.math.BigDecimal;
 
 /**
@@ -15,16 +13,16 @@ public interface Calculator {
     /**
      * documentation
      */
-    int[] getPivotelement(BigFraction[][] matrix);
+    int[] getPivotelement(BigDecimal[][] matrix);
 
     /**
      * documentation
      */
-    int getIndexOfSmallestNumberInRow(int row, BigFraction[][] matrix);
+    int getIndexOfSmallestNumberInRow(int row, BigDecimal[][] matrix);
 
     /**
      * documentation
      */
-    int calculateQuotientAndReturnIndexOfSmallestQuotient(int column, BigFraction[][] matrix);
+    int calculateQuotientAndReturnIndexOfSmallestQuotient(int column, BigDecimal[][] matrix);
 
 }
