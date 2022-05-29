@@ -31,6 +31,7 @@ function Ranked() {
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
+    //toDo: check if number or string (first row and first column only string, rest only number)
 
 
     return (
