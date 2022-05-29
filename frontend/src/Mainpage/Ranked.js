@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Button from "../Button/Button";
@@ -6,32 +6,52 @@ import Button from "../Button/Button";
 function Ranked() {
 
     const [aktiv, setAktiv] = useState(false);
-    const [componentstate, setcomponentstate] = useState(null)
     const [tabelleRanked, setTabelleRanked] = useState('')
     const [Tabellen, setTabellen] = useState([])
     const [foo,setFoo] = useState([0])
     const [counter, setCounter] = useState(0)
 
+
+    function getTabelle(){
+        let xhr = new XMLHttpRequest()
+        let url = "/api/getRanked"
+        xhr.open("GET", url, true)
+        xhr.setRequestHeader("Content-Type","application/json")
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                console.log('antwort : '+xhr.responseText)
+                const HALLLAHBANHNJ = JSON.parse(xhr.responseText)
+                console.log('MAULHALTEN : ' +HALLLAHBANHNJ)
+                setTabelleRanked(jsonToTabelle(HALLLAHBANHNJ))
+                setAktiv(true)
+            }else {
+                console.log("Fehler: " + xhr.status)
+            }
+        }
+        xhr.send(null)
+
+    }
     function startRankedMode() {
-        setTabelleRanked(jsonToTabelle(componentstate))
-        console.log(componentstate)
-        setAktiv(true)
+        getTabelle()
+
 
         //start Timer in backend
         //pull Json from backend
     }
-
+/*
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
         }
         // GET request using fetch inside useEffect React hook
-        fetch('/api/getRanked', requestOptions)
+        fetch('/api/getRanked',requestOptions)
             .then(response => response.json())
             .then(data => setcomponentstate(data));
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
+
+ */
 
     //toDo: check if number or string (first row and first column only string, rest only number)
 
@@ -65,7 +85,7 @@ function Ranked() {
             <Button
                 className='StartKnopf'
                 text="Start Ranked"
-                onClick={startRankedMode}
+                onClick={getTabelle}
             />
             <Button
                 className='SendKnopf'
