@@ -7,12 +7,9 @@ function Ranked() {
 
     const [aktiv, setAktiv] = useState(false);
     const [tabelleRanked, setTabelleRanked] = useState('')
+    const [counter, setCounter] = useState(0)
+    const [Tabellen, setTabellen] = useState([])
 
-
-    async function fetchAsync () {
-        let response = await fetch("/api/getRanked");
-        return await response.json();
-    }
 
 
     function getTabelle(){
@@ -41,7 +38,6 @@ function Ranked() {
         //start Timer in backend
         //pull Json from backend
     }
-
 /*
     useEffect(() => {
         const requestOptions = {
@@ -55,8 +51,21 @@ function Ranked() {
 // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
 
-    //toDo: check if number or string (first row and first column only string, rest only number)
  */
+
+    //toDo: check if number or string (first row and first column only string, rest only number)
+
+
+    function addTabelle() {
+        const Tabellchen = <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
+                                    Spalteninput={tabelleRanked[0].length}/>
+        setTabellen([...Tabellen, Tabellchen])
+    }
+
+    function removeTabelle() {
+        setTabellen((products) => Tabellen.filter((_, index) => index !== (Tabellen.length - 1)));
+    }
+
     return (
         <div>
             <Button
@@ -65,13 +74,33 @@ function Ranked() {
                 onClick={getTabelle}
             />
             <div className="Tabellen">
-               {aktiv&& componentstate && <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
-                                                   Spalteninput={tabelleRanked[0].length} TableData={tabelleRanked}/>}
-                {aktiv && <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
-                                   Spalteninput={tabelleRanked[0].length}/>}
+                {aktiv && componentstate &&
+                    <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
+                             Spalteninput={tabelleRanked[0].length} TableData={tabelleRanked}/>}
+                {aktiv && Tabellen}
+                {aktiv && <div>
+                    <Button
+                        className='NextKnopf'
+                        text='Neue Tabelle'
+                        onClick={addTabelle}>
+                    </Button>
+                    <Button
+                        className='EntfernKnopf'
+                        text='Entferne Tabelle'
+                        onClick={removeTabelle}>
+                    </Button>
+                </div>}
             </div>
         </div>
     )
 }
 
 export default Ranked
+
+/*
+            <div>
+
+                    <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
+                             Spalteninput={tabelleRanked[0].length}/>
+                </div>
+ */
