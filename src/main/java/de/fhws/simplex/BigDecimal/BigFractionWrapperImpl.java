@@ -46,4 +46,18 @@ public class BigFractionWrapperImpl extends BigFraction implements BigNumberWrap
     public BigFractionWrapperImpl(long num, long den) {
         super(num, den);
     }
+
+    @Override
+    public String toString() {
+        String str = null;
+        if (BigInteger.ONE.equals(super.getDenominator())) {
+            str = super.getNumerator().toString();
+        } else if (BigInteger.ZERO.equals(super.getNumerator())) {
+            str = "0";
+        } else {
+            str = super.getNumerator() + " : " + super.getDenominator();
+        }
+
+        return str;
+    }
 }
