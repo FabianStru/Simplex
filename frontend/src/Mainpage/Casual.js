@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Tabelle from "./Tabelle/Tabelle";
 import './Casual.css';
 import Button from "../Button/Button.js";
-import jsonToTabelle from "./Tabelle/JsonToTabelle";
+import jsonToTabelle from "../HelperMethods/JsonToTabelle";
 import Tabellenfeld from "./Tabelle/Tabellenfeld";
 import Dropdowngenerix from "../Navbar/Dropdowngenerix";
 
@@ -18,12 +18,14 @@ function Casual() {
     const [dropdownSpalten, setDropdownSpalten]=useState(false)
     const [a,setA]=useState(0)
     const [counter, setCounter] = useState(0);
+
     /*Counter ist so:
     0 = User hat nichts eingegeben
     1= User hat Spalten und Zeilen eingegeben
     2= User hat eine Tabelle an Server geschickt
     2-X = verschiedene Steps anzeigen der gelösten Tabelle
     */
+
     let matrix = new Array(outZeilen);
     for (let a = 0; a < outZeilen; a++) {
         matrix[a] = new Array(outSpalten)
@@ -58,7 +60,6 @@ function Casual() {
     }
 
     function sendTabelle() {
-
 
         //an Server die matrix schicken und die json mit verschiedenen matrix erhalten
         let xhr = new XMLHttpRequest()
