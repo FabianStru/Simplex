@@ -16,7 +16,8 @@ function Casual() {
     const [aktiv, setAktiv] = useState(false);
     const [serverData, setServerData] = useState({})
     const [dropdownSpalten, setDropdownSpalten]=useState(false)
-    const [a,setA]=useState(0)
+    const [dropdownZeilen, setDropdownZeilen]=useState(false)
+    const [a,setA]=useState(null)
     const [counter, setCounter] = useState(0);
     /*Counter ist so:
     0 = User hat nichts eingegeben
@@ -115,30 +116,42 @@ function Casual() {
 
     return (
         <form className='Casual' onSubmit={onSubmit}>
-            <div className='Eingabefeld'>
-                <label>Spalten:</label>
-                <Tabellenfeld editable={true} placeholder='Spalten angeben' required value={Spalten} onChange={addTabelle} onClick={()=>setDropdownSpalten(!dropdownSpalten)}>
+            <div className='VorAbsenden'>
+                <div className='Eingabefeld'>
+                    <div className='Spalteneingabe'>
+                        <label className='SpaltenLabel'>Spalten:</label>
+                        <div
+                            className='AnzahlSpalten'
+                            onClick={()=>setDropdownSpalten(!dropdownSpalten)}>
+                            {!Spalten && "Spalten angeben"}
+                            {Spalten && Spalten}
+                        </div>
+                        {dropdownSpalten &&
+                            <Dropdowngenerix
+                            Dropdownlist={[1,2,3,4,5,6]}
+                            A={setSpalten}
+                            dropdownBoolean={setDropdownSpalten}/>}
+                    </div>
+                    <div className='Zeileneingabe'>
+                        <label className='ZeilenLabel'>Zeilen:</label>
+                        <div
+                            className='AnzahlZeilen'
+                            onClick={()=>setDropdownZeilen(!dropdownZeilen)}>
+                            {!Zeilen && "Zeilen angeben"}
+                            {Zeilen && Zeilen}
+                        </div>
+                        {dropdownZeilen && <Dropdowngenerix Dropdownlist={[1,2,3,4,5,6]} A={setZeilen} dropdownBoolean={setDropdownZeilen}/>}
+                    </div>
 
-
-                    {console.log('boolean : ' + dropdownSpalten)}
-                </Tabellenfeld>
-                {dropdownSpalten && <Dropdowngenerix
-                Dropdownlist={[1,2,3,4,5,6]}
-                A={setA}/>}
-                <label>Zeilen:</label>
-                <Tabellenfeld
-                    editable={true}
-                    placeholder='Zeilen angeben'
-                    type="text"
-                    required
-                    value={Zeilen}
-                    onChange={(e) => setZeilen(e.target.value)}/>
+                </div>
                 <Button
                     className='StartKnopf'
                     text="Start"
                     onClick={addTabelle}/>
-
             </div>
+
+
+
             {aktiv && <div className='nochGrößererDiv'><div className='GANZGROßERDIV'>
 
                 <Tabelle className='TabelleOben' editable={false} Zeileninput={1} Spalteninput={outSpalten}

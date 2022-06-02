@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import './Dropdown.css';
 import {CSSTransition} from "react-transition-group";
-import {ReactComponent as Icon} from './Icons/Icon.svg';
-import {ReactComponent as Pfeil} from './Icons/Pfeil.svg';
+//import DropdownItem from "./Dropdown";
 
 
 function Dropdowngenerix (props) {
@@ -10,33 +9,32 @@ function Dropdowngenerix (props) {
     const [menuHeight, setMenuHeight] = useState();
     const dropdownRef= useRef(null);
     const [dDL,setDDL] = useState([])
-    console.log('List'+props.Dropdownlist)
 
-    /*
-    function onClick(){
-        if(props.Dropdownlist){
-            props.A=this.props.href
-        }
-        else{
-            if(this.props.goToMenu) {
-                setActiveMenu(this.props.goToMenu)
-            }
-        }
+
+
+    function DropdownItem(props){
+
+        return(
+            <a href={props.href} className='menu-item' onClick={props.onClick}>
+                <span className="icon-button">{props.leftIcon}</span>
+                {props.children}
+                <span className="icon-button">{props.rightIcon}</span>
+            </a>
+        )
     }
 
-     */
     function BuildDropdown () {
         setDDL(props.Dropdownlist)
-        console.log('DDL'+dDL.length)
         let length = dDL.length;
         let Hannes= [];
         for(let i=0;i<length;i++) {
             Hannes[i]=<DropdownItem
-                href={'/'+dDL[i]}>
+                onClick={()=>onKack(i)}
+                //href={'/'+dDL[i]}
+                >
                 {dDL[i]}
             </DropdownItem>
         }
-        console.log('HALLO  : ' + Hannes)
         return Hannes;
     }
 /*
@@ -50,17 +48,13 @@ function Dropdowngenerix (props) {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
-
-    function DropdownItem(props){
-
-        return(
-            <a href={props.href} className='menu-item' /*onClick={onClick} */>
-                <span className="icon-button">{props.leftIcon}</span>
-                {props.children}
-                <span className="icon-button">{props.rightIcon}</span>
-            </a>
-        )
+    function onKack(i){
+        console.log("i : "+ i)
+            console.log("dDL[i] : "+dDL[i])
+            props.A(dDL[i])
+            props.dropdownBoolean(false)
     }
+
     return (
         <div className='Dropdown' style={{height : menuHeight}} ref={dropdownRef}>
             <CSSTransition

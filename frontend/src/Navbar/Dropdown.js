@@ -21,10 +21,13 @@ function Dropdown () {
         setMenuHeight(height);
     }
 
-    function DropdownItem(props){
 
+    function DropdownItem(props){
+        function onClick(){
+            props.goToMenu && setActiveMenu(props.goToMenu)
+        }
         return(
-            <a href={props.href} className='menu-item' onClick={()=> props.goToMenu && setActiveMenu(props.goToMenu)}>
+            <a href={props.href} className='menu-item' onClick={onClick}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
                 <span className="icon-button">{props.rightIcon}</span>
