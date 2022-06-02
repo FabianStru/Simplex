@@ -7,9 +7,9 @@ function Ranked() {
 
     const [aktiv, setAktiv] = useState(false);
     const [tabelleRanked, setTabelleRanked] = useState('')
-    const [counter, setCounter] = useState(0)
     const [Tabellen, setTabellen] = useState([])
-
+    const [foo,setFoo] = useState([0])
+    const [counter, setCounter] = useState(0)
 
 
     function getTabelle(){
@@ -34,45 +34,50 @@ function Ranked() {
     function startRankedMode() {
         getTabelle()
 
-
         //start Timer in backend
         //pull Json from backend
     }
-/*
-    useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        }
-        // GET request using fetch inside useEffect React hook
-        fetch('/api/getRanked',requestOptions)
-            .then(response => response.json())
-            .then(data => setcomponentstate(data));
-// empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
 
- */
 
     //toDo: check if number or string (first row and first column only string, rest only number)
 
 
     function addTabelle() {
-        const Tabellchen = <Tabelle classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
-                                    Spalteninput={tabelleRanked[0].length}/>
+        setCounter(counter+1)
+
+        function changeTabellchen(userTable, ekey){
+            console.log('a: '+userTable)
+            console.log('SSJGEA : '+ekey)
+            let copy = foo
+            copy[ekey-1]=userTable
+            setFoo(copy)
+        }
+        const Tabellchen = <Tabelle key = {counter} ekey={counter} classname='inputTable' editable={true} Zeileninput={tabelleRanked.length}
+                                    Spalteninput={tabelleRanked[0].length} onChange = {changeTabellchen} />
         setTabellen([...Tabellen, Tabellchen])
     }
 
     function removeTabelle() {
         setTabellen((products) => Tabellen.filter((_, index) => index !== (Tabellen.length - 1)));
     }
+    function send(){
+        console.log(foo)
+    }
+
 
     return (
         <div>
             <Button
                 className='StartKnopf'
                 text="Start Ranked"
-                onClick={getTabelle}
+                onClick={startRankedMode}
             />
+            <Button
+                className='SendKnopf'
+                text="Send"
+                onClick={send}
+            />
+
             <div className="Tabellen">
                 {aktiv &&
                     <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
