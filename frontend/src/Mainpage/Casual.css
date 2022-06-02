@@ -6,20 +6,47 @@
 }
 .Eingabefeld {
     margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 50px;
 }
 .Eingabefeld label {
-
+    align-self: center;
 }
-.Eingabefeld input {
-    width: 20%;
-    height: 30px;
-    margin: 5px;
-    padding: 3px 7px;
-    font-size: 19px;
-
+.Eingabefeld div {
+    align-self: center;
 }
+.Spalteneingabe {
+    display: flex;
+    flex-direction: column;
+}
+.Spalteneingabe div{
+    font-size: 30px;
+
+    border-radius: 5px;
+    border-style: dashed;
+    border-color: black;
+    background: lightgrey;
+}
+.Zeileneingabe div{
+    font-size: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: dashed;
+    border-color: black;
+    background: lightgrey;
+}
+.Zeileneingabe {
+    display: flex;
+    flex-direction: column;
+}
+
 .StartKnopf {
 
+}
+.VorAbsenden {
+    display: flex;
+    flex-direction: column;
 }
 .CasualTabellenFelder {
     display: flex;
