@@ -34,31 +34,16 @@ function Ranked() {
     function startRankedMode() {
         getTabelle()
 
-
         //start Timer in backend
         //pull Json from backend
     }
-/*
-    useEffect(() => {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        }
-        // GET request using fetch inside useEffect React hook
-        fetch('/api/getRanked',requestOptions)
-            .then(response => response.json())
-            .then(data => setcomponentstate(data));
-// empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, []);
 
- */
 
     //toDo: check if number or string (first row and first column only string, rest only number)
 
 
     function addTabelle() {
         setCounter(counter+1)
-
 
         function changeTabellchen(userTable, ekey){
             console.log('a: '+userTable)
@@ -85,7 +70,7 @@ function Ranked() {
             <Button
                 className='StartKnopf'
                 text="Start Ranked"
-                onClick={getTabelle}
+                onClick={startRankedMode}
             />
             <Button
                 className='SendKnopf'
@@ -94,7 +79,7 @@ function Ranked() {
             />
 
             <div className="Tabellen">
-                {aktiv && componentstate &&
+                {aktiv &&
                     <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
                              Spalteninput={tabelleRanked[0].length} TableData={tabelleRanked}/>}
                 {aktiv && Tabellen}
