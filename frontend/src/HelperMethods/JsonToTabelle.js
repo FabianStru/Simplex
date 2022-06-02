@@ -1,6 +1,4 @@
 import React from "react";
-/*import * as data from './Servertabelle.json';
- */
 
 
 function JsonToTabelle({matrix,columnHeader,rowHeader}){
@@ -18,6 +16,7 @@ function JsonToTabelle({matrix,columnHeader,rowHeader}){
     /*
         Erstellt ein mehrdimensionales Array in der Größe der Tabelle +1
          */
+
     function createNewTabelle() {
         let ServerArray = new Array(ServerTabelle.length+1);
         for(let i = 0; i<ServerArray.length;i++) {

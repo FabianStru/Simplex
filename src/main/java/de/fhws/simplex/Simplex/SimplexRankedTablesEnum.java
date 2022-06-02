@@ -7,8 +7,9 @@ import java.util.Random;
 
 public enum SimplexRankedTablesEnum {
 
-    Beispiel1(SimplexRankedTables.beRottisBeispiel()), Beispiel2(SimplexRankedTables.beRottisBeispiel2()), Beispiel3(SimplexRankedTables.beRottisBeispiel3()),
-    Beispiel4(SimplexRankedTables.beRottisBeispiel4()), Beispiel5(SimplexRankedTables.beRottisBeispiel5()), Beispiel6(SimplexRankedTables.beRottisBeispiel6());
+   // Beispiel1(SimplexRankedTables.beRottisBeispiel()), Beispiel2(SimplexRankedTables.beRottisBeispiel2()), Beispiel3(SimplexRankedTables.beRottisBeispiel3()),
+   //Beispiel4(SimplexRankedTables.beRottisBeispiel4()), Beispiel5(SimplexRankedTables.beRottisBeispiel5()), Beispiel6(SimplexRankedTables.beRottisBeispiel6()),
+    Beispiel(SimplexRankedTables.fuerHannes());
 
     public Matrix getMatrix() {
         return matrix;

@@ -15,7 +15,7 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange, ekey
 
     const handleChange = (row, column, event) => {
         let copy = [...userTable];
-        copy[row][column] = +event.target.value;
+        copy[row][column] = event.target.value;
         userTable = copy
         console.log('ekey TAbelle : '+ekey)
         //console.log(userTable);

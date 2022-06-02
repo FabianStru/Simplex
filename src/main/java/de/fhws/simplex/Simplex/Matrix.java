@@ -3,6 +3,7 @@ package de.fhws.simplex.Simplex;
 import de.fhws.simplex.Calculator.Calculator;
 import de.fhws.simplex.Calculator.GreatestChangeCalculator;
 import de.fhws.simplex.Calculator.SteepestUnitAscentCalculator;
+import org.apache.commons.math3.fraction.BigFraction;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,7 +20,7 @@ import java.util.StringJoiner;
  */
 public class Matrix {
 
-    BigDecimal[][] matrix;
+    BigFraction[][] matrix;
     String[] columnHeader, rowHeader; //columnHeader = Spaltenbezeichner, rowHeader = Zeilenbezeichner
     int numberOfColumns, numberOfRows;
     int[] pivotelement; //pivotelement[0]: row, pivotelement[1]: column
@@ -63,18 +64,18 @@ public class Matrix {
      * @param numberOfColumns amount of columns that your matrix should have
      */
     public Matrix(int numberOfRows, int numberOfColumns) {
-        this.matrix = new BigDecimal[numberOfRows][numberOfColumns];
+        this.matrix = new BigFraction[numberOfRows][numberOfColumns];
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.setTableHeaders();
     }
 
     /**
-     * Public constructor for matrix, given an input of a BigDecimal matrix
+     * Public constructor for matrix, given an input of a BigFraction matrix
      *
-     * @param matrix the BigDecimal matrix with the desired values
+     * @param matrix the BigFraction matrix with the desired values
      */
-    public Matrix(BigDecimal[][] matrix) {
+    public Matrix(BigFraction[][] matrix) {
         this.matrix = matrix;
         this.numberOfColumns = this.matrix[0].length;
         this.numberOfRows = this.matrix.length;
@@ -87,7 +88,7 @@ public class Matrix {
     public Matrix() {
     }
 
-    Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader) {
+    Matrix(BigFraction[][] matrix, String[] columnHeader, String[] rowHeader) {
         this.matrix = matrix;
         this.columnHeader = columnHeader;
         this.rowHeader = rowHeader;
@@ -95,7 +96,7 @@ public class Matrix {
         this.numberOfRows = this.matrix.length;
     }
 
-    private Matrix(BigDecimal[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
+    private Matrix(BigFraction[][] matrix, String[] columnHeader, String[] rowHeader, int[] pivotelement) {
         this(matrix, columnHeader, rowHeader);
         this.pivotelement = pivotelement;
 
@@ -121,7 +122,7 @@ public class Matrix {
     }
 
     public Matrix deepCopy() {
-        BigDecimal[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigDecimal[]::clone).toArray($ -> matrix.clone());
+        BigFraction[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigFraction[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
         int[] pivotelementCopy = pivotelement.clone();
@@ -151,7 +152,7 @@ public class Matrix {
      *
      * @param matrix the matrix to be set
      */
-    public void setMatrix(BigDecimal[][] matrix) {
+    public void setMatrix(BigFraction[][] matrix) {
         this.matrix = matrix;
     }
 
@@ -214,9 +215,9 @@ public class Matrix {
     /**
      * This method is the getter for the matrix.
      *
-     * @return the matrix with all the values (BigDecimal[][] array)
+     * @return the matrix with all the values (BigFraction[][] array)
      */
-    public BigDecimal[][] getMatrix() {
+    public BigFraction[][] getMatrix() {
         return matrix;
     }
 
@@ -246,10 +247,10 @@ public class Matrix {
     @Override
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(",", "[", "]");
-        for (BigDecimal[] row : matrix) {
+        for (BigFraction[] row : matrix) {
             StringJoiner stringJoinerRow = new StringJoiner(",", "[", "]");
-            for (BigDecimal number : row) {
-                stringJoinerRow.add(number.toPlainString());
+            for (BigFraction number : row) {
+                stringJoinerRow.add(number.toString());
 
             }
             stringJoiner.add(stringJoinerRow.toString());
@@ -291,7 +292,7 @@ public class Matrix {
         for (int row = 0; row < matrix.length; row++) {
             System.out.printf("%15.4s" + " ", rowHeader[row]);
             for (int col = 0; col < matrix[row].length; col++) {
-                System.out.printf("%15.4f" + " ", matrix[row][col]);
+                System.out.printf("%15s" + " ", matrix[row][col].toString());
             }
             System.out.println();
         }
@@ -353,7 +354,7 @@ public class Matrix {
     private boolean continueCalculate() {
         int counter = 0;
         for (int column = 0; column < this.matrix[0].length - 1; column++) { //Iterieren über jedes Element (= die Spalten) in der "G"-Zeile, ausgenommen das Element von "Rechte Seite".
-            if (this.matrix[0][column].compareTo(BigDecimal.ZERO) >= 0) counter++;
+            if (this.matrix[0][column].compareTo(BigFraction.ZERO) >= 0) counter++;
         }
         if (counter == this.matrix[0].length - 1)
             return false; // Falls jedes Element in der Zeile "G" außer das Element von "Rechte Seite" nichtnegativ ist, wird false zurückgegeben
@@ -368,7 +369,7 @@ public class Matrix {
      * @author Anton Kaiser, Fabian Struensee
      */
     public Matrix nextStep(int[] pivot) { //pivot[0] ist die Zeile pivot[1] ist die Spalte
-        BigDecimal pivotElement = this.matrix[pivot[0]][pivot[1]];
+        BigFraction pivotElement = this.matrix[pivot[0]][pivot[1]];
 
 //        printMatrix(); //Für Debugging
 
@@ -396,15 +397,15 @@ public class Matrix {
      * @param pivot        an int array with two elements:
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
-     * @param pivotElement the BigDecimal variable of the pivot element
+     * @param pivotElement the BigFraction variable of the pivot element
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void calculateRemainingElements(int[] pivot, BigDecimal pivotElement) {
-        BigDecimal subtrahend;
+    private void calculateRemainingElements(int[] pivot, BigFraction pivotElement) {
+        BigFraction subtrahend;
         for (int column = 0; column < this.matrix[0].length; column++) { //Restliche Felder
             if (column != pivot[1]) for (int row = 0; row < this.matrix.length; row++) {
                 if (row != pivot[0]) {
-                    subtrahend = this.matrix[row][pivot[1]].multiply(this.matrix[pivot[0]][column]).divide(pivotElement, 15, RoundingMode.HALF_UP);
+                    subtrahend = this.matrix[row][pivot[1]].multiply(this.matrix[pivot[0]][column]).divide(pivotElement);
 //                        System.out.println("Zeile: " + row + " | Spalte: " + column + " | Feld (alt): " + this.matrix[row][column]); //Debugging Print
 //                        System.out.println("Subtrahend: " + subtrahend + " setzt sich zusammen aus: " +
 //                                "\n - Faktor 1: " + this.matrix[row][pivot[1]] + " \n - Faktor 2: " + this.matrix[pivot[0]][column] + "\n - Dividend (Pivotelement): " + pivotElement);
@@ -420,13 +421,13 @@ public class Matrix {
      * @param pivot        an int array with two elements:
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
-     * @param pivotElement the BigDecimal variable of the pivot element
+     * @param pivotElement the BigFraction variable of the pivot element
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void calculatePivotRow(int[] pivot, BigDecimal pivotElement) {
+    private void calculatePivotRow(int[] pivot, BigFraction pivotElement) {
         for (int column = 0; column < this.matrix[0].length; column++) { //Pivotzeile
             if (column != pivot[1]) //Pivotelement selbst ausschließen, da die Operationen nur für alle anderen Elemente in der Zeile gilt.
-                this.matrix[pivot[0]][column] = this.matrix[pivot[0]][column].divide(pivotElement, 15, RoundingMode.HALF_UP);
+                this.matrix[pivot[0]][column] = this.matrix[pivot[0]][column].divide(pivotElement);
             // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
         }
     }
@@ -437,13 +438,13 @@ public class Matrix {
      * @param pivot        an int array with two elements:
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
-     * @param pivotElement the BigDecimal variable of the pivot element
+     * @param pivotElement the BigFraction variable of the pivot element
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void calculatePivotColumn(int[] pivot, BigDecimal pivotElement) {
+    private void calculatePivotColumn(int[] pivot, BigFraction pivotElement) {
         for (int row = 0; row < this.matrix.length; row++) { //Pivotspalte
             if (row != pivot[0])
-                this.matrix[row][pivot[1]] = this.matrix[row][pivot[1]].divide(pivotElement, 15, RoundingMode.HALF_UP).negate();
+                this.matrix[row][pivot[1]] = this.matrix[row][pivot[1]].divide(pivotElement).negate();
             // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
         }
     }
@@ -454,11 +455,11 @@ public class Matrix {
      * @param pivot        an int array with two elements:
      *                     <li>[0] -> index of pivot element in pivot row
      *                     <li>[1] -> index of pivot element in pivot column
-     * @param pivotElement the BigDecimal variable of the pivot element
+     * @param pivotElement the BigFraction variable of the pivot element
      * @author Anton Kaiser, Fabian Struensee
      */
-    private void calculatePivotElement(int[] pivot, BigDecimal pivotElement) {
-        this.matrix[pivot[0]][pivot[1]] = BigDecimal.ONE.divide(pivotElement, 15, RoundingMode.HALF_UP); // Pivotelement,
+    private void calculatePivotElement(int[] pivot, BigFraction pivotElement) {
+        this.matrix[pivot[0]][pivot[1]] = BigFraction.ONE.divide(pivotElement); // Pivotelement,
         // auf 15 Nachkommastellen "kaufmännisch" runden wie aus der Schule bekannt
     }
 
@@ -466,7 +467,7 @@ public class Matrix {
         List<Integer[]> coordinates = new ArrayList<>();
         for (int i = 0; i < matrixToCheck.getMatrix().length; i++) {
             for (int j = 0; j < matrixToCheck.getMatrix()[i].length; j++) {
-                if ((matrixToCheck.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP).compareTo(this.getMatrix()[i][j].setScale(10, RoundingMode.HALF_UP)) != 0))
+                if ((matrixToCheck.getMatrix()[i][j].compareTo(this.getMatrix()[i][j]) != 0))
                         coordinates.add(new Integer[]{i,j});
             }
         }
