@@ -4,6 +4,7 @@ import './Casual.css';
 import Button from "../Button/Button.js";
 import jsonToTabelle from "./Tabelle/JsonToTabelle";
 import Tabellenfeld from "./Tabelle/Tabellenfeld";
+import Dropdowngenerix from "../Navbar/Dropdowngenerix";
 
 /* Hier soll der user das Simplex Problem lösen können */
 
@@ -14,7 +15,8 @@ function Casual() {
     const [outSpalten, setOutSpalten] = useState(0);
     const [aktiv, setAktiv] = useState(false);
     const [serverData, setServerData] = useState({})
-
+    const [dropdownSpalten, setDropdownSpalten]=useState(false)
+    const [a,setA]=useState(0)
     const [counter, setCounter] = useState(0);
     /*Counter ist so:
     0 = User hat nichts eingegeben
@@ -110,18 +112,19 @@ function Casual() {
     }
 
 
+
     return (
         <form className='Casual' onSubmit={onSubmit}>
             <div className='Eingabefeld'>
                 <label>Spalten:</label>
-                <Tabellenfeld
-                    className='ja'
-                    editable={true}
-                    placeholder='Spalten angeben'
-                    required
-                    type="text"
-                    value={Spalten}
-                    onChange={(e) => setSpalten(e.target.value)}/>
+                <Tabellenfeld editable={true} placeholder='Spalten angeben' required value={Spalten} onChange={addTabelle} onClick={()=>setDropdownSpalten(!dropdownSpalten)}>
+
+
+                    {console.log('boolean : ' + dropdownSpalten)}
+                </Tabellenfeld>
+                {dropdownSpalten && <Dropdowngenerix
+                Dropdownlist={[1,2,3,4,5,6]}
+                A={setA}/>}
                 <label>Zeilen:</label>
                 <Tabellenfeld
                     editable={true}
@@ -180,3 +183,13 @@ function Casual() {
 
 
 export default Casual
+/*
+<Tabellenfeld
+                    className='ja'
+                    editable={true}
+                    placeholder='Spalten angeben'
+                    required
+                    type="text"
+                    value={Spalten}
+                    onChange={(e) => setSpalten(e.target.value)}/>
+ */

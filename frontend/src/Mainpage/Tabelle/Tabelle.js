@@ -4,7 +4,7 @@ import './Tabelle.css';
 import createUserTable from "./createUserTable";
 import Button from "../../Button/Button";
 
-const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => {
+const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange, ekey}) => {
 
     const ZeilenAnzahl = Zeileninput
     const SpaltenAnzahl = Spalteninput
@@ -17,8 +17,9 @@ const Tabelle = ({Zeileninput, Spalteninput, editable, TableData, onChange}) => 
         let copy = [...userTable];
         copy[row][column] = +event.target.value;
         userTable = copy
-        console.log(userTable);
-        onChange(userTable);
+        console.log('ekey TAbelle : '+ekey)
+        //console.log(userTable);
+        onChange(userTable,ekey);
     }
 
     function generateZeile(Zeilennummer) {

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './Tabellenfeld.css';
 
-function Tabellenfeld  ({editable, content, onChange, placeholder}){
+function Tabellenfeld  ({editable, content, onChange, placeholder, onClick}){
 
     if (editable) {
         return (
@@ -9,6 +9,7 @@ function Tabellenfeld  ({editable, content, onChange, placeholder}){
                    type="text"
                    onChange={onChange}
                    placeholder={placeholder}
+                   onClick={onClick}
             />
         )
     } else {
