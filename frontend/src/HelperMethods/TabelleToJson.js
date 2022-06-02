@@ -34,7 +34,7 @@ function TabelleToJson(arrayOfMatrix) {
 
 
     function fillRowheader(i) {
-        let rowHeader = [arrayOfMatrix[0].length - 1];
+        let rowHeader = [arrayOfMatrix[0][0].length - 1];
         for (let j = 0; j < arrayOfMatrix[i][0]; j++) {
             if (j > 0) {
                 rowHeader = arrayOfMatrix[i][j];
