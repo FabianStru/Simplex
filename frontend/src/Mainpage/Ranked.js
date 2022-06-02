@@ -74,7 +74,7 @@ function Ranked() {
                 onClick={getTabelle}
             />
             <div className="Tabellen">
-                {aktiv && componentstate &&
+                {aktiv &&
                     <Tabelle classname='givenTable' editable={false} Zeileninput={tabelleRanked.length}
                              Spalteninput={tabelleRanked[0].length} TableData={tabelleRanked}/>}
                 {aktiv && Tabellen}
