@@ -1,5 +1,6 @@
 package de.fhws.simplex.Calculator;
 
+import de.fhws.simplex.Exception.ArrayLengthIsZeroException;
 import org.apache.commons.math3.fraction.BigFraction;
 
 import java.math.BigDecimal;
@@ -23,9 +24,15 @@ public class SteepestUnitAscentCalculator implements Calculator {
      */
     @Override
     public int[] getPivotelement(BigFraction[][] matrix) {
-        int pivotcolumn = getIndexOfSmallestNumberInRow(0, matrix); //
-        int pivotrow = calculateQuotientAndReturnIndexOfSmallestQuotient(pivotcolumn, matrix);
-        return new int[]{pivotrow, pivotcolumn};
+        try {
+            int pivotcolumn = getIndexOfSmallestNumberInRow(0, matrix);
+            int pivotrow = calculateQuotientAndReturnIndexOfSmallestQuotient(pivotcolumn, matrix);
+            return new int[]{pivotrow, pivotcolumn};
+        }
+        catch(ArrayLengthIsZeroException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
@@ -40,7 +47,7 @@ public class SteepestUnitAscentCalculator implements Calculator {
      */
 
     @Override
-    public int getIndexOfSmallestNumberInRow(int row, BigFraction[][] matrix) {
+    public int getIndexOfSmallestNumberInRow(int row, BigFraction[][] matrix) throws ArrayLengthIsZeroException {
         int index = -1; //Exception, falls -1 zurückgegeben wird
         BigFraction smallest = BigFraction.ZERO; // Anfangswert von 0, um zu prüfen, ob in "G"-Zeile ein negativer Wert existiert
         for (int column = 0; column < matrix[0].length - 1; column++) { //Iterieren über jedes Element (= die Spalten) in der "G"-Zeile, ausgenommen das Element von "Rechte Seite"
@@ -49,7 +56,8 @@ public class SteepestUnitAscentCalculator implements Calculator {
                 index = column;
             }
         }
-
+        if(index == -1)
+            throw new ArrayLengthIsZeroException("Keine Einträge in der Zeile");
         return index;
     }
 

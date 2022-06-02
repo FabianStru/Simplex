@@ -1,5 +1,6 @@
 package de.fhws.simplex.Calculator;
 
+import de.fhws.simplex.Exception.ArrayLengthIsZeroException;
 import org.apache.commons.math3.fraction.BigFraction;
 
 import java.math.BigDecimal;
@@ -20,7 +21,7 @@ public interface Calculator {
     /**
      * documentation
      */
-    int getIndexOfSmallestNumberInRow(int row, BigFraction[][] matrix);
+    int getIndexOfSmallestNumberInRow(int row, BigFraction[][] matrix) throws ArrayLengthIsZeroException;
 
     /**
      * documentation
