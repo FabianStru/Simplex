@@ -9,6 +9,16 @@ import org.apache.commons.math3.fraction.BigFraction;
  */
 public class SimplexRankedTables {
 
+
+    public static Matrix fuerHannes(){
+        Matrix m = new Matrix(2,2);
+        m.matrix[0][0] = new BigFraction(-10);
+        m.matrix[0][1] = new BigFraction(0);
+        m.matrix[1][0] = new BigFraction(1);
+        m.matrix[1][1] = new BigFraction(4);
+        return m;
+    }
+
     /**
      * This method changes the matrix to be one example of a Simplex tableau with correct values.
      * <p>
