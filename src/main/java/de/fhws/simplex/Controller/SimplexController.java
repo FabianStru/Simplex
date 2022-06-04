@@ -6,6 +6,7 @@ import de.fhws.simplex.Simplex.RankedResponseMiscalculation;
 import de.fhws.simplex.Simplex.SimplexRankedTablesEnum;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +95,10 @@ public class SimplexController {
      * @author Anton Kaiser
      */
     @GetMapping("/api/getRanked")
-    public Matrix getRankedMatrix() {
+    public Matrix getRankedMatrix(HttpServletRequest request) {
+        System.out.println(request.getRemoteAddr());
+
+
         return SimplexRankedTablesEnum.randomSimplexRankedTablesEnum().getMatrix();
     }
 
