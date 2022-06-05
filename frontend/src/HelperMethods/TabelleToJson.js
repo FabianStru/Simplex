@@ -5,42 +5,36 @@ function TabelleToJson(arrayOfMatrix) {
 
     const finalData = [{}];
     let currentMatrix = [[], []];
+    let columnHeader = []
+    let tempMatrix = [[],[]]
     //tempMatrix ist ein temoräres objekt was am ende der Loop in finalData geschoben wird
-
 
 
     //zuerst gehe ich durch jede Matrix:
     for (let i = 0; i < arrayOfMatrix.length; i++) {
-        //tempMatrix ist die gekürzte Matrix mit nur zahlen
-        const tempMatrix = createTempMatrix(i)
 
+        //current Matrix ist die Matrix, welche aktuell bearbeitet wird
         currentMatrix = arrayOfMatrix[i];
 
-        let columnHeader = new Array(currentMatrix.length - 1);
+        //tempMatrix ist die gekürzte Matrix mit nur zahlen
+        tempMatrix = createTempMatrix(i)
+
+
+        columnHeader = new Array(currentMatrix.length - 1);
 
         //initialisiere rowHeader und füllen mit dem inhalt der obersten zeile der Matrix:
         let rowHeader = fillRowheader(i);
 
         //jetzt gehen wir Zeile für Zeile durch die Matrix i
         for (let j = 0; j < currentMatrix.length; j++) {
-            console.log('counter 1: ' + j)
 
-            if (i > 0) { //ersten index auslassen und columHeader updaten
-                columnHeader.push(currentMatrix[j][0])
-            }
+            fillColumnHeader(j, columnHeader)
 
-            for (let k = 0; k < currentMatrix[j].length; k++) {
-                if (!(j === 0 || k === 0)) {
-                    tempMatrix[j - 1][k - 1] = (currentMatrix[j][k])
-                }
-            }
+            fillMatrix(j, tempMatrix)
+
         }
-        console.log(arrayOfMatrix[0])
-        console.log(tempMatrix)
-        console.log('columnHeader: ' + columnHeader)
-        console.log('rowHeader: ' + rowHeader)
         // TempMatrix, RowHeader und columnheader zu einem Objekt machen und zu finalData hinzufügen:
-        const foo = [{'matrix' : tempMatrix, 'columnheader' : columnHeader, 'Rowheader' : rowHeader}]
+        const foo = [{'matrix': tempMatrix, 'columnheader': columnHeader, 'Rowheader': rowHeader}]
         finalData.push(foo)
     }
     console.log(finalData)
@@ -49,8 +43,9 @@ function TabelleToJson(arrayOfMatrix) {
 
     function fillRowheader() {
         let rowHeader = new Array(currentMatrix[0].length - 1);
-        for (let j = 1; j < currentMatrix[0].length; j++) {
-            rowHeader[j] = currentMatrix[0][j];
+
+        for (let j = 0; j < currentMatrix[0].length - 1; j++) {
+            rowHeader[j] = currentMatrix[0][j + 1];
         }
         return rowHeader
     }
@@ -61,6 +56,21 @@ function TabelleToJson(arrayOfMatrix) {
             matrix[j] = new Array(arrayOfMatrix[i][j].length - 1)
         }
         return matrix;
+    }
+
+    function fillColumnHeader(j) {
+        //ersten index auslassen und columHeader updaten
+        if (!(j === 0)) {
+            columnHeader[j - 1] = currentMatrix[j][0]
+        }
+    }
+
+    function fillMatrix(j) {
+        for (let k = 0; k < currentMatrix[j].length; k++) {
+            if (!(j === 0 || k === 0)) {
+                tempMatrix[j - 1][k - 1] = (currentMatrix[j][k])
+            }
+        }
     }
 }
 
