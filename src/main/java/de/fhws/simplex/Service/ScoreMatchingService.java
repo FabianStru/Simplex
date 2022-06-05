@@ -15,10 +15,16 @@ public class ScoreMatchingService {
     private ScoreMatchingRepository scoreMatchingRepository;
 
     @Transactional
-    public String createScoreMatching(ScoreMatching score) {
+    public String createScoreMatching(ScoreMatching scoreMatching) {
         try {
-            scoreMatchingRepository.save(score);
-            return "ScoreMatching record created successfully.";
+            if(scoreMatchingRepository.findByIp(scoreMatching.getIp()).size()==0){
+                scoreMatchingRepository.save(scoreMatching);
+                return "ScoreMatching record created successfully.";
+            }
+            else {
+                updateScoreMatching(scoreMatching);
+                return "ScoreMatching already existed. Instead updated old entry.";
+            }
         } catch (Exception e) {
             throw e;
         }
@@ -29,15 +35,15 @@ public class ScoreMatchingService {
     }
 
     @Transactional
-    public String updateScoreMatching(ScoreMatching score) {
-        if (scoreMatchingRepository.existsByIp(score.getIp())) {
+    public String updateScoreMatching(ScoreMatching scoreMatching) {
+        if (scoreMatchingRepository.existsByIp(scoreMatching.getIp())) {
             try {
-                List<ScoreMatching> scores = scoreMatchingRepository.findByIp(score.getIp());
-                scores.stream().forEach(s -> {
-                    ScoreMatching scoreToBeUpdate = scoreMatchingRepository.findById(s.getId()).get();
-                    scoreToBeUpdate.setIp(score.getIp());
-                    scoreToBeUpdate.setTime(score.getTime());
-                    scoreMatchingRepository.save(scoreToBeUpdate);
+                List<ScoreMatching> scoreMatchings = scoreMatchingRepository.findByIp(scoreMatching.getIp());
+                scoreMatchings.stream().forEach(s -> {
+                    ScoreMatching scoreMatchingToBeUpdated = scoreMatchingRepository.findById(s.getId()).get();
+                    scoreMatchingToBeUpdated.setIp(scoreMatching.getIp());
+                    scoreMatchingToBeUpdated.setTime(scoreMatching.getTime());
+                    scoreMatchingRepository.save(scoreMatchingToBeUpdated);
                 });
                 return "ScoreMatching record updated.";
             } catch (Exception e) {
@@ -49,11 +55,11 @@ public class ScoreMatchingService {
     }
 
     @Transactional
-    public String deleteScoreMatching(ScoreMatching score) {
-        if (scoreMatchingRepository.existsByIp(score.getIp())) {
+    public String deleteScoreMatching(ScoreMatching scoreMatching) {
+        if (scoreMatchingRepository.existsByIp(scoreMatching.getIp())) {
             try {
-                List<ScoreMatching> scores = scoreMatchingRepository.findByIp(score.getIp());
-                scores.stream().forEach(s -> {
+                List<ScoreMatching> scoreMatchings = scoreMatchingRepository.findByIp(scoreMatching.getIp());
+                scoreMatchings.stream().forEach(s -> {
                     scoreMatchingRepository.delete(s);
                 });
                 return "ScoreMatching record deleted successfully.";
