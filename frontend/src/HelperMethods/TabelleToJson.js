@@ -3,11 +3,12 @@ import React from "react";
 
 function TabelleToJson(arrayOfMatrix) {
 
-    const finalData = [{}];
+    const finalData = [];
     let currentMatrix = [[], []];
-    let columnHeader = []
+
     let tempMatrix = [[],[]]
     //tempMatrix ist ein temoräres objekt was am ende der Loop in finalData geschoben wird
+    let columnHeader = []
 
 
     //zuerst gehe ich durch jede Matrix:
@@ -34,7 +35,7 @@ function TabelleToJson(arrayOfMatrix) {
 
         }
         // TempMatrix, RowHeader und columnheader zu einem Objekt machen und zu finalData hinzufügen:
-        const foo = [{'matrix': tempMatrix, 'columnheader': columnHeader, 'Rowheader': rowHeader}]
+        const foo = {'matrix': tempMatrix, 'columnHeader': columnHeader, 'rowHeader': rowHeader}
         finalData.push(foo)
     }
     console.log(finalData)

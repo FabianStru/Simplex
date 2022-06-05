@@ -56,8 +56,6 @@ function Ranked() {
         setArrayOfMatrix(temp)
         //console.log(arrayOfMatrix)
 
-
-
         let xhr = new XMLHttpRequest()
         let url = "/api/postRanked"
         xhr.open("POST", url, true)
@@ -74,6 +72,7 @@ function Ranked() {
         //hier noch ändern kumble:
         const readyToJson = TabelleToJson(arrayOfMatrix)
         const help = JSON.stringify(readyToJson)
+        console.log(help)
         xhr.send(help)
         console.log(response)
     }
