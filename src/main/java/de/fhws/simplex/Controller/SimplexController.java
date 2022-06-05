@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,7 +106,7 @@ public class SimplexController {
     public Matrix getRankedMatrix(HttpServletRequest request) {
         String ip = request.getRemoteAddr();
         System.out.println(request.getRemoteAddr());
-        ScoreMatching scoreMatching = new ScoreMatching(ip, new Date());
+        ScoreMatching scoreMatching = new ScoreMatching(ip, LocalDateTime.now());
         System.out.println(scoreMatching);
         System.out.println(scoreMatchingService.createScoreMatching(scoreMatching));
         return SimplexRankedTablesEnum.randomSimplexRankedTablesEnum().getMatrix();
