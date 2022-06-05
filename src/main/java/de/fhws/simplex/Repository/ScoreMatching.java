@@ -8,6 +8,22 @@ import java.util.Date;
 
 @Entity
 public class ScoreMatching {
+    public ScoreMatching() {
+
+    }
+    public ScoreMatching(String ip, Date time) {
+        this.ip = ip;
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "ScoreMatching{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", time=" + time +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,6 +32,8 @@ public class ScoreMatching {
     private String ip;
 
     private Date time;
+
+
 
     /**
      * @return the id
