@@ -129,6 +129,7 @@ function Ranked() {
                         onClick={removeTabelle}>
                     </Button>
                 </div>}
+                <h1>{response}</h1>
             </div>
         </div>
     )
