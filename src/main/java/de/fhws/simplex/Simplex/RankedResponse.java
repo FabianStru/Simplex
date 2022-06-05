@@ -13,6 +13,14 @@ public class RankedResponse {
         }
     }
 
+    public String getDurationMessage() {
+        return durationMessage;
+    }
+
+    public void setDurationMessage(String durationMessage) {
+        this.durationMessage = durationMessage;
+    }
+
     public boolean isResult() {
         return result;
     }
