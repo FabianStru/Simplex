@@ -26,8 +26,8 @@ function Ranked() {
         setCounter(counter + 1)
 
         function changeTabellchen(userTable, ekey) {
-            console.log('a: ' + userTable)
-            console.log('SSJGEA : ' + ekey)
+            //console.log('a: ' + userTable)
+            //console.log('SSJGEA : ' + ekey)
             let copy = arrayOfMatrix
             copy[ekey - 1] = userTable
             setArrayOfMatrix(copy)
@@ -49,11 +49,12 @@ function Ranked() {
     }
 
     function send() {
+
         //Das erste Array von ArrayOfMatrix wird zum vom Server übergebenen Array gemacht
         const temp = arrayOfMatrix;
         temp[0] = tabelleRanked;
         setArrayOfMatrix(temp)
-        console.log(arrayOfMatrix)
+        //console.log(arrayOfMatrix)
 
 
 
