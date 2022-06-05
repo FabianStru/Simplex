@@ -3,6 +3,7 @@ package de.fhws.simplex.Simplex;
 public class RankedResponse {
     private boolean result;
     private RankedResponseMiscalculation[] miscalculations;
+    private String durationMessage;
 
     public RankedResponse(RankedResponseMiscalculation[] miscalculations) {
         if (miscalculations.length == 0)
