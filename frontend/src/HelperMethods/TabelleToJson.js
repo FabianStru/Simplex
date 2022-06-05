@@ -8,7 +8,7 @@ function TabelleToJson(arrayOfMatrix) {
 
     let tempMatrix = [[],[]]
     //tempMatrix ist ein temoräres objekt was am ende der Loop in finalData geschoben wird
-    let columnHeader = []
+    let rowHeader = []
 
 
     //zuerst gehe ich durch jede Matrix:
@@ -21,21 +21,21 @@ function TabelleToJson(arrayOfMatrix) {
         tempMatrix = createTempMatrix(i)
 
 
-        columnHeader = new Array(currentMatrix.length - 1);
+        rowHeader = new Array(currentMatrix.length - 1);
 
         //initialisiere rowHeader und füllen mit dem inhalt der obersten zeile der Matrix:
-        let rowHeader = fillRowheader(i);
+        let columnHeader = fillRowheader(i);
 
         //jetzt gehen wir Zeile für Zeile durch die Matrix i
         for (let j = 0; j < currentMatrix.length; j++) {
 
-            fillColumnHeader(j, columnHeader)
+            fillColumnHeader(j, rowHeader)
 
             fillMatrix(j, tempMatrix)
 
         }
         // TempMatrix, RowHeader und columnheader zu einem Objekt machen und zu finalData hinzufügen:
-        const foo = {'matrix': tempMatrix, 'columnHeader': columnHeader, 'rowHeader': rowHeader}
+        const foo = {'matrix': tempMatrix, 'rowHeader': rowHeader, 'columnHeader': columnHeader}
         finalData.push(foo)
     }
     console.log(finalData)
@@ -62,7 +62,7 @@ function TabelleToJson(arrayOfMatrix) {
     function fillColumnHeader(j) {
         //ersten index auslassen und columHeader updaten
         if (!(j === 0)) {
-            columnHeader[j - 1] = currentMatrix[j][0]
+            rowHeader[j - 1] = currentMatrix[j][0]
         }
     }
 
