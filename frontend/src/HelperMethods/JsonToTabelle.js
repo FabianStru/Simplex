@@ -11,7 +11,7 @@ function JsonToTabelle({matrix,columnHeader,rowHeader}){
     createNewTabelle();
     fillTabelleWithJsonObj();
 
-    console.log(Tabelle)
+
     return (Tabelle)
     /*
         Erstellt ein mehrdimensionales Array in der Größe der Tabelle +1
