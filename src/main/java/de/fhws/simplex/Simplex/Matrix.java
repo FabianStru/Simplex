@@ -125,7 +125,10 @@ public class Matrix {
         BigFraction[][] matrixCopy = java.util.Arrays.stream(matrix).map(BigFraction[]::clone).toArray($ -> matrix.clone());
         String[] columnHeaderCopy = columnHeader.clone();
         String[] rowHeaderCopy = rowHeader.clone();
-        int[] pivotelementCopy = pivotelement.clone();
+        int[] pivotelementCopy = null;
+        if (pivotelement != null) {
+            pivotelementCopy = pivotelement.clone();
+        }
         return new Matrix(matrixCopy, columnHeaderCopy, rowHeaderCopy, pivotelementCopy);
     }
 
@@ -468,7 +471,7 @@ public class Matrix {
         for (int i = 0; i < matrixToCheck.getMatrix().length; i++) {
             for (int j = 0; j < matrixToCheck.getMatrix()[i].length; j++) {
                 if ((matrixToCheck.getMatrix()[i][j].compareTo(this.getMatrix()[i][j]) != 0))
-                        coordinates.add(new Integer[]{i,j});
+                    coordinates.add(new Integer[]{i, j});
             }
         }
         return coordinates.toArray(new Integer[0][0]);

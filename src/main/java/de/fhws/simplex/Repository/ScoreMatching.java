@@ -4,10 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalTime;
 
 @Entity
 public class ScoreMatching {
+    public ScoreMatching() {
+
+    }
+    public ScoreMatching(String ip, LocalTime time) {
+        this.ip = ip;
+        this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        return "ScoreMatching{" +
+                "id=" + id +
+                ", ip='" + ip + '\'' +
+                ", time=" + time +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +31,9 @@ public class ScoreMatching {
 
     private String ip;
 
-    private Date time;
+    private LocalTime time;
+
+
 
     /**
      * @return the id
@@ -34,7 +52,7 @@ public class ScoreMatching {
     /**
      * @return the time
      */
-    public Date getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
@@ -55,7 +73,7 @@ public class ScoreMatching {
     /**
      * @param time the time to set
      */
-    public void setTime(Date time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 }

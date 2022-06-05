@@ -11,7 +11,7 @@ function Ranked() {
     const [Tabellen, setTabellen] = useState([])
     const [arrayOfMatrix, setArrayOfMatrix] = useState([0])
     const [counter, setCounter] = useState(2)
-    const [response, setResponse] = useState();
+    const [response, setResponse] = useState({});
 
 
     function startRankedMode() {
@@ -26,8 +26,8 @@ function Ranked() {
         setCounter(counter + 1)
 
         function changeTabellchen(userTable, ekey) {
-            console.log('a: ' + userTable)
-            console.log('SSJGEA : ' + ekey)
+            //console.log('a: ' + userTable)
+            //console.log('SSJGEA : ' + ekey)
             let copy = arrayOfMatrix
             copy[ekey - 1] = userTable
             setArrayOfMatrix(copy)
@@ -49,13 +49,12 @@ function Ranked() {
     }
 
     function send() {
+
         //Das erste Array von ArrayOfMatrix wird zum vom Server übergebenen Array gemacht
         const temp = arrayOfMatrix;
         temp[0] = tabelleRanked;
         setArrayOfMatrix(temp)
-        console.log(arrayOfMatrix)
-
-
+        //console.log(arrayOfMatrix)
 
         let xhr = new XMLHttpRequest()
         let url = "/api/postRanked"
@@ -64,15 +63,17 @@ function Ranked() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 setResponse(JSON.parse(xhr.responseText))
-
+                setCounter(-1)
             } else {
                 console.log("Fehler: " + xhr.status)
+                console.log("Fehlerstatus: " + xhr.readyState)
             }
         }
 
         //hier noch ändern kumble:
         const readyToJson = TabelleToJson(arrayOfMatrix)
         const help = JSON.stringify(readyToJson)
+        console.log(help)
         xhr.send(help)
         console.log(response)
     }
@@ -84,9 +85,9 @@ function Ranked() {
         xhr.setRequestHeader("Content-Type", "application/json")
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log('antwort : ' + xhr.responseText)
+                //pls lorenz nenn deine variablen gscheit:
                 const HALLLAHBANHNJ = JSON.parse(xhr.responseText)
-                console.log('MAULHALTEN : ' + HALLLAHBANHNJ)
+
                 setTabelleRanked(jsonToTabelle(HALLLAHBANHNJ))
                 setAktiv(true)
             } else {
@@ -129,6 +130,8 @@ function Ranked() {
                         onClick={removeTabelle}>
                     </Button>
                 </div>}
+                {counter === -1 && response.result === true && <h1>Das Ergebnis war richtig</h1>}
+                {counter === -1 && response.result === false && <h1>Das Ergebnis war falsch</h1>}
             </div>
         </div>
     )
