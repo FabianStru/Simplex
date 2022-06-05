@@ -117,39 +117,40 @@ function Casual() {
 
     return (
         <form className='Casual' onSubmit={onSubmit}>
-            <div className='VorAbsenden'>
                 <div className='Eingabefeld'>
                     <div className='Spalteneingabe'>
                         <label className='SpaltenLabel'>Spalten:</label>
                         <div
                             className='AnzahlSpalten'
                             onClick={()=>setDropdownSpalten(!dropdownSpalten)}>
-                            {!Spalten && "Spalten angeben"}
+                            {!Spalten && "Spalten angeben▼"}
                             {Spalten && Spalten}
                         </div>
                         {dropdownSpalten &&
-                            <Dropdowngenerix
+                            <Dropdowngenerix className='DropdownAuswahl'
                             Dropdownlist={[1,2,3,4,5,6]}
                             A={setSpalten}
                             dropdownBoolean={setDropdownSpalten}/>}
                     </div>
+
+                    <Button
+                    className='StartKnopf'
+                    text="Start"
+                    onClick={addTabelle}/>
+
                     <div className='Zeileneingabe'>
                         <label className='ZeilenLabel'>Zeilen:</label>
                         <div
                             className='AnzahlZeilen'
                             onClick={()=>setDropdownZeilen(!dropdownZeilen)}>
-                            {!Zeilen && "Zeilen angeben"}
+                            {!Zeilen && "Zeilen angeben▼"}
                             {Zeilen && Zeilen}
                         </div>
-                        {dropdownZeilen && <Dropdowngenerix Dropdownlist={[1,2,3,4,5,6]} A={setZeilen} dropdownBoolean={setDropdownZeilen}/>}
+                        {dropdownZeilen && <Dropdowngenerix className='DropdownAuswahl' Dropdownlist={[1,2,3,4,5,6]} A={setZeilen} dropdownBoolean={setDropdownZeilen}/>}
                     </div>
 
                 </div>
-                <Button
-                    className='StartKnopf'
-                    text="Start"
-                    onClick={addTabelle}/>
-            </div>
+
 
 
 
